@@ -1,6 +1,6 @@
 import Layout from "components/layout/Layout";
-import React from "react";
 
+/** 프로필 수정 */
 const ProfileEdit = () => {
   return <Layout hasBack title="내 프로필 수정"></Layout>;
 };

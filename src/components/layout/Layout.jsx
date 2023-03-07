@@ -4,10 +4,19 @@ import Footer from "./Footer";
 import tw from "tailwind-styled-components";
 import Header from "./Header";
 
-const Layout = ({ children, hasBack = false, title = "", headerType }) => {
+const Layout = ({
+  children,
+  hasBack = false,
+  title = "",
+  headerType,
+  hasHeader = true,
+}) => {
   return (
-    <Wrapper>
-      <Header hasBack={hasBack} title={title} headerType={headerType} />
+    <Wrapper $hasHeader={hasHeader}>
+      {hasHeader && (
+        <Header hasBack={hasBack} title={title} headerType={headerType} />
+      )}
+
       {children}
       <Footer />
     </Wrapper>
@@ -17,6 +26,7 @@ const Layout = ({ children, hasBack = false, title = "", headerType }) => {
 export default Layout;
 
 const Wrapper = tw.div`
-  w-screen screen-width mx-auto h-screen relative bg-white pt-[5rem] pb-[6rem]
- 
+  ${({ hasHeader }) => (hasHeader ? "pt-[5rem]" : "pt-0")}
+  w-screen screen-width mx-auto h-screen relative bg-white  pb-[6rem]
+
 `;
