@@ -41,9 +41,19 @@ html {
   box-sizing: border-box;
 }
 
+.screen-width {
+  max-width: 460px;
+}
+
+.H1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
 body {
   height: 100vh;
   max-height: 100vh;
+  background-color: #f0f1f3;
   color: #1c1c1c;
   font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
     Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
