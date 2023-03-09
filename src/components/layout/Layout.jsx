@@ -28,5 +28,4 @@ export default Layout;
 const Wrapper = tw.div`
   ${({ hasHeader }) => (hasHeader ? "pt-[5rem]" : "pt-0")}
   w-screen screen-width mx-auto h-screen relative bg-white  pb-[6rem]
-
 `;

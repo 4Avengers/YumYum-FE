@@ -3,8 +3,9 @@ module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}"],
   darkMode: false,
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  variants: {
-    extends: {
+  variants: {},
+  theme: {
+    extend: {
       colors: {
         primary: {
           100: "#FFFFFF",

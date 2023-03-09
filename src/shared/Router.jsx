@@ -1,3 +1,6 @@
+import Begin from "components/start/Begin";
+import SignIn from "components/start/SignIn";
+import SignUp from "components/start/SignUp";
 import Home from "pages/Index";
 import NewsFeed from "pages/newsfeed/Index";
 import PostWrite from "pages/post/Write";
@@ -7,6 +10,7 @@ import ProfileEdit from "pages/profile/Edit";
 import Profile from "pages/profile/Index";
 import Quest from "pages/quest/Index";
 import Search from "pages/search/Index";
+import Start from "pages/start/Index";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const Router = () => {
@@ -14,9 +18,10 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/start" exact>
-          <Route path="signin" />
-          <Route path="signup" />
+        <Route path="/start" element={<Start />}>
+          <Route path="" element={<Begin />} />
+          <Route path="signin" element={<SignIn />} />
+          <Route path="signup" element={<SignUp />} />
         </Route>
         <Route path="/newsfeed" element={<NewsFeed />} />
         <Route path="/quest" element={<Quest />} />
