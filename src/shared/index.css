@@ -50,6 +50,30 @@ html {
   font-weight: 600;
 }
 
+.Cap1 {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+.Cap2 {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+.Cap3 {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.Cap4 {
+  font-size: 1.4rem;
+  font-size: 400;
+}
+.Cap5 {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.Cap6 {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
 body {
   height: 100vh;
   max-height: 100vh;

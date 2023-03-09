@@ -12,5 +12,5 @@ const Start = () => {
 export default Start;
 
 const Wrapper = tw.div`
-  w-screen screen-width mx-auto h-screen relative bg-white px-[2rem]
+  w-screen screen-width mx-auto h-screen relative bg-white px-[5vw]
 `;
