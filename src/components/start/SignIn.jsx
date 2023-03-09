@@ -27,10 +27,7 @@ const SignIn = () => {
   return (
     <main className="flex flex-col space-y-[2rem] pt-[10vh]">
       <h3 className=" text-[2.5rem] font-bold">로그인</h3>
-      <form
-        className="flex flex-col  space-y-[3rem]"
-        onSubmit={handleSubmit(onValid)}
-      >
+      <form className="flex flex-col " onSubmit={handleSubmit(onValid)}>
         <InputBox className="flex flex-col">
           <label className="flex flex-col space-y-[1rem]">
             <span className="Cap1">이메일</span>
@@ -58,7 +55,7 @@ const SignIn = () => {
             {errors?.password?.message}
           </span>
         </InputBox>
-        <button className="w-full  rounded-[1rem]  bg-primary-600 py-[1.5rem] text-[1.6rem] font-semibold text-white">
+        <button className=" mt-[2rem]  w-full rounded-[1rem] bg-primary-600 py-[1.5rem] text-[1.6rem] font-semibold text-white">
           로그인
         </button>
       </form>
@@ -71,7 +68,7 @@ const SignIn = () => {
           회원가입 하기
         </span>
       </div>
-      <div className="flex flex-col items-center space-y-[2rem] pt-[2rem]">
+      <div className="flex flex-col items-center space-y-[2rem] pt-[3rem]">
         <p className="Cap3">SNS 계정으로 간편하게 로그인하세요</p>
         <ul className="grid grid-cols-3 items-center gap-[2rem]">
           <li className="flex-center  h-[5rem] w-[5rem] rounded-[1rem] bg-[#FAE300] shadow-lg">
@@ -92,5 +89,5 @@ const SignIn = () => {
 export default SignIn;
 
 const InputBox = tw.div`
-flex flex-col space-y-[0.3rem]
+flex flex-col space-y-[0.3rem] mb-[3rem]
 `;
