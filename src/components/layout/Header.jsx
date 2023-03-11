@@ -1,6 +1,5 @@
 import { BiChevronLeft } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-import tw from "tailwind-styled-components";
 import HEADER_TYPE from "./headerType";
 const Header = ({ hasBack, title, headerType }) => {
   const navigate = useNavigate();
@@ -13,7 +12,7 @@ const Header = ({ hasBack, title, headerType }) => {
           </span>
         )}
 
-        <Title className="H1">{title}</Title>
+        <h3 className="text-[2rem] font-semibold">{title}</h3>
       </div>
       <nav>{headerType ? HEADER_TYPE[headerType] : null}</nav>
     </header>
@@ -21,7 +20,3 @@ const Header = ({ hasBack, title, headerType }) => {
 };
 
 export default Header;
-
-const Title = tw.h3`
- text-[2rem] font-semibold
-`;

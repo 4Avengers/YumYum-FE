@@ -1,7 +1,8 @@
+import { hasToken } from "apis/token";
 import Begin from "components/start/Begin";
 import SignIn from "components/start/SignIn";
 import SignUp from "components/start/SignUp";
-import Home from "pages/Index";
+// import Home from "pages/Index";
 import NewsFeed from "pages/newsfeed/Index";
 import PostWrite from "pages/post/Write";
 import Collection from "pages/profile/collection/Detail";
@@ -11,17 +12,36 @@ import Profile from "pages/profile/Index";
 import Quest from "pages/quest/Index";
 import Search from "pages/search/Index";
 import Start from "pages/start/Index";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 const Router = () => {
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    const isExist = hasToken();
+    if (isExist) {
+      setIsLogin(true);
+    }
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Navigate to="/newsfeed" replace />} />
         <Route path="/start" element={<Start />}>
-          <Route path="" element={<Begin />} />
-          <Route path="signin" element={<SignIn />} />
-          <Route path="signup" element={<SignUp />} />
+          <Route
+            path=""
+            element={isLogin ? <Navigate to="/" replace /> : <Begin />}
+          />
+          <Route
+            path="login"
+            element={isLogin ? <Navigate to="/" replace /> : <SignIn />}
+          />
+          <Route
+            path="signup"
+            element={isLogin ? <Navigate to="/" replace /> : <SignUp />}
+          />
         </Route>
         <Route path="/newsfeed" element={<NewsFeed />} />
         <Route path="/quest" element={<Quest />} />

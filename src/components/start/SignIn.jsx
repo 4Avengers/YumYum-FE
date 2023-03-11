@@ -1,29 +1,43 @@
 import { useForm } from "react-hook-form";
-import tw from "tailwind-styled-components";
 import { emailValid, passwordValid } from "utils/valids";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import { SiNaver } from "react-icons/si";
 import GoogleSvg from "assets/svg/GoogleSvg";
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
-import userApis from "apis/query/userApi";
+import styled from "@emotion/styled";
+import AuthService from "apis/service/AuthService";
+import CustomAlert from "components/common/CustomAlert";
+import { toast } from "react-toastify";
+import { setAccessToken, setRefreshToken } from "apis/token";
+import { useSetRecoilState } from "recoil";
+import { uesrAtom } from "atoms/userAtom";
 
 const SignIn = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
+  const setUser = useSetRecoilState(uesrAtom);
   const navigate = useNavigate();
-  const onValid = useCallback(async (data) => {
-    try {
-      // 로그인 로직
-      //const response = await userApis.SignIn(data);
-      // navigate("/")
-    } catch (e) {
-      //alert(e);
-    }
-  }, []);
+
+  const onValid = useCallback(
+    async (data) => {
+      try {
+        const {
+          data: { accessToken, refreshToken, user },
+        } = await AuthService.SignIn(data);
+        setAccessToken(accessToken);
+        setRefreshToken(refreshToken);
+        setUser(user);
+        navigate("/");
+      } catch (e) {
+        toast.error(e?.response?.data?.message || "로그인에 실패하였습니다.");
+      }
+    },
+    [navigate, setUser]
+  );
   return (
     <main className="flex flex-col space-y-[2rem] pt-[10vh]">
       <h3 className=" text-[2.5rem] font-bold">로그인</h3>
@@ -55,7 +69,10 @@ const SignIn = () => {
             {errors?.password?.message}
           </span>
         </InputBox>
-        <button className=" mt-[2rem]  w-full rounded-[1rem] bg-primary-600 py-[1.5rem] text-[1.6rem] font-semibold text-white">
+        <button
+          className="mt-[2rem] w-full rounded-[1rem] bg-primary-600 py-[1.5rem] text-[1.6rem] font-semibold text-white transition-colors disabled:bg-primary-300"
+          disabled={!isValid}
+        >
           로그인
         </button>
       </form>
@@ -82,12 +99,16 @@ const SignIn = () => {
           </li>
         </ul>
       </div>
+      <CustomAlert />
     </main>
   );
 };
 
 export default SignIn;
 
-const InputBox = tw.div`
-flex flex-col space-y-[0.3rem] mb-[3rem]
+const InputBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 3rem;
 `;

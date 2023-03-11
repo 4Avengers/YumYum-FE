@@ -1,10 +1,10 @@
-import tw from "tailwind-styled-components";
 import { BiHomeAlt2, BiReceipt, BiUser } from "react-icons/bi";
 import { CiSquarePlus } from "react-icons/ci";
 import { AiFillHome } from "react-icons/ai";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import { useMatch, useNavigate } from "react-router-dom";
 import { FaMap, FaRegMap, FaUser } from "react-icons/fa";
+import styled from "@emotion/styled";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -60,6 +60,8 @@ const Footer = () => {
 
 export default Footer;
 
-const Icon = tw.li`
-  flex-center
+const Icon = styled.li`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

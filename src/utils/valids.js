@@ -19,6 +19,7 @@ export const passwordValid = () => ({
     message: "8자리 이상으로 작성해주세요",
   },
   pattern: {
+    // eslint-disable-next-line
     value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,20}$/,
     message:
       "비밀번호는 대문자, 소문자 및 특수 문자를 포함하여 8자 이상 20자이하여야 합니다.",
@@ -37,6 +38,7 @@ export const passwordCheckValid = (options) => ({
     message: "비밀번호는 최소 8글자입니다.",
   },
   pattern: {
+    // eslint-disable-next-line
     value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,20}$/,
     message:
       "비밀번호는 대문자, 소문자 및 특수 문자를 포함하여 8자 이상 20자이하여야 합니다.",
@@ -49,14 +51,14 @@ export const nicknameValid = () => ({
   required: "닉네임을 입력해주세요.",
   maxLength: {
     value: 10,
-    message: "20자리 이하로 작성해주세요",
+    message: "10자리 이하로 작성해주세요",
   },
   minLength: {
-    value: 4,
-    message: "4자리 이상으로 작성해주세요",
+    value: 2,
+    message: "2자리 이상으로 작성해주세요",
   },
   pattern: {
-    value: /^[가-힣a-z0-9A-Z]{4,20}$/,
+    value: /^[가-힣a-z0-9A-Z]{2,10}$/,
     message: "닉네임은 한글 또는 숫자로 영문으로 입력해주세요",
   },
 });

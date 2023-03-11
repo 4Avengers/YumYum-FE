@@ -1,10 +1,12 @@
-import userApis from "apis/query/userApi";
+import styled from "@emotion/styled";
+import AuthService from "apis/service/AuthService";
 import AuthLabel from "components/common/AuthLabel";
+import CustomAlert from "components/common/CustomAlert";
 import ErrorMessage from "components/common/ErrorMessage";
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import tw from "tailwind-styled-components";
+import { toast } from "react-toastify";
 import cls from "utils/cls";
 import {
   birthValid,
@@ -20,13 +22,12 @@ const SignUp = () => {
     register,
     handleSubmit,
     setError,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
   const navigate = useNavigate();
 
   const onValid = useCallback(
     async (data) => {
-      console.log(data);
       const { password, confirmPassword } = data;
       if (confirmPassword !== password) {
         return setError(
@@ -37,11 +38,16 @@ const SignUp = () => {
       }
       try {
         // 회원가입 로직
-        // const response = await userApis.SignUp(data);
+        await AuthService.SignUp({
+          ...data,
+          profileImage:
+            "https://avatars.dicebear.com/api/identicon/wooncloud.svg",
+        }).then(() => toast.success("회원가입에 성공했습니다."));
+
         navigate("/start/signin");
       } catch (e) {
-        // message alert
-        alert("회원가입 실패");
+        console.log(e);
+        toast.error(e?.response?.data?.message || "회원가입 실패");
       }
     },
     [setError, navigate]
@@ -169,22 +175,28 @@ const SignUp = () => {
               type="number"
               placeholder="핸드폰 번호를 입력해주세요"
               register={{
-                ...register("tel", telValid()),
+                ...register("phoneNumber", telValid()),
               }}
             />
             <ErrorMessage errorMessage={errors?.tel?.message} />
           </InputBox>
         </div>
-        <button className="w-full  rounded-[1rem]  bg-primary-600 py-[1.5rem] text-[1.6rem] font-semibold text-white">
+        <button
+          className="w-full  rounded-[1rem]  bg-primary-600 py-[1.5rem] text-[1.6rem] font-semibold text-white transition-colors disabled:bg-primary-300"
+          disabled={!isValid}
+        >
           이메일로 가입하기
         </button>
       </form>
+      <CustomAlert />
     </main>
   );
 };
 
 export default SignUp;
 
-const InputBox = tw.div`
-flex flex-col space-y-[0.3rem]
+const InputBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 `;
