@@ -2,6 +2,7 @@ import React from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import cls from "utils/cls";
+import Main from "./Main";
 
 const Layout = ({
   children,
@@ -9,6 +10,7 @@ const Layout = ({
   title = "",
   headerType,
   hasHeader = true,
+  hasPadding = true,
 }) => {
   return (
     <div
@@ -22,8 +24,8 @@ const Layout = ({
           <Header hasBack={hasBack} title={title} headerType={headerType} />
         )}
       </>
+      <Main hasPadding={hasPadding}>{children}</Main>
 
-      {children}
       <Footer />
     </div>
   );
