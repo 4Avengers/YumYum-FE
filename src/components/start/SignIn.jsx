@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
 import styled from "@emotion/styled";
 import AuthService from "apis/service/AuthService";
-import CustomAlert from "components/common/CustomAlert";
 import { toast } from "react-toastify";
 import { setAccessToken, setRefreshToken } from "apis/token";
 import { useSetRecoilState } from "recoil";
@@ -99,7 +98,6 @@ const SignIn = () => {
           </li>
         </ul>
       </div>
-      <CustomAlert />
     </main>
   );
 };

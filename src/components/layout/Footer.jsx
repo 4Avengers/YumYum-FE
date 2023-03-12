@@ -14,7 +14,7 @@ const Footer = () => {
   const mapMatch = useMatch("/quest/*");
   const profileMatch = useMatch("/profile/*");
   return (
-    <footer>
+    <footer className="bg-white">
       <nav className="screen-width  fixed bottom-0 w-screen  border-t">
         <ul className="grid h-[6rem]  grid-cols-5">
           <Icon onClick={() => navigate("/")}>

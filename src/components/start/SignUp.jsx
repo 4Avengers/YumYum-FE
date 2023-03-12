@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import AuthService from "apis/service/AuthService";
 import AuthLabel from "components/common/AuthLabel";
-import CustomAlert from "components/common/CustomAlert";
 import ErrorMessage from "components/common/ErrorMessage";
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
@@ -188,7 +187,6 @@ const SignUp = () => {
           이메일로 가입하기
         </button>
       </form>
-      <CustomAlert />
     </main>
   );
 };

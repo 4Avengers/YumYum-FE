@@ -1,97 +1,168 @@
+import PostService from "apis/service/PostService";
+import { uesrAtom } from "atoms/userAtom";
 import Button from "components/common/Button";
+import MyListModal from "components/common/myList/MyListModal";
 import Layout from "components/layout/Layout";
-import React from "react";
-import { BiSearch, BiPlus } from "react-icons/bi";
-import { CiStar } from "react-icons/ci";
-import { FaStar } from "react-icons/fa";
+import AcessModal from "components/post/write/accessRange/AcessModal";
+import HashTagList from "components/post/write/HashTagList";
+import ImageList from "components/post/write/ImageList";
+import PlaceCard from "components/post/write/PlaceCard";
+import Rating from "components/post/write/Rating";
+import SearchBtn from "components/post/write/search/SearchBtn";
+import SearchModal from "components/post/write/search/SearchModal";
+import Textarea from "components/post/write/Textarea";
+import { AnimatePresence } from "framer-motion";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useRecoilValue } from "recoil";
+
 import cls from "utils/cls";
 
 const PostWrite = () => {
+  const navigate = useNavigate();
+  const [isSearch, setIsSearch] = useState(false); // 검색 모달
+  const [isAccessLevel, setIsAccessLevel] = useState(false); // 공개범위 모달
+  const [isMyList, setIsMyList] = useState(false); // 나의 리스트 모달
+  const [place, setPlace] = useState(null); // 장소 저장
+  const [imgList, setImgList] = useState([]); // 이미지 저장
+  const [myList, setMyList] = useState([]); // 나의 리스트 데이터
+  const loginUser = useRecoilValue(uesrAtom);
+
+  const {
+    register,
+    watch,
+    setValue,
+    handleSubmit,
+    formState: { isValid },
+  } = useForm({
+    defaultValues: { rating: 1, status: "public", visibility: "public" },
+  });
+
+  // 검색 모달
+  const handleToggleSearch = (e) => {
+    e.preventDefault();
+    setIsSearch((prev) => !prev);
+  };
+
+  // 공개범위 모달
+  const handleToggleAccessLevel = (e) => {
+    e.preventDefault();
+    setIsAccessLevel((prev) => !prev);
+  };
+
+  // 나의 리스트 모달
+  const handleToggleMyList = (e) => {
+    e.preventDefault();
+    setIsMyList((prev) => !prev);
+  };
+
+  // 포스팅 추가 + 이미지 로직 수정 필요
+  const onValid = async (data) => {
+    if (!imgList[0]) {
+      return toast.error("이미지를 첨부해주세요.");
+    }
+    if (!place) {
+      return toast.error("장소를 지정해주세요.");
+    }
+    const payload = {
+      ...data,
+      myListId: myList,
+      restaurant: place,
+      image: [url],
+    };
+    try {
+      await PostService.AddPost(payload);
+      navigate(`/profile/${loginUser.id}`);
+    } catch (e) {
+      toast.error("글 작성에 실패하였습니다.");
+    }
+  };
+
   return (
     <Layout title="맛집 포스팅">
-      <form className="flex flex-1 flex-col space-y-[2.5rem] px-[2rem]">
-        <button
-          className={cls("flex items-center space-x-[1rem]", style.border)}
-        >
-          <BiSearch size="2rem" className="text-primary-500" />
-          <span className="Cap2 text-primary-400">검색</span>
-        </button>
+      <form
+        className="flex flex-1 flex-col space-y-[2.5rem] px-[2rem]"
+        onSubmit={handleSubmit(onValid)}
+      >
+        {place && place?.id ? (
+          <PlaceCard place={place} onClick={handleToggleSearch} />
+        ) : (
+          <SearchBtn onClick={handleToggleSearch} />
+        )}
+
         <div className="relative flex flex-1  flex-col space-y-[2.5rem] pt-[1rem]">
           <div className="flex items-center space-x-[3rem]">
             <span className={cls(style.title)}>평점</span>
-            <ul className="flex space-x-[1rem]">
-              {React.Children.toArray(
-                [1, 2, 3, 4, 5].map((item) => (
-                  <li>
-                    {true ? <FaStar size="2rem" /> : <CiStar size="2rem" />}
-                  </li>
-                ))
-              )}
-            </ul>
-          </div>
-          <label className={cls(style.verticalContainer)}>
-            <span className={cls(style.title)}>리뷰</span>
-            <textarea
-              className={cls(
-                style.border,
-                "Cap2 h-[10vh] overflow-scroll outline-none scrollbar-hide placeholder:text-primary-400 focus:border-primary-500 focus:ring-transparent"
-              )}
-              placeholder="리뷰을 입력해주세요."
+            <Rating
+              value={watch("rating")}
+              register={{ ...register("rating", { required: true }) }}
             />
-          </label>
-          <div className={cls(style.verticalContainer)}>
-            <span className={cls(style.title)}>사진</span>
-            <div className="flex space-x-[0.7rem]">
-              {React.Children.toArray(
-                [1, 2, 3].map((item) => (
-                  <label
-                    className={cls(
-                      style.border,
-                      "flex-center group h-[8rem] w-[8rem] cursor-pointer hover:border-primary-500"
-                    )}
-                  >
-                    <input type="file" className="hidden" />
-                    <BiPlus
-                      size="2.5rem"
-                      strokeWidth="1"
-                      className="text-primary-400 group-hover:text-primary-500"
-                    />
-                  </label>
-                ))
-              )}
-            </div>
           </div>
-          <label className={cls(style.verticalContainer)}>
-            <span className={cls(style.title)}>해시태그</span>
-            <input
-              placeholder="해시태그를 작성하고 Enter를 눌러주세요"
-              className={cls(
-                style.border,
-                "Cap2 outline-none placeholder:text-primary-400 focus:border-primary-500 focus:ring-transparent"
-              )}
-            />
-          </label>
-          <div className={cls(style.verticalContainer)}>
+          <Textarea
+            register={{ ...register("content", { required: true }) }}
+            style={style}
+          />
+
+          <ImageList setValue={setImgList} style={style} />
+          <HashTagList setValue={setValue} style={style} />
+
+          <div
+            className={cls(style.verticalContainer)}
+            onClick={handleToggleAccessLevel}
+          >
             <span className={cls(style.title)}>공개범위</span>
             <button
-              className={cls(style.border, "Cap2 text-start text-primary-400")}
+              className={cls(
+                style.border,
+                "Cap2 text-start text-primary-400",
+                "bg-[#F7F6F6]"
+              )}
             >
-              전체공개
+              {watch("visibility") === "public" ? "전체 공개" : "팔로워 공개"}
             </button>
           </div>
           <div className={cls(style.verticalContainer, "pb-[8rem]")}>
             <span className={cls(style.title)}>나의 리스트에 추가</span>
             <button
-              className={cls(style.border, "Cap2 text-start text-primary-400")}
+              className={cls(
+                style.border,
+                "Cap2 text-start text-primary-400",
+                "bg-[#F7F6F6]"
+              )}
+              onClick={handleToggleMyList}
             >
-              기본
+              나의 맛집 리스트에 추가해주세요.
             </button>
           </div>
-          <Button disabled={false} className="absolute bottom-0">
+          <Button
+            disabled={!isValid || !imgList[0]}
+            className="absolute bottom-0"
+          >
             작성하기
           </Button>
         </div>
       </form>
+      <AnimatePresence>
+        {isSearch && (
+          <SearchModal setModal={handleToggleSearch} setPlace={setPlace} />
+        )}
+        {isAccessLevel && (
+          <AcessModal
+            setModal={handleToggleAccessLevel}
+            setValue={setValue}
+            value={watch("visibility")}
+          />
+        )}
+        {isMyList && (
+          <MyListModal
+            setModal={handleToggleMyList}
+            myList={myList}
+            setMyList={setMyList}
+          />
+        )}
+      </AnimatePresence>
     </Layout>
   );
 };
@@ -103,3 +174,6 @@ const style = {
   title: "Cap1",
   border: "rounded-[1rem] border p-[1rem]",
 };
+
+const url =
+  "https://media.istockphoto.com/id/1147544807/ko/%EB%B2%A1%ED%84%B0/%EC%97%86%EC%8A%B5%EB%8B%88%EB%8B%A4-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%B2%A1%ED%84%B0-%EA%B7%B8%EB%9E%98%ED%94%BD.jpg?s=612x612&w=0&k=20&c=d0Ddt3qdtkhxPvpInjBRzLWFjODlfSh3IkKAB6YZwC8=";
