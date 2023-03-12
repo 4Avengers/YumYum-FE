@@ -28,7 +28,10 @@ const EditComment = (postId) => {
   const queryClient = useQueryClient();
   return useMutation(
     async (payload) => {
-      const response = await instance.post(`posts/${postId}/comments`, payload);
+      const response = await instance.put(
+        `posts/${postId}/comments/${payload.commentId}`,
+        payload
+      );
       return response;
     },
     {
@@ -38,10 +41,58 @@ const EditComment = (postId) => {
 };
 
 /** 댓글 삭제 */
-
+const RemoveComment = (postId) => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    async (payload) => {
+      const response = await instance.delete(
+        `posts/${postId}/comments/${payload.id}`
+      );
+      return response;
+    },
+    {
+      onSuccess: () => queryClient.invalidateQueries(["comments", postId]),
+    }
+  );
+};
 /** 댓글 좋아요 */
+const AddCommentLike = (postId) => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    async (payload) => {
+      const response = await instance.post(
+        `posts/${postId}/comments/${payload.commentId}/like`
+      );
+      return response;
+    },
+    {
+      onSuccess: () => queryClient.invalidateQueries(["comments", postId]),
+    }
+  );
+};
 
-/** 댓글 */
+/** 댓글 좋아요 삭제 */
+const RemoveCommentLike = (postId) => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    async (payload) => {
+      const response = await instance.delete(
+        `posts/${postId}/comments/${payload.commentId}/like`
+      );
+      return response;
+    },
+    {
+      onSuccess: () => queryClient.invalidateQueries(["comments", postId]),
+    }
+  );
+};
 
-const CommentService = { ReadComments, AddComment, EditComment };
+const CommentService = {
+  ReadComments,
+  AddComment,
+  EditComment,
+  RemoveComment,
+  AddCommentLike,
+  RemoveCommentLike,
+};
 export default CommentService;
