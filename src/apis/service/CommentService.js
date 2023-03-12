@@ -3,10 +3,16 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 
 /** 포스트에 해당하는 댓글들 불러오기 */
 const ReadComments = (postId) => {
-  return useQuery(["comments", postId], async () => {
-    const response = await instance.get(`posts/${postId}/comments`);
-    return response.data;
-  });
+  return useQuery(
+    ["comments", postId],
+    async () => {
+      const response = await instance.get(`posts/${postId}/comments`);
+      return response.data;
+    },
+    {
+      enabled: !!postId,
+    }
+  );
 };
 
 /** 포스트에 댓글 달기 */

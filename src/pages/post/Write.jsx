@@ -37,7 +37,7 @@ const PostWrite = () => {
     handleSubmit,
     formState: { isValid },
   } = useForm({
-    defaultValues: { rating: 1, status: "public", visibility: "public" },
+    defaultValues: { rating: 1, visibility: "public" },
   });
 
   // 검색 모달
@@ -70,12 +70,14 @@ const PostWrite = () => {
       ...data,
       myListId: myList,
       restaurant: place,
+      rating: +data.rating,
       image: [url],
     };
     try {
       await PostService.AddPost(payload);
       navigate(`/profile/${loginUser.id}`);
     } catch (e) {
+      console.log(e);
       toast.error("글 작성에 실패하였습니다.");
     }
   };

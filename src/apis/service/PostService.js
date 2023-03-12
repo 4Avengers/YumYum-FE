@@ -3,7 +3,10 @@ import { useMutation, useQuery } from "react-query";
 
 /** 포스트 작성 */
 const AddPost = async (payload) => {
-  const response = await instance.post("posts", payload);
+  const response = await instance.post("posts", {
+    ...payload,
+    restaurantId: 1,
+  });
   return response.data;
 };
 

@@ -4,8 +4,8 @@ import { Cookies } from "react-cookie";
 const baseURL = process.env.REACT_APP_SERVER_URL;
 const cookies = new Cookies();
 // const refreshToken = cookies.get("RefreshToken");
-const accessToken = cookies.get("AccessToken");
-
+const accessToken = cookies.get("Authorization");
+console.log(accessToken, "access");
 const instance = axios.create({
   baseURL,
   headers: {

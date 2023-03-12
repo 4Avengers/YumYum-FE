@@ -19,9 +19,9 @@ const Paragragh = ({ post }) => {
         )}
       >
         <span className="Cap3 mr-[0.7rem] whitespace-nowrap text-primary-700">
-          {post.user.nickname}
+          {post?.user?.nickname}
         </span>
-        {post.content}
+        {post?.content}
       </p>
       {!showFullText && (
         <button
