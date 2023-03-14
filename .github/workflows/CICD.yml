@@ -22,6 +22,12 @@ jobs:
       - name: Install Dependencies # 의존 파일 설치
         run: npm install
 
+      - name: Setting .env
+        run: |
+          echo "REACT_APP_SERVER_URL=${{ secrets.REACT_APP_SERVER_URL }}" >> .env
+          echo "REACT_APP_KAKAO_APP_KEY=${{ secrets.REACT_APP_KAKAO_APP_KEY }}" >> .env
+          cat .env
+
       - name: Build # React Build
         run: npm run build
 
