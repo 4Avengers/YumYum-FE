@@ -64,7 +64,7 @@ const PostWrite = () => {
     };
     try {
       await PostService.AddPost(payload);
-      navigate(`/profile/${loginUser.id}`);
+      navigate(`/newsfeed`);
     } catch (e) {
       console.log(e);
       toast.error("글 작성에 실패하였습니다.");

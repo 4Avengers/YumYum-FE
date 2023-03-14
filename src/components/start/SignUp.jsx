@@ -43,7 +43,7 @@ const SignUp = () => {
             "https://avatars.dicebear.com/api/identicon/wooncloud.svg",
         }).then(() => toast.success("회원가입에 성공했습니다."));
 
-        navigate("/start/signin");
+        navigate("/start/login");
       } catch (e) {
         console.log(e);
         toast.error(e?.response?.data?.message || "회원가입 실패");
