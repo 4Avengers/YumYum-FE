@@ -24,7 +24,6 @@ jobs:
 
       - name: Build # React Build
         run: npm run build
-        deploy:
 
       - uses: jakejarvis/s3-sync-action@master
         with:
