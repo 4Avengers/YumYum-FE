@@ -1,6 +1,6 @@
 import PostService from "apis/service/PostService";
 import { uesrAtom } from "atoms/userAtom";
-import Button from "components/common/Button";
+import Button from "elements/Button";
 import MyListModal from "components/common/myList/MyListModal";
 import Layout from "components/layout/Layout";
 import AcessModal from "components/post/write/accessRange/AcessModal";
@@ -12,6 +12,7 @@ import SearchBtn from "components/post/write/search/SearchBtn";
 import SearchModal from "components/post/write/search/SearchModal";
 import Textarea from "components/post/write/Textarea";
 import { AnimatePresence } from "framer-motion";
+import useModal from "hooks/useModal";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -22,12 +23,13 @@ import cls from "utils/cls";
 
 const PostWrite = () => {
   const navigate = useNavigate();
-  const [isSearch, setIsSearch] = useState(false); // 검색 모달
-  const [isAccessLevel, setIsAccessLevel] = useState(false); // 공개범위 모달
-  const [isMyList, setIsMyList] = useState(false); // 나의 리스트 모달
-  const [place, setPlace] = useState(null); // 장소 저장
+  const [isSearch, handleToggleSearch] = useModal(); // 검색 모달
+  const [isAccessLevel, handleToggleAccessLevel] = useModal(); // 공개범위 모달
+  const [isMyList, handleToggleMyList] = useModal(); // 나의 리스트 모달
+  const [restaurant, setRestaurant] = useState(null); // 장소 저장
   const [imgList, setImgList] = useState([]); // 이미지 저장
   const [myList, setMyList] = useState([]); // 나의 리스트 데이터
+  const [hashtagNames, setHashtagNames] = useState([]); // 해시태그 리스트
   const loginUser = useRecoilValue(uesrAtom);
 
   const {
@@ -40,36 +42,23 @@ const PostWrite = () => {
     defaultValues: { rating: 1, visibility: "public" },
   });
 
-  // 검색 모달
-  const handleToggleSearch = (e) => {
-    e.preventDefault();
-    setIsSearch((prev) => !prev);
-  };
-
-  // 공개범위 모달
-  const handleToggleAccessLevel = (e) => {
-    e.preventDefault();
-    setIsAccessLevel((prev) => !prev);
-  };
-
-  // 나의 리스트 모달
-  const handleToggleMyList = (e) => {
-    e.preventDefault();
-    setIsMyList((prev) => !prev);
-  };
-
   // 포스팅 추가 + 이미지 로직 수정 필요
   const onValid = async (data) => {
     if (!imgList[0]) {
       return toast.error("이미지를 첨부해주세요.");
     }
-    if (!place) {
+    if (!restaurant) {
       return toast.error("장소를 지정해주세요.");
     }
+
+    delete restaurant.distance;
+    delete restaurant.place_url;
+
     const payload = {
       ...data,
+      hashtagNames,
       myListId: myList,
-      restaurant: place,
+      ...restaurant,
       rating: +data.rating,
       image: [url],
     };
@@ -88,8 +77,8 @@ const PostWrite = () => {
         className="flex flex-1 flex-col space-y-[2.5rem] px-[2rem]"
         onSubmit={handleSubmit(onValid)}
       >
-        {place && place?.id ? (
-          <PlaceCard place={place} onClick={handleToggleSearch} />
+        {restaurant && restaurant?.id ? (
+          <PlaceCard restaurant={restaurant} onClick={handleToggleSearch} />
         ) : (
           <SearchBtn onClick={handleToggleSearch} />
         )}
@@ -107,8 +96,12 @@ const PostWrite = () => {
             style={style}
           />
 
-          <ImageList setValue={setImgList} style={style} />
-          <HashTagList setValue={setValue} style={style} />
+          <ImageList setImgList={setImgList} imgList={imgList} style={style} />
+          <HashTagList
+            hashtagNames={hashtagNames}
+            setHashtagNames={setHashtagNames}
+            style={style}
+          />
 
           <div
             className={cls(style.verticalContainer)}
@@ -148,7 +141,10 @@ const PostWrite = () => {
       </form>
       <AnimatePresence>
         {isSearch && (
-          <SearchModal setModal={handleToggleSearch} setPlace={setPlace} />
+          <SearchModal
+            setModal={handleToggleSearch}
+            setRestaurant={setRestaurant}
+          />
         )}
         {isAccessLevel && (
           <AcessModal

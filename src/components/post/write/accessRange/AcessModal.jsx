@@ -11,7 +11,6 @@ const AcessModal = ({ setModal, setValue, value }) => {
     setModal(e);
   };
 
-  console.log(value);
   return (
     <motion.div
       className="flex-center absolute top-0 z-[100] h-full w-full bg-[rgba(0,0,0,0.3)]"

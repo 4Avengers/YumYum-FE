@@ -4,6 +4,7 @@ import SignIn from "components/start/SignIn";
 import SignUp from "components/start/SignUp";
 // import Home from "pages/Index";
 import NewsFeed from "pages/newsfeed/Index";
+import PostEdit from "pages/post/Edit";
 import PostWrite from "pages/post/Write";
 import Collection from "pages/profile/collection/Detail";
 import CollectionList from "pages/profile/collection/Index";
@@ -54,7 +55,7 @@ const Router = () => {
           element={<Collection />}
         />
         <Route path="/post/write" element={<PostWrite />} />
-        <Route path="/post/:id/edit" element={<ProfileEdit />} />
+        <Route path="/post/:id/edit" element={<PostEdit />} />
       </Routes>
     </BrowserRouter>
   );

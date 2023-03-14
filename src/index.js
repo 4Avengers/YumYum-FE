@@ -7,7 +7,14 @@ import { RecoilRoot } from "recoil";
 import axios from "axios";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 0,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
 
 root.render(

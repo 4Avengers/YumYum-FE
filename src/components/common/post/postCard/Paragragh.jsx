@@ -9,13 +9,13 @@ const Paragragh = ({ post }) => {
   };
 
   return (
-    <div className="flex px-[2rem] pt-[0.8rem]">
+    <div className="flex space-x-[1rem] px-[2rem] pt-[0.8rem]">
       <p
         className={cls(
           "Cap4 text-primary-600",
 
           !showFullText &&
-            "w-[60%] overflow-hidden text-ellipsis whitespace-nowrap"
+            "max-w-[60%] overflow-hidden text-ellipsis whitespace-nowrap"
         )}
       >
         <span className="Cap3 mr-[0.7rem] whitespace-nowrap text-primary-700">

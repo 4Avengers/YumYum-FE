@@ -1,9 +1,8 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import cls from "utils/cls";
 
-const HashTagList = ({ setValue, style }) => {
-  const [hashTags, setHashTags] = useState([]);
+const HashTagList = ({ hashtagNames, setHashtagNames, style }) => {
   const inputRef = useRef(null);
   const [isComposing, setIsComposing] = useState(false);
 
@@ -13,21 +12,20 @@ const HashTagList = ({ setValue, style }) => {
       if (e.key !== "Enter") return;
       if (inputRef && inputRef.current) {
         const value = inputRef.current.value;
-        setHashTags((prev) => prev.concat(value));
+        setHashtagNames((prev) => prev.concat(value));
         inputRef.current.value = "";
         e.preventDefault();
       }
     },
-    [isComposing, inputRef]
+    [isComposing, inputRef, setHashtagNames]
   );
 
-  const onDelete = useCallback((index) => {
-    setHashTags((prev) => prev.filter((_, i) => index !== i));
-  }, []);
-
-  useEffect(() => {
-    setValue("hashtagNames", hashTags);
-  }, [setValue, hashTags]);
+  const onDelete = useCallback(
+    (index) => {
+      setHashtagNames((prev) => prev.filter((_, i) => index !== i));
+    },
+    [setHashtagNames]
+  );
 
   return (
     <label className={cls(style?.verticalContainer)}>
@@ -41,12 +39,12 @@ const HashTagList = ({ setValue, style }) => {
           ref={inputRef}
           onCompositionStart={() => setIsComposing(true)}
           onCompositionEnd={() => setIsComposing(false)}
-          disabled={hashTags.length >= 10}
+          disabled={hashtagNames?.length >= 10}
         />
       </div>
-      {!!hashTags?.length && (
+      {!!hashtagNames?.length && (
         <div className="flex flex-wrap gap-[0.5rem]">
-          {hashTags?.map((tag, index) => (
+          {hashtagNames?.map((tag, index) => (
             <div
               key={index}
               className="Sub2 textColor rounded- flex  cursor-pointer items-center space-x-[0.8rem] rounded-full bg-primary-500 px-[0.7rem] py-[0.5rem] hover:bg-primary-600"
