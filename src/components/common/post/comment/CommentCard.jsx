@@ -1,24 +1,86 @@
+import CommentService from "apis/service/CommentService";
+import { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import getTime from "utils/getTime";
+import { isLike } from "utils/isLike";
+import EditComment from "./EditComment";
 
-const CommentCard = ({ comment }) => {
+const CommentCard = ({ comment, postId }) => {
+  const { mutate: addLike } = CommentService.AddCommentLike(postId);
+  const { mutate: removeLike } = CommentService.RemoveCommentLike(postId);
+  const { mutate: removeComment } = CommentService.RemoveComment(postId);
+  const [editMode, setEditMode] = useState(false);
+  // 수정
+  const handleEditMode = (e) => {
+    e.preventDefault();
+    setEditMode((prev) => !prev);
+  };
+
+  // 삭제
+  const handleRemoveComment = () => {
+    removeComment(comment?.id);
+  };
+
+  // 좋아요
+  const handleToggleList = () => {
+    if (isLike(comment?.isLiked)) {
+      removeLike(comment?.id);
+    } else {
+      addLike(comment?.id);
+    }
+  };
+
   return (
-    <li className="flex space-x-[1.5rem] bg-red-300 py-[1rem]">
+    <li className="flex space-x-[1.5rem] py-[1rem] first:pt-[2rem]">
       <img
         className="h-[3rem] w-[3rem] rounded-full"
         src="https://avatars.dicebear.com/api/identicon/wooncloud.svg"
         alt="프로필"
       />
-      <div className="flex flex-1 flex-col space-y-[0.4rem]">
-        <div className="flex space-x-[0.7rem]">
+      <div className="flex flex-1 flex-col  space-y-[0.4rem]">
+        <div className="flex items-center space-x-[0.7rem]">
           <span className="Cap5">{comment?.user?.nickname}</span>
-          <span className="Cap5 text-primary-500">2시간 전</span>
+          <span className="Cap5 text-primary-500">
+            {getTime(comment.updated_at)}
+          </span>
+          <div className="flex items-center space-x-[0.5rem]">
+            <button
+              className="text-primary-500 hover:text-config-blue"
+              onClick={handleEditMode}
+            >
+              수정
+            </button>
+            <button
+              className="text-primary-500 hover:text-config-red"
+              onClick={handleRemoveComment}
+            >
+              삭제
+            </button>
+          </div>
         </div>
-        <p className="Cap6">{comment?.content}</p>
+        {editMode ? (
+          <EditComment
+            comment={comment}
+            postId={postId}
+            handleEditMode={() => setEditMode(false)}
+          />
+        ) : (
+          <p className="Cap6">{comment?.content}</p>
+        )}
       </div>
-      <AiOutlineHeart
-        size="2rem"
-        className="mt-[1rem] cursor-pointer text-primary-500 hover:text-primary-600"
-      />
+      {isLike(comment?.isLiked) ? (
+        <AiFillHeart
+          size="2rem"
+          className="mt-[1rem] cursor-pointer text-primary-600 hover:text-primary-400"
+          onClick={handleToggleList}
+        />
+      ) : (
+        <AiOutlineHeart
+          size="2rem"
+          className="mt-[1rem] cursor-pointer text-primary-500 hover:text-primary-600"
+          onClick={handleToggleList}
+        />
+      )}
     </li>
   );
 };

@@ -34,9 +34,10 @@ const EditComment = (postId) => {
   const queryClient = useQueryClient();
   return useMutation(
     async (payload) => {
+      console.log(payload);
       const response = await instance.put(
         `posts/${postId}/comments/${payload.commentId}`,
-        payload
+        { content: payload.content }
       );
       return response;
     },
@@ -50,9 +51,9 @@ const EditComment = (postId) => {
 const RemoveComment = (postId) => {
   const queryClient = useQueryClient();
   return useMutation(
-    async (payload) => {
+    async (commentId) => {
       const response = await instance.delete(
-        `posts/${postId}/comments/${payload.id}`
+        `posts/${postId}/comments/${commentId}`
       );
       return response;
     },
@@ -65,9 +66,9 @@ const RemoveComment = (postId) => {
 const AddCommentLike = (postId) => {
   const queryClient = useQueryClient();
   return useMutation(
-    async (payload) => {
+    async (commentId) => {
       const response = await instance.post(
-        `posts/${postId}/comments/${payload.commentId}/like`
+        `posts/${postId}/comments/${commentId}/like`
       );
       return response;
     },
@@ -81,9 +82,9 @@ const AddCommentLike = (postId) => {
 const RemoveCommentLike = (postId) => {
   const queryClient = useQueryClient();
   return useMutation(
-    async (payload) => {
+    async (commentId) => {
       const response = await instance.delete(
-        `posts/${postId}/comments/${payload.commentId}/like`
+        `posts/${postId}/comments/${commentId}/like`
       );
       return response;
     },

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import AuthService from "apis/service/AuthService";
-import AuthLabel from "components/common/AuthLabel";
-import ErrorMessage from "components/common/ErrorMessage";
+import AuthLabel from "elements/AuthLabel";
+import ErrorMessage from "elements/ErrorMessage";
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";

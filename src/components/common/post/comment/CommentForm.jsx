@@ -7,6 +7,7 @@ const CommentForm = ({ postId }) => {
   const { mutate: addComment } = CommentService.AddComment(postId);
   const inputRef = useRef(null);
 
+  // 코멘트 작성
   const onSumbit = useCallback(
     (e) => {
       e.preventDefault();
@@ -14,6 +15,7 @@ const CommentForm = ({ postId }) => {
       const { value } = inputRef.current;
       if (value.trim() === "") return;
       addComment({ content: value });
+      inputRef.current.value = "";
     },
     [addComment]
   );

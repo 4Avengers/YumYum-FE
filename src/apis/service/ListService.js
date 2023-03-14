@@ -1,5 +1,5 @@
 import instance from "apis/instance";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 /** 해당 유저의 맛집리스트 목록 불러오기*/
 const ReadCollectionList = (userId) => {
@@ -10,12 +10,32 @@ const ReadCollectionList = (userId) => {
 };
 
 /** 나의 맛집리스트 타이틀만 불러오기 */
-const ReadMyList = (userId) => {
-  return useQuery(["myList"], async () => {
-    const response = await instance.get("/myList");
-    return response.data;
-  });
+const ReadMyList = () => {
+  return useQuery(
+    ["myList"],
+    async () => {
+      const response = await instance.get("/myList");
+      return response.data;
+    },
+    {
+      staleTime: Infinity,
+    }
+  );
 };
 
-const ListService = { ReadCollectionList, ReadMyList };
+/** 나의 맛집리스트 카테고리 추가하기*/
+const AddMyList = () => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    async (payload) => {
+      const response = await instance.post("/myList", payload);
+      return response;
+    },
+    {
+      onSuccess: () => queryClient.invalidateQueries(["myList"]),
+    }
+  );
+};
+
+const ListService = { ReadCollectionList, ReadMyList, AddMyList };
 export default ListService;
