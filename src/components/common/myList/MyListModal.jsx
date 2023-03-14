@@ -1,4 +1,3 @@
-import ListService from "apis/service/ListService";
 import { motion } from "framer-motion";
 import { IoMdClose } from "react-icons/io";
 import { bgAni, listModalAni } from "shared/motionStyle";
