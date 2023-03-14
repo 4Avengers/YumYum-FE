@@ -8,6 +8,7 @@ const NewsFeedRecent = () => {
   const { data: postList } = PostService.ReadNewsFeeds();
   useQueryKey(["newsFeeds", "current"], postQueryKeyAtom);
 
+  console.log(postList);
   return (
     <>
       <ul className="flex flex-col">
