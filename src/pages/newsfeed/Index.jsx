@@ -22,7 +22,6 @@ const NewsFeed = () => {
         {showPostConfigModal && <PostConfigModal />}
         {showCommentModal && <CommentModal />}
       </AnimatePresence>
-      ;
     </Layout>
   );
 };

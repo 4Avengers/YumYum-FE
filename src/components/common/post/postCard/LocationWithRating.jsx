@@ -7,7 +7,7 @@ const LocationWithRating = ({ post }) => {
       <div className="flex items-center ">
         <span className="Cap5 mr-[1rem]">{post?.restaurant?.place_name}</span>
         <span className="Cap5 text-primary-500">
-          {post?.restaurant?.category_name}
+          {post?.restaurant?.category_name.split(">")[1]}
         </span>
         <span className="mx-[0.5rem] h-4 w-[0.12rem] bg-primary-500"></span>
         <span className="Cap5 text-primary-500">

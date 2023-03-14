@@ -3,8 +3,11 @@ import React, { useCallback, useRef } from "react";
 import { HiOutlinePaperAirplane } from "react-icons/hi";
 
 // input 대신 textarea로 autosize
-const CommentForm = ({ postId }) => {
-  const { mutate: addComment } = CommentService.AddComment(postId);
+const CommentForm = ({ postId, queryKey }) => {
+  const { mutate: addComment } = CommentService.AddComment({
+    postId,
+    queryKey,
+  });
   const inputRef = useRef(null);
 
   // 코멘트 작성

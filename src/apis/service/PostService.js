@@ -21,7 +21,7 @@ const EditPost = (postId) => {
   const naviagate = useNavigate();
   return useMutation(
     async (payload) => {
-      const response = await instance.patch(`posts/${postId}`);
+      const response = await instance.patch(`posts/${postId}`, payload);
       return response;
     },
     {

@@ -74,9 +74,9 @@ const PostEdit = () => {
         setValue("visibility", response.visibility);
         setRestaurant(response.restaurant);
         setValue("content", response.content);
-        setImgList([...ImageList]);
+        setImgList([...response?.img_url]);
         setMyListId(response.myListId);
-        setHashtagNames(response.hashtagNames);
+        setHashtagNames(response.hashtags?.map((item) => item.name));
       });
     })();
   }, [id, setValue]);

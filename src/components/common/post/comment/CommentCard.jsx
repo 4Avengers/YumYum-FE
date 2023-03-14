@@ -5,10 +5,14 @@ import getTime from "utils/getTime";
 import { isLike } from "utils/isLike";
 import EditComment from "./EditComment";
 
-const CommentCard = ({ comment, postId }) => {
+const CommentCard = ({ comment, postId, queryKey }) => {
   const { mutate: addLike } = CommentService.AddCommentLike(postId);
   const { mutate: removeLike } = CommentService.RemoveCommentLike(postId);
-  const { mutate: removeComment } = CommentService.RemoveComment(postId);
+  const { mutate: removeComment } = CommentService.RemoveComment({
+    postId,
+    queryKey,
+  });
+
   const [editMode, setEditMode] = useState(false);
   // 수정
   const handleEditMode = (e) => {

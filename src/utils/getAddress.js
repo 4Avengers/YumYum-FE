@@ -5,3 +5,5 @@ export const getAddress = (str) => {
     .reverse()
     .find((item) => item[item?.length - 1 || 0] === "동");
 };
+
+// "동 or 리"

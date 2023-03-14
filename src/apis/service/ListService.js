@@ -14,7 +14,7 @@ const ReadMyList = () => {
   return useQuery(
     ["myList"],
     async () => {
-      const response = await instance.get("/myList");
+      const response = await instance.get("/my-list");
       return response.data;
     },
     {
@@ -28,7 +28,7 @@ const AddMyList = () => {
   const queryClient = useQueryClient();
   return useMutation(
     async (payload) => {
-      const response = await instance.post("/myList", payload);
+      const response = await instance.post("/my-list/collections", payload);
       return response;
     },
     {

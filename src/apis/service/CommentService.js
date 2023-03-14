@@ -16,7 +16,7 @@ const ReadComments = (postId) => {
 };
 
 /** 포스트에 댓글 달기 */
-const AddComment = (postId) => {
+const AddComment = ({ postId, queryKey }) => {
   const queryClient = useQueryClient();
   return useMutation(
     async (payload) => {
@@ -24,7 +24,10 @@ const AddComment = (postId) => {
       return response;
     },
     {
-      onSuccess: () => queryClient.invalidateQueries(["comments", postId]),
+      onSuccess: () => {
+        queryClient.invalidateQueries(["comments", postId]);
+        queryKey && queryClient.invalidateQueries(queryKey);
+      },
     }
   );
 };
@@ -34,7 +37,6 @@ const EditComment = (postId) => {
   const queryClient = useQueryClient();
   return useMutation(
     async (payload) => {
-      console.log(payload);
       const response = await instance.put(
         `posts/${postId}/comments/${payload.commentId}`,
         { content: payload.content }
@@ -48,7 +50,7 @@ const EditComment = (postId) => {
 };
 
 /** 댓글 삭제 */
-const RemoveComment = (postId) => {
+const RemoveComment = ({ postId, queryKey }) => {
   const queryClient = useQueryClient();
   return useMutation(
     async (commentId) => {
@@ -58,7 +60,10 @@ const RemoveComment = (postId) => {
       return response;
     },
     {
-      onSuccess: () => queryClient.invalidateQueries(["comments", postId]),
+      onSuccess: () => {
+        queryClient.invalidateQueries(["comments", postId]);
+        queryKey && queryClient.invalidateQueries(queryKey);
+      },
     }
   );
 };
