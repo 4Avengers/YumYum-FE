@@ -23,13 +23,22 @@ const Paragragh = ({ post }) => {
         </span>
         {post?.content}
       </p>
-      {!showFullText && (
+
+      {!showFullText ? (
         <button
           className="Cap4 cursor-pointer text-primary-500"
           onClick={toggleShowFullText}
         >
           더보기
         </button>
+      ) : (
+        <ul className="flex  space-x-[0.4rem]">
+          {React.Children.toArray(
+            post?.hashtags?.map((hashtag) => (
+              <li className="text-config-blue">#{hashtag?.name}</li>
+            ))
+          )}
+        </ul>
       )}
     </div>
   );
