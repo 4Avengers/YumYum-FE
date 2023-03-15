@@ -12,15 +12,17 @@ import SearchModal from "components/post/write/search/SearchModal";
 import Textarea from "components/post/write/Textarea";
 import { AnimatePresence } from "framer-motion";
 import useModal from "hooks/useModal";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import cls from "utils/cls";
+import useUser from "hooks/useUser";
 
 const PostWrite = () => {
   const navigate = useNavigate();
+  const [user] = useUser();
   const [isSearch, handleToggleSearch] = useModal(); // 검색 모달
   const [isAccessLevel, handleToggleAccessLevel] = useModal(); // 공개범위 모달
   const [isMyList, handleToggleMyList] = useModal(); // 나의 리스트 모달
@@ -28,6 +30,11 @@ const PostWrite = () => {
   const [imgList, setImgList] = useState([]); // 이미지 저장
   const [myList, setMyList] = useState([]); // 나의 리스트 데이터
   const [hashtagNames, setHashtagNames] = useState([]); // 해시태그 리스트
+  const {
+    mutate: addPost,
+    isSuccess,
+    isError,
+  } = PostService.AddPost(user?.id + "");
 
   const {
     register,
@@ -53,10 +60,10 @@ const PostWrite = () => {
 
     /** formData로 전송 */
     const formData = new FormData();
-    Object.entries(restaurant)?.map(([key, value]) => {
+    Object.entries(restaurant)?.forEach(([key, value]) => {
       formData.append(key, value);
     });
-    Object.entries(data)?.map(([key, value]) => {
+    Object.entries(data)?.forEach(([key, value]) => {
       formData.append(key, value);
     });
     imgList?.forEach((file) => {
@@ -66,14 +73,19 @@ const PostWrite = () => {
     formData.append("myListId", JSON.stringify(myList));
     formData.append("rating", +data.rating);
 
-    try {
-      await PostService.AddPost(formData);
-      navigate(`/newsfeed`);
-    } catch (e) {
-      console.log(e);
-      toast.error("글 작성에 실패하였습니다.");
-    }
+    addPost(formData);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(`/newsfeed`);
+      toast.success("새로운 글을 등록하였습니다.");
+    }
+  }, [isSuccess, navigate]);
+
+  useEffect(() => {
+    if (isError) toast.error("글 작성에 실패하였습니다.");
+  }, [isError]);
 
   return (
     <Layout title="맛집 포스팅">
@@ -176,6 +188,3 @@ const style = {
   title: "Cap1",
   border: "rounded-[1rem] border p-[1rem]",
 };
-
-const url =
-  "https://media.istockphoto.com/id/1147544807/ko/%EB%B2%A1%ED%84%B0/%EC%97%86%EC%8A%B5%EB%8B%88%EB%8B%A4-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%B2%A1%ED%84%B0-%EA%B7%B8%EB%9E%98%ED%94%BD.jpg?s=612x612&w=0&k=20&c=d0Ddt3qdtkhxPvpInjBRzLWFjODlfSh3IkKAB6YZwC8=";

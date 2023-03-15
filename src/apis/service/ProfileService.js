@@ -32,11 +32,17 @@ const ReadProfile = (profileId) => {
 };
 
 /** 프로필 유저 게시글 목록 조회 */
-const ReadProfilePosts = (profileId) => {
-  return useQuery(["profile", "posts", profileId], async () => {
-    const response = await instance.get(`profile/${profileId}/posts`);
-    return response.data;
-  });
+const ReadProfilePosts = ({ profileId, isOwner }) => {
+  return useQuery(
+    ["profile", "posts", profileId],
+    async () => {
+      const response = await instance.get(`profile/${profileId}/posts`);
+      return response.data;
+    },
+    {
+      refetchOnMount: isOwner ? false : true,
+    }
+  );
 };
 
 /** 내 프로필 수정 */

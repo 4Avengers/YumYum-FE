@@ -8,17 +8,20 @@ import { postQueryKeyAtom } from "atoms/queryKeyAtom";
 import { bgAni, smallModalAni } from "shared/motionStyle";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
+import useUser from "hooks/useUser";
 
 const PostConfigModal = () => {
   const postId = useRecoilValue(postIdAtom);
   const queryKey = useRecoilValue(postQueryKeyAtom);
   const setShowPostConfig = useSetRecoilState(postConfigModalAtom);
   const navigate = useNavigate();
+  const [user] = useUser();
+
   const {
     mutate: removePost,
     isSuccess,
     isError,
-  } = PostService.RemovePost(queryKey);
+  } = PostService.RemovePost(queryKey, user?.id);
 
   /** 게시글 삭제 */
   const handleDeletePost = () => {

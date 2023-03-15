@@ -1,5 +1,7 @@
+import NotPost from "components/common/post/notPost/NotPost";
+
 const TaggedUserPosts = () => {
-  return <div>TaggedUserPosts</div>;
+  return <NotPost />;
 };
 
 export default TaggedUserPosts;

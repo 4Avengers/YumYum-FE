@@ -18,6 +18,7 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import cls from "utils/cls";
+import useUser from "hooks/useUser";
 
 const PostEdit = () => {
   const { id } = useParams();
@@ -28,7 +29,12 @@ const PostEdit = () => {
   const [imgList, setImgList] = useState([]); // 이미지 저장
   const [myListId, setMyListId] = useState([]); // 나의 리스트 데이터
   const [hashtagNames, setHashtagNames] = useState([]); // 해시태그 리스트
-  const { mutate: editPost } = PostService.EditPost(id); // 포스트 수정 함수
+  const [user] = useUser();
+  const { mutate: editPost } = PostService.EditPost({
+    postId: id,
+    profileId: user?.id + "",
+  }); // 포스트 수정 함수
+
   const {
     register,
     watch,

@@ -3,9 +3,19 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 
 /** 포스트 작성 */
-const AddPost = async (payload) => {
-  const response = await instance.post("posts", payload);
-  return response.data;
+const AddPost = (profileId) => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    async (payload) => {
+      const response = await instance.post("post", payload);
+      return response;
+    },
+    {
+      onSuccess: () =>
+        queryClient.invalidateQueries(["profile", "posts", profileId]),
+      onError: (e) => console.log(e),
+    }
+  );
 };
 
 /** 포스트 조회 */
@@ -15,20 +25,24 @@ const ReadPost = async (postId) => {
 };
 
 /** 포스트 수정 */
-const EditPost = (postId) => {
+const EditPost = ({ postId, profileId }) => {
   const naviagate = useNavigate();
+  const queryClient = useQueryClient();
   return useMutation(
     async (payload) => {
       const response = await instance.patch(`posts/${postId}`, payload);
       return response;
     },
     {
-      onSuccess: () => naviagate(-1),
+      onSuccess: () => {
+        queryClient.invalidateQueries(["profile", "posts", profileId]);
+        naviagate(-1);
+      },
     }
   );
 };
 /** 포스트 삭제 */
-const RemovePost = (queryKey) => {
+const RemovePost = (queryKey, profileId) => {
   const queryClient = useQueryClient();
   return useMutation(
     async (postId) => {
@@ -36,7 +50,10 @@ const RemovePost = (queryKey) => {
       return response;
     },
     {
-      onSuccess: () => queryClient.invalidateQueries(queryKey),
+      onSuccess: () => {
+        queryClient.invalidateQueries(queryKey);
+        queryClient.invalidateQueries(["profile", "posts", profileId + ""]);
+      },
     }
   );
 };

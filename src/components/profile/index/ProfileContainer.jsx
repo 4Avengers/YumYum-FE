@@ -44,7 +44,7 @@ const ProfileContainer = ({
             <span className="Cap3">{profile?.nickname}</span>
             {isOwner ? (
               <button
-                className="Cap5 rounded-[0.8rem] bg-primary-600 p-[0.7rem_1.3rem] text-white  transition-colors hover:bg-primary-500"
+                className="Cap5 rounded-[0.8rem] border border-primary-300  p-[0.7rem_1.3rem] text-primary-600 hover:font-semibold"
                 onClick={setOpenEditModal}
               >
                 프로필 편집
@@ -59,7 +59,7 @@ const ProfileContainer = ({
                 )}
                 onClick={toggleFollow}
               >
-                팔로우
+                {strToBool(profile?.follow_relationship) ? "팔로잉" : "팔로우"}
               </button>
             )}
           </div>
@@ -70,7 +70,7 @@ const ProfileContainer = ({
           )}
         </div>
       </div>
-      <button className="Cap3 rounded-[1rem] bg-primary-600 py-[0.9rem] text-white  transition-colors hover:bg-primary-500">
+      <button className="Cap3 rounded-[1rem] bg-primary-600 py-[0.9rem] text-white  transition-colors hover:bg-[rgba(0,0,0,0.7)]">
         맛집 컬렉션 보기
       </button>
       <div className="flex space-x-[0.5rem]">
@@ -81,20 +81,20 @@ const ProfileContainer = ({
           )}
         >
           <button
-            className=" border p-[0.4rem] hover:font-semibold"
+            className=" rounded-[0.5rem] border p-[0.4rem] hover:font-semibold"
             onClick={handleOpenFollowing}
           >
             팔로잉
           </button>
           <button
-            className="border hover:font-semibold"
+            className="rounded-[0.5rem] border hover:font-semibold"
             onClick={handleOpenFollower}
           >
             팔로워
           </button>
           {!isOwner && <button className="border ">메시지</button>}
         </div>
-        <button className="flex-center w-[3rem] border">
+        <button className="flex-center w-[3rem] rounded-[0.5rem] border">
           <MdOutlineKeyboardArrowDown
             size="1.8rem"
             className="text-primary-500"
