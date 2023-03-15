@@ -42,7 +42,7 @@ const AcessModal = ({ setModal, setValue, value }) => {
         <div className="flex-center Cap4 space-x-[1rem] pt-[1rem] pb-[2rem] text-white">
           <button
             className={cls(
-              "rounded-[1rem] bg-primary-600 p-[1rem]",
+              "rounded-[1rem]  p-[1rem]",
               value === "public"
                 ? "bg-primary-600"
                 : "bg-primary-400 transition-colors hover:bg-primary-500"
@@ -54,7 +54,7 @@ const AcessModal = ({ setModal, setValue, value }) => {
           </button>
           <button
             className={cls(
-              "rounded-[1rem] bg-primary-600 p-[1rem]",
+              "rounded-[1rem]  p-[1rem]",
               value === "private"
                 ? "bg-primary-600"
                 : "bg-primary-400 transition-colors hover:bg-primary-500"

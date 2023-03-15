@@ -3,5 +3,10 @@ export const getAddress = (str) => {
   return str
     ?.split(" ")
     .reverse()
-    .find((item) => item[item?.length - 1 || 0] === "동");
+    .find(
+      (item) =>
+        item[item?.length - 1] === "동" || item[item?.length - 1] === "리"
+    );
 };
+
+// "동 or 리"

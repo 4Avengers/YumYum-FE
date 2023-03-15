@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}"],
-  darkMode: false,
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   variants: {},
   theme: {
@@ -16,6 +15,13 @@ module.exports = {
           500: "#848484",
           600: "#333333",
           700: "#1E1E1E",
+        },
+        config: {
+          btn: "#F0F0F0",
+          blue: "#5192EE",
+          hoverBlue: "#126ded",
+          red: "#E74E42",
+          hoverRed: "#e52012",
         },
       },
       screens: {

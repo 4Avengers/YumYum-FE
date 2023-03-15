@@ -1,6 +1,6 @@
 import { geoLocationAtom } from "atoms/geoLocationAtom";
-import ModalHeader from "components/common/modal/ModalHeader";
-import ModalLayout from "components/common/modal/ModalLayout";
+import ModalHeader from "components/common/modalLayout/ModalHeader";
+import ModalLayout from "components/common/modalLayout/ModalLayout";
 import useSearchPlaces from "hooks/useSearchPlaces";
 import { debounce } from "lodash";
 import React, { useCallback, useRef } from "react";
@@ -10,11 +10,11 @@ import { useRecoilValue } from "recoil";
 import { modalLayoutAni } from "shared/motionStyle";
 import SearchCard from "./SearchCard";
 
-const SearchModal = ({ setModal, setPlace }) => {
+const SearchModal = ({ setModal, setRestaurant }) => {
   const location = useRecoilValue(geoLocationAtom);
   const { places, onChangeQuery, resetPlaces } = useSearchPlaces({ location });
   const keywordRef = useRef(null);
-
+  console.log(places);
   // keyword가 변경될 때마다 places를 다시 조회
   const onChangeKeyword = debounce((e) => {
     const keyword = e.target.value;
@@ -67,7 +67,7 @@ const SearchModal = ({ setModal, setPlace }) => {
             places?.map((place) => (
               <SearchCard
                 place={place}
-                setPlace={setPlace}
+                setRestaurant={setRestaurant}
                 setModal={setModal}
               />
             ))

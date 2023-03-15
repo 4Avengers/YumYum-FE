@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import AuthService from "apis/service/AuthService";
-import AuthLabel from "components/common/AuthLabel";
-import ErrorMessage from "components/common/ErrorMessage";
+import AuthLabel from "elements/AuthLabel";
+import ErrorMessage from "elements/ErrorMessage";
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +43,7 @@ const SignUp = () => {
             "https://avatars.dicebear.com/api/identicon/wooncloud.svg",
         }).then(() => toast.success("회원가입에 성공했습니다."));
 
-        navigate("/start/signin");
+        navigate("/start/login");
       } catch (e) {
         console.log(e);
         toast.error(e?.response?.data?.message || "회원가입 실패");

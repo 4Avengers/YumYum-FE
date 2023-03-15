@@ -1,8 +1,8 @@
 import { MdPlace } from "react-icons/md";
 
-const SearchCard = ({ place, setPlace, setModal }) => {
+const SearchCard = ({ place, setRestaurant, setModal }) => {
   const onClick = async (e) => {
-    setPlace(place);
+    setRestaurant(place);
     setModal(e);
   };
 
@@ -15,14 +15,14 @@ const SearchCard = ({ place, setPlace, setModal }) => {
         <MdPlace size="2rem" className="text-primary-500" />
       </span>
       <div className="flex flex-1 flex-col ">
-        <strong className="Cap1">{place.place_name}</strong>
-        <p className="Cap4 text-primary-500">{place.road_address_name}</p>
+        <strong className="Cap1">{place?.place_name}</strong>
+        <p className="Cap4 text-primary-500">{place?.road_address_name}</p>
       </div>
       <div className="flex flex-col items-center text-primary-500">
         <span className="Cap5">
-          {place.category_name?.split(">")?.reverse()[0]?.trim()}
+          {place?.category_name?.split(">")?.reverse()[0]?.trim()}
         </span>
-        <span className="Cap5">{(+place.distance / 1000).toFixed(1)}km</span>
+        <span className="Cap5">{(+place?.distance / 1000).toFixed(1)}km</span>
       </div>
     </li>
   );

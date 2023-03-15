@@ -4,29 +4,25 @@ import { BiPlus } from "react-icons/bi";
 import { toast } from "react-toastify";
 import { IoMdClose } from "react-icons/io";
 
-const ImageList = ({ setValue, style }) => {
+const ImageList = ({ imgList, setImgList, style }) => {
   const [imagePreview, setImagePreview] = useState([]);
 
   // 이미지 저장 및 이미지 프리뷰 저장
   const handleAddImages = useCallback(
     (event) => {
-      const imageLists = event.target.files;
-      setValue((prev) => [...prev, ...Array.from(imageLists)].slice(0, 3));
-      for (let i = 0; i < imageLists.length; i++) {
-        const blobImage = URL.createObjectURL(imageLists[i]);
-        setImagePreview((prev) => [...prev, blobImage]);
-      }
+      const imageList = event.target.files;
+      setImgList((prev) => [...prev, ...Array.from(imageList)].slice(0, 3));
     },
-    [setValue]
+    [setImgList]
   );
 
   // X버튼 클릭 시 이미지 삭제
   const handleDeleteImage = useCallback(
     (idx) => {
-      setImagePreview((prev) => prev.filter((_, index) => index !== idx));
-      setValue((prev) => prev.filter((_, index) => index !== idx));
+      // setImagePreview((prev) => prev.filter((_, index) => index !== idx));
+      setImgList((prev) => prev.filter((_, index) => index !== idx));
     },
-    [setValue]
+    [setImgList]
   );
 
   useEffect(() => {
@@ -35,6 +31,14 @@ const ImageList = ({ setValue, style }) => {
       setImagePreview((prev) => prev.slice(0, 3));
     }
   }, [imagePreview]);
+
+  useEffect(() => {
+    setImagePreview([]);
+    for (let i = 0; i < imgList?.length; i++) {
+      const blobImage = URL.createObjectURL(imgList[i]);
+      setImagePreview((prev) => [...prev, blobImage]);
+    }
+  }, [imgList]);
 
   return (
     <div className={cls(style.verticalContainer)}>

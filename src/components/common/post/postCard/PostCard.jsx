@@ -3,24 +3,35 @@ import LocationWithRating from "./LocationWithRating";
 import IconContainer from "./IconContainer";
 import Paragragh from "./Paragragh";
 import { useSetRecoilState } from "recoil";
-import { commentModalAtom } from "atoms/modalAtom";
+import { commentModalAtom, postConfigModalAtom } from "atoms/modalAtom";
 import { postIdAtom } from "atoms/postAtom";
 import { useCallback } from "react";
 import { handleImgError } from "utils/handleImgError";
 
 const PostCard = ({ post }) => {
-  const setShowModal = useSetRecoilState(commentModalAtom);
+  const setShowCommentModal = useSetRecoilState(commentModalAtom);
+  const setShowPostConfigModal = useSetRecoilState(postConfigModalAtom);
   const setPostId = useSetRecoilState(postIdAtom);
 
-  const handleCommentModal = useCallback(() => {
-    setShowModal(true);
+  // 해당 포스트 id에 해당하는 설정 모달을 가져오는 기능
+  const handlePostConfigModal = useCallback(() => {
+    setShowPostConfigModal(true);
     setPostId(post.id);
-  }, [setPostId, setShowModal]);
+  }, [post, setShowPostConfigModal, setPostId]);
+
+  // 해당 포스트 id에 해당하는 코멘트 모달을 가져오는 기능
+  const handleCommentModal = useCallback(() => {
+    setShowCommentModal(true);
+    setPostId(post.id);
+  }, [setPostId, setShowCommentModal, post]);
 
   return (
     <>
       <li className="flex flex-col border-b pt-[2rem] pb-[2rem] ">
-        <UserContainter post={post} />
+        <UserContainter
+          post={post}
+          handlePostConfigModal={handlePostConfigModal}
+        />
         <LocationWithRating post={post} />
         <img
           src={post?.img_url}
@@ -28,13 +39,17 @@ const PostCard = ({ post }) => {
           className="w-full object-cover"
           onError={handleImgError}
         />
-        <IconContainer handleCommentModal={handleCommentModal} />
+        <IconContainer handleCommentModal={handleCommentModal} post={post} />
         <p className="Cap3 px-[2rem]">좋아요 {post?.totalLikes}개</p>
         <Paragragh post={post} />
-        <button
-          className="Cap4 mt-[0.8rem] cursor-pointer px-[2rem] text-start text-primary-500"
-          onClick={handleCommentModal}
-        >{`댓글 ${21}개 모두 보기`}</button>
+        {!!post?.comments?.length && (
+          <button
+            className="Cap4 mt-[0.8rem] cursor-pointer px-[2rem] text-start text-primary-500"
+            onClick={handleCommentModal}
+          >
+            {`댓글 ${post?.comments?.length}개 모두 보기`}
+          </button>
+        )}
       </li>
     </>
   );

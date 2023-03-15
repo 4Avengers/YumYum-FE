@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
-import { BiPlus } from "react-icons/bi";
 import { IoMdClose } from "react-icons/io";
 import { bgAni, listModalAni } from "shared/motionStyle";
 import MyListCard from "./MyListCard";
+import MyListForm from "./MyListForm";
 
 const MyListModal = ({ setModal, myList, setMyList }) => {
+  // const { data } = ListService.ReadMyList(); // 나의 리스트 목록 불러오기
+
   const handleAddList = (value) => {
     if (myList.includes(value)) {
       setMyList((prev) => prev.filter((item) => item !== value));
@@ -41,20 +43,7 @@ const MyListModal = ({ setModal, myList, setMyList }) => {
           />
         </div>
 
-        <label className="flex flex-col space-y-[1rem] px-[2rem]">
-          <span className="Cap1">새 리스트</span>
-          <div className="flex items-center space-x-[2rem]">
-            <input
-              type="text"
-              className="Cap4 flex-1 rounded-[1rem] border border-primary-400 bg-[#F7F6F6] p-[1rem] outline-none focus:border-primary-500"
-              placeholder="추가하실 리스트명을 입력해주세요."
-            />
-            <button className="flex-center h-[3rem] w-[3rem] rounded-full bg-primary-700 transition-colors hover:bg-primary-500">
-              <BiPlus size="2rem" className="text-white" strokeWidth="1.2" />
-            </button>
-          </div>
-          <input />
-        </label>
+        <MyListForm />
         <div className="flex flex-col ">
           <span className="Cap1 px-[2rem]">리스트</span>
           <ul className="flex flex-col">

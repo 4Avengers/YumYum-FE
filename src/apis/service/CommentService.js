@@ -16,7 +16,7 @@ const ReadComments = (postId) => {
 };
 
 /** 포스트에 댓글 달기 */
-const AddComment = (postId) => {
+const AddComment = ({ postId, queryKey }) => {
   const queryClient = useQueryClient();
   return useMutation(
     async (payload) => {
@@ -24,7 +24,10 @@ const AddComment = (postId) => {
       return response;
     },
     {
-      onSuccess: () => queryClient.invalidateQueries(["comments", postId]),
+      onSuccess: () => {
+        queryClient.invalidateQueries(["comments", postId]);
+        queryKey && queryClient.invalidateQueries(queryKey);
+      },
     }
   );
 };
@@ -36,7 +39,7 @@ const EditComment = (postId) => {
     async (payload) => {
       const response = await instance.put(
         `posts/${postId}/comments/${payload.commentId}`,
-        payload
+        { content: payload.content }
       );
       return response;
     },
@@ -47,17 +50,20 @@ const EditComment = (postId) => {
 };
 
 /** 댓글 삭제 */
-const RemoveComment = (postId) => {
+const RemoveComment = ({ postId, queryKey }) => {
   const queryClient = useQueryClient();
   return useMutation(
-    async (payload) => {
+    async (commentId) => {
       const response = await instance.delete(
-        `posts/${postId}/comments/${payload.id}`
+        `posts/${postId}/comments/${commentId}`
       );
       return response;
     },
     {
-      onSuccess: () => queryClient.invalidateQueries(["comments", postId]),
+      onSuccess: () => {
+        queryClient.invalidateQueries(["comments", postId]);
+        queryKey && queryClient.invalidateQueries(queryKey);
+      },
     }
   );
 };
@@ -65,9 +71,9 @@ const RemoveComment = (postId) => {
 const AddCommentLike = (postId) => {
   const queryClient = useQueryClient();
   return useMutation(
-    async (payload) => {
+    async (commentId) => {
       const response = await instance.post(
-        `posts/${postId}/comments/${payload.commentId}/like`
+        `posts/${postId}/comments/${commentId}/like`
       );
       return response;
     },
@@ -81,9 +87,9 @@ const AddCommentLike = (postId) => {
 const RemoveCommentLike = (postId) => {
   const queryClient = useQueryClient();
   return useMutation(
-    async (payload) => {
+    async (commentId) => {
       const response = await instance.delete(
-        `posts/${postId}/comments/${payload.commentId}/like`
+        `posts/${postId}/comments/${commentId}/like`
       );
       return response;
     },
