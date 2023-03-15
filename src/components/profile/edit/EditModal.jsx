@@ -22,7 +22,7 @@ const EditModal = ({ closeModal, user }) => {
     register,
     setValue,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({ mode: "onChange" });
 
   // 제출

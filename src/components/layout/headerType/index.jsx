@@ -1,10 +1,5 @@
 import { isListAtom } from "atoms/mapAtom";
-import {
-  BiSearch,
-  BiDotsVerticalRounded,
-  BiMapAlt,
-  BiPlus,
-} from "react-icons/bi";
+import { BiSearch, BiDotsVerticalRounded, BiPlus } from "react-icons/bi";
 import { BsList, BsBell, BsMap } from "react-icons/bs";
 import { CiPaperplane } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
