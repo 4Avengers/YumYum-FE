@@ -56,16 +56,22 @@ const PostEdit = () => {
     delete restaurant.distance;
     delete restaurant.place_url;
 
-    const payload = {
-      ...data,
-      myListId,
-      ...restaurant,
-      hashtagNames,
-      rating: +data.rating,
-      image: [url],
-    };
+    const formData = new FormData();
+    Object.entries(restaurant)?.forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    Object.entries(data)?.forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    imgList?.forEach((file) => {
+      formData.append("files", file);
+    });
+    formData.append("hashtagNames", JSON.stringify(hashtagNames));
+    formData.append("myListId", JSON.stringify(myListId));
+    formData.append("rating", +data.rating);
+
     try {
-      editPost(payload);
+      editPost(formData);
     } catch (e) {
       console.log(e);
       toast.error("글 작성에 실패하였습니다.");
@@ -75,7 +81,6 @@ const PostEdit = () => {
   useEffect(() => {
     (async () => {
       await PostService.ReadPost(id).then((response) => {
-        console.log(response);
         setValue("rating", response.rating);
         setValue("visibility", response.visibility);
         setRestaurant(response.restaurant);
@@ -188,6 +193,3 @@ const style = {
   title: "Cap1",
   border: "rounded-[1rem] border p-[1rem]",
 };
-
-const url =
-  "https://media.istockphoto.com/id/1147544807/ko/%EB%B2%A1%ED%84%B0/%EC%97%86%EC%8A%B5%EB%8B%88%EB%8B%A4-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%B2%A1%ED%84%B0-%EA%B7%B8%EB%9E%98%ED%94%BD.jpg?s=612x612&w=0&k=20&c=d0Ddt3qdtkhxPvpInjBRzLWFjODlfSh3IkKAB6YZwC8=";

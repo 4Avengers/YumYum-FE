@@ -10,7 +10,10 @@ const HeaderSearch = () => {
   const navigate = useNavigate();
   return (
     <ul className="flex items-center space-x-[1.5rem]">
-      <li onClick={() => navigate("/search")}>
+      <li
+        onClick={() => navigate("/search")}
+        className="cursor-pointer hover:text-primary-500"
+      >
         <BiSearch size="2.5rem" className="#444444" strokeWidth="0.1" />
       </li>
       <li>

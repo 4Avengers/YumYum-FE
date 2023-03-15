@@ -18,9 +18,10 @@ const Layout = ({
   return (
     <div
       className={cls(
-        "screen-width mx-auto h-screen  w-screen overflow-hidden bg-white pb-[6rem] pt-[5rem]",
+        "screen-width mx-auto h-screen  w-screen overflow-hidden bg-white pb-[6rem] ",
         // hasHeader ? "pt-[5rem]" : "pt-0",
         isModal ? "absolute top-0" : "relative",
+        hasHeader ? "pt-[5rem]" : "pt-0",
         className
       )}
     >
@@ -28,7 +29,9 @@ const Layout = ({
         <Header hasBack={hasBack} title={title} headerType={headerType} />
       )}
 
-      <Main hasPadding={hasPadding}>{children}</Main>
+      <Main hasPadding={hasPadding} hasHeader={hasHeader}>
+        {children}
+      </Main>
       {hasFooter && <Footer />}
     </div>
   );

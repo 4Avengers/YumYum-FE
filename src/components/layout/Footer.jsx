@@ -19,35 +19,44 @@ const Footer = () => {
     <footer className="bg-white">
       <nav className="screen-width  fixed bottom-0 w-screen  border-t">
         <ul className="grid h-[6rem]  grid-cols-5">
-          <Icon onClick={() => navigate("/")}>
+          <Icon onClick={() => navigate("/")} className="cursor-pointer">
             {homeMatch ? (
               <AiFillHome size="2.5rem" color="#444444" strokeWidth="0.1" />
             ) : (
               <BiHomeAlt2 size="2.5rem" color="#616161" strokeWidth="0.1" />
             )}
           </Icon>
-          <Icon onClick={() => navigate("/newsfeed")}>
+          <Icon
+            onClick={() => navigate("/newsfeed")}
+            className="cursor-pointer"
+          >
             <BiReceipt
               size="2.5rem"
               color={newsfeedMatch ? "#444444" : "#616161"}
-              strokeWidth={newsfeedMatch ? "1" : "0.1"}
+              strokeWidth={newsfeedMatch ? "0.8" : "0.1"}
             />
           </Icon>
-          <Icon onClick={() => navigate("/post/write")}>
+          <Icon
+            onClick={() => navigate("/post/write")}
+            className="cursor-pointer"
+          >
             {writeMatch ? (
               <BsFillPlusSquareFill size="2.2rem" color="#444444" />
             ) : (
               <CiSquarePlus size="2.6rem" color="#616161" strokeWidth="0.8" />
             )}
           </Icon>
-          <Icon onClick={() => navigate("/quest")}>
+          <Icon onClick={() => navigate("/quest")} className="cursor-pointer">
             {mapMatch ? (
               <FaMap size="2.5rem" color="#444444" />
             ) : (
               <FaRegMap size="2.5rem" color="#616161" strokeWidth="0.1" />
             )}
           </Icon>
-          <Icon onClick={() => navigate(`/profile/${user?.id}`)}>
+          <Icon
+            onClick={() => navigate(`/profile/${user?.id}`)}
+            className="cursor-pointer"
+          >
             {profileMatch ? (
               <FaUser size="2.2rem" color="#444444" />
             ) : (
