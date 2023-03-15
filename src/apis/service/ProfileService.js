@@ -1,7 +1,8 @@
 import instance from "apis/instance";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
-const ReadUser = (isExist) => {
+/** 나의 정보 조회 */
+const ReadMe = (isExist) => {
   return useQuery(
     ["loginUser"],
     async () => {
@@ -16,6 +17,45 @@ const ReadUser = (isExist) => {
   );
 };
 
-const ProfileService = { ReadUser };
+/** 프로필 유저 정보 조회 */
+const ReadProfile = (profileId) => {
+  return useQuery(
+    ["profile", profileId],
+    async () => {
+      const response = await instance.get(`profile/${profileId}`);
+      return response.data;
+    },
+    {
+      enabled: !!profileId,
+    }
+  );
+};
+
+/** 프로필 유저 게시글 목록 조회 */
+const ReadProfilePosts = (profileId) => {
+  return useQuery(["profile", "posts", profileId], async () => {
+    const response = await instance.get(`profile/${profileId}/posts`);
+    return response.data;
+  });
+};
+
+/** 내 프로필 수정 */
+const EditProfile = (profileId) => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    async (payload) => {
+      const response = await instance.put(`profile/me`, payload);
+      return response;
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["profile", profileId + ""]);
+        queryClient.invalidateQueries(["loginUser"]);
+      },
+    }
+  );
+};
+
+const ProfileService = { ReadMe, ReadProfile, ReadProfilePosts, EditProfile };
 
 export default ProfileService;

@@ -5,6 +5,7 @@ import { BsFillPlusSquareFill } from "react-icons/bs";
 import { useMatch, useNavigate } from "react-router-dom";
 import { FaMap, FaRegMap, FaUser } from "react-icons/fa";
 import styled from "@emotion/styled";
+import useUser from "hooks/useUser";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const Footer = () => {
   const writeMatch = useMatch("/post/write");
   const mapMatch = useMatch("/quest/*");
   const profileMatch = useMatch("/profile/*");
+  const [user] = useUser();
   return (
     <footer className="bg-white">
       <nav className="screen-width  fixed bottom-0 w-screen  border-t">
@@ -45,7 +47,7 @@ const Footer = () => {
               <FaRegMap size="2.5rem" color="#616161" strokeWidth="0.1" />
             )}
           </Icon>
-          <Icon onClick={() => navigate("/profile/1")}>
+          <Icon onClick={() => navigate(`/profile/${user?.id}`)}>
             {profileMatch ? (
               <FaUser size="2.2rem" color="#444444" />
             ) : (

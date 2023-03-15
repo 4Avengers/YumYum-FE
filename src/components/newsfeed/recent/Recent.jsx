@@ -7,7 +7,9 @@ import useUser from "hooks/useUser";
 // newsfeed 최신글
 const NewsFeedRecent = () => {
   const { data: postList } = PostService.ReadNewsFeeds();
-  const user = useUser();
+  const [user] = useUser();
+  console.log(postList);
+  console.log(user);
   useQueryKey(["newsFeeds", "current"], postQueryKeyAtom);
   return (
     <>

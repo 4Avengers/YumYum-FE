@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 const useUser = () => {
   const isExist = hasToken();
-  const { data: user } = ProfileService.ReadUser(isExist);
+  const { data: user } = ProfileService.ReadMe(isExist);
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const useUser = () => {
     }
   }, [queryClient, isExist]);
 
-  return { user };
+  return [user];
 };
 
 export default useUser;
