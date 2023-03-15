@@ -17,8 +17,8 @@ const Footer = () => {
   const [user] = useUser();
   return (
     <footer className="bg-white">
-      <nav className="screen-width  fixed bottom-0 w-screen  border-t">
-        <ul className="grid h-[6rem]  grid-cols-5">
+      <nav className="screen-width  fixed bottom-0 w-screen  border-t bg-primary-100">
+        <ul className="grid h-[6rem]  grid-cols-5 bg-primary-100">
           <Icon onClick={() => navigate("/")} className="cursor-pointer">
             {homeMatch ? (
               <AiFillHome size="2.5rem" color="#444444" strokeWidth="0.1" />
