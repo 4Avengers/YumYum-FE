@@ -1,5 +1,4 @@
 import PostService from "apis/service/PostService";
-import { uesrAtom } from "atoms/userAtom";
 import Button from "elements/Button";
 import MyListModal from "components/common/myList/MyListModal";
 import Layout from "components/layout/Layout";
