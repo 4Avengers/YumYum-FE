@@ -9,7 +9,7 @@ const SearchStatus = ({ status, setStatus }) => {
         STATUS_VALUES?.map((item) => (
           <button
             className={cls(
-              "relative flex flex-col items-center border-b py-[0.8rem]",
+              "Cap3 relative flex flex-col items-center border-b py-[0.8rem]",
               status === item.value ? "text-primary-600" : "text-primary-400"
             )}
             onClick={() => setStatus(item.value)}

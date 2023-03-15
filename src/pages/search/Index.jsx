@@ -1,11 +1,11 @@
 import Layout from "components/layout/Layout";
 import { useState } from "react";
-import SearchPlaceList from "./placeList/SearchPlaceList";
-import SearchForm from "./SearchForm";
+import SearchPlaceList from "../../components/search/placeList/SearchPlaceList";
+import SearchForm from "../../components/search/SearchForm";
 
-import SearchStatus from "./SearchStatus";
-import SearchTagList from "./tagList/SearchTagList";
-import SearchUserList from "./userList/SearchUserList";
+import SearchStatus from "components/search/SearchStatus";
+import SearchTagList from "components/search/tagList/SearchTagList";
+import SearchUserList from "components/search/userList/SearchUserList";
 
 // type TSTATUS = "user" | "hashtag" | "restaurant"
 
