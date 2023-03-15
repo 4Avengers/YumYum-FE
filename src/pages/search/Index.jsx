@@ -3,7 +3,10 @@ import React from "react";
 
 /** 검색  */
 const Search = () => {
-  return <Layout hasHeader={false}>검색바</Layout>;
+  return <Layout title="검색" headerType="DM"></Layout>;
 };
 
 export default Search;
+
+
+

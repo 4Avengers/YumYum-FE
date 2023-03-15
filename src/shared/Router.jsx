@@ -9,6 +9,7 @@ import Collection from "pages/profile/collection/Detail";
 import CollectionList from "pages/profile/collection/Index";
 import ProfileEdit from "pages/profile/Edit";
 import Profile from "pages/profile/Index";
+import Follow from "pages/profile/follow/Follow";
 import Quest from "pages/quest/Index";
 import Search from "pages/search/Index";
 import Start from "pages/start/Index";
@@ -53,6 +54,8 @@ const Router = () => {
           path="/profile/:id/collection/:collectionId"
           element={<Collection />}
         />
+        <Route path="/profile/follow" element={<Follow />} />
+
         <Route path="/post/write" element={<PostWrite />} />
         <Route path="/post/:id/edit" element={<ProfileEdit />} />
       </Routes>
