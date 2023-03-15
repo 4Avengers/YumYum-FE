@@ -14,7 +14,7 @@ const LocationWithRating = ({ post }) => {
           {getAddress(post?.restaurant?.address_name)}
         </span>
       </div>
-      <div className="flex items-center space-x-[1rem]">
+      <div className="flex items-center space-x-[1rem] text-primary-600">
         <FaStar size="1.6rem" />
         <span className="Cap3">{post?.rating}</span>
       </div>

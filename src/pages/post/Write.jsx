@@ -43,7 +43,7 @@ const PostWrite = () => {
     handleSubmit,
     formState: { isValid },
   } = useForm({
-    defaultValues: { rating: 1, visibility: "public" },
+    defaultValues: { rating: 0, visibility: "public" },
   });
 
   // 포스팅 추가 + 이미지 로직 수정 필요

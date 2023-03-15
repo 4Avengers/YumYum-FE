@@ -22,11 +22,7 @@ const HeaderSearch = () => {
         <BsBell size="2.5rem" className="#444444" strokeWidth="0.3" />
       </li>
       <li>
-        <BiDotsVerticalRounded
-          size="2.5rem"
-          className="#444444"
-          strokeWidth="0.1"
-        />
+        <BsList size="2.5rem" className="#444444" strokeWidth="0.3" />
       </li>
     </ul>
   );

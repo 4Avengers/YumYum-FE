@@ -4,12 +4,16 @@ import { CiStar } from "react-icons/ci";
 
 const Rating = ({ register, value }) => {
   return (
-    <ul className="flex space-x-[1rem]">
+    <ul className="flex space-x-[1rem] text-primary-600">
       {React.Children.toArray(
         [1, 2, 3, 4, 5].map((item) => (
           <label className="cursor-pointer">
             <input type="radio" className="hidden" {...register} value={item} />
-            {item > value ? <CiStar size="2rem" /> : <FaStar size="2rem" />}
+            {item > value ? (
+              <CiStar size="2rem" className="text-primary-500" />
+            ) : (
+              <FaStar size="2rem" />
+            )}
           </label>
         ))
       )}
