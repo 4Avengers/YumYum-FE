@@ -8,7 +8,7 @@ import { postIdAtom } from "atoms/postAtom";
 import { useCallback } from "react";
 import { handleImgError } from "utils/handleImgError";
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, isOwner }) => {
   const setShowCommentModal = useSetRecoilState(commentModalAtom);
   const setShowPostConfigModal = useSetRecoilState(postConfigModalAtom);
   const setPostId = useSetRecoilState(postIdAtom);
@@ -31,6 +31,7 @@ const PostCard = ({ post }) => {
         <UserContainter
           post={post}
           handlePostConfigModal={handlePostConfigModal}
+          isOwner={isOwner}
         />
         <LocationWithRating post={post} />
         <img

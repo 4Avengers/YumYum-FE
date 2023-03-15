@@ -1,6 +1,6 @@
-const { atom } = require("recoil");
+import { atom } from "recoil";
 
-export const uesrAtom = atom({
+export const userAtom = atom({
   key: "loginUser",
   default: {},
 });

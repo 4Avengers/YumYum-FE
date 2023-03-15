@@ -39,8 +39,8 @@ const SignUp = () => {
         // 회원가입 로직
         await AuthService.SignUp({
           ...data,
-          profileImage:
-            "https://avatars.dicebear.com/api/identicon/wooncloud.svg",
+          // profileImage:
+          //   "https://avatars.dicebear.com/api/identicon/wooncloud.svg",
         }).then(() => toast.success("회원가입에 성공했습니다."));
 
         navigate("/start/login");

@@ -23,8 +23,10 @@ const Router = () => {
     const isExist = hasToken();
     if (isExist) {
       setIsLogin(true);
+    } else {
+      setIsLogin(false);
     }
-  }, []);
+  }, [setIsLogin]);
 
   return (
     <BrowserRouter>
@@ -35,16 +37,18 @@ const Router = () => {
             path=""
             element={isLogin ? <Navigate to="/" replace /> : <Begin />}
           />
-          <Route
-            path="login"
-            element={isLogin ? <Navigate to="/" replace /> : <SignIn />}
-          />
+          <Route path="login" element={<SignIn />} />
           <Route
             path="signup"
             element={isLogin ? <Navigate to="/" replace /> : <SignUp />}
           />
         </Route>
-        <Route path="/newsfeed" element={<NewsFeed />} />
+        <Route
+          path="newsfeed"
+          element={
+            !isLogin ? <Navigate to="/start/login" replace /> : <NewsFeed />
+          }
+        />
         <Route path="/quest" element={<Quest />} />
         <Route path="/search" element={<Search />} />
         <Route path="/profile/:id" element={<Profile />} />

@@ -5,7 +5,7 @@ import getTime from "utils/getTime";
 import { isLike } from "utils/isLike";
 import EditComment from "./EditComment";
 
-const CommentCard = ({ comment, postId, queryKey }) => {
+const CommentCard = ({ comment, postId, queryKey, isOwner }) => {
   const { mutate: addLike } = CommentService.AddCommentLike(postId);
   const { mutate: removeLike } = CommentService.RemoveCommentLike(postId);
   const { mutate: removeComment } = CommentService.RemoveComment({
@@ -47,20 +47,22 @@ const CommentCard = ({ comment, postId, queryKey }) => {
           <span className="Cap5 text-primary-500">
             {getTime(comment.updated_at)}
           </span>
-          <div className="flex items-center space-x-[0.5rem]">
-            <button
-              className="text-primary-500 hover:text-config-blue"
-              onClick={handleEditMode}
-            >
-              수정
-            </button>
-            <button
-              className="text-primary-500 hover:text-config-red"
-              onClick={handleRemoveComment}
-            >
-              삭제
-            </button>
-          </div>
+          {isOwner && (
+            <div className="flex items-center space-x-[0.5rem]">
+              <button
+                className="text-primary-500 hover:text-config-blue"
+                onClick={handleEditMode}
+              >
+                수정
+              </button>
+              <button
+                className="text-primary-500 hover:text-config-red"
+                onClick={handleRemoveComment}
+              >
+                삭제
+              </button>
+            </div>
+          )}
         </div>
         {editMode ? (
           <EditComment

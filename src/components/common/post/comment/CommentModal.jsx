@@ -9,13 +9,14 @@ import CommentForm from "./CommentForm";
 import CommentService from "apis/service/CommentService";
 import CommentCard from "./CommentCard";
 import { postQueryKeyAtom } from "atoms/queryKeyAtom";
+import useUser from "hooks/useUser";
 
 const CommentModal = () => {
   const [postId, setPostId] = useRecoilState(postIdAtom);
   const queryKey = useRecoilValue(postQueryKeyAtom);
   const setModal = useSetRecoilState(commentModalAtom);
   const { data: comments } = CommentService.ReadComments(postId);
-
+  const user = useUser();
   //postId로 데이터 불러오기
 
   const handleCloseModal = useCallback(() => {
@@ -39,6 +40,7 @@ const CommentModal = () => {
               comment={comment}
               postId={postId}
               queryKey={queryKey}
+              isOwner={user?.id === comment?.user?.id}
             />
           ))}
         </ul>

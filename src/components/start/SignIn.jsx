@@ -9,8 +9,6 @@ import styled from "@emotion/styled";
 import AuthService from "apis/service/AuthService";
 import { toast } from "react-toastify";
 import { setAccessToken, setRefreshToken } from "apis/token";
-import { useSetRecoilState } from "recoil";
-import { uesrAtom } from "atoms/userAtom";
 
 const SignIn = () => {
   const {
@@ -18,25 +16,22 @@ const SignIn = () => {
     handleSubmit,
     formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
-  const setUser = useSetRecoilState(uesrAtom);
+
   const navigate = useNavigate();
 
-  const onValid = useCallback(
-    async (data) => {
-      try {
-        const {
-          data: { accessToken, refreshToken, user },
-        } = await AuthService.SignIn(data);
-        setAccessToken(accessToken);
-        setRefreshToken(refreshToken);
-        setUser(user);
-        navigate("/");
-      } catch (e) {
-        toast.error(e?.response?.data?.message || "로그인에 실패하였습니다.");
-      }
-    },
-    [navigate, setUser]
-  );
+  const onValid = useCallback(async (data) => {
+    try {
+      const {
+        data: { accessToken, refreshToken },
+      } = await AuthService.SignIn(data);
+      setAccessToken(accessToken);
+      setRefreshToken(refreshToken);
+      window.location.replace("/");
+    } catch (e) {
+      toast.error(e?.response?.data?.message || "로그인에 실패하였습니다.");
+    }
+  }, []);
+
   return (
     <main className="flex flex-col space-y-[2rem] pt-[10vh]">
       <h3 className=" text-[2.5rem] font-bold">로그인</h3>
