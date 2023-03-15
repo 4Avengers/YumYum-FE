@@ -17,7 +17,6 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useRecoilValue } from "recoil";
 
 import cls from "utils/cls";
 
@@ -30,7 +29,6 @@ const PostWrite = () => {
   const [imgList, setImgList] = useState([]); // 이미지 저장
   const [myList, setMyList] = useState([]); // 나의 리스트 데이터
   const [hashtagNames, setHashtagNames] = useState([]); // 해시태그 리스트
-  const loginUser = useRecoilValue(uesrAtom);
 
   const {
     register,
