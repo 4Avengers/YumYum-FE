@@ -14,7 +14,7 @@ const ReadMyList = () => {
   return useQuery(
     ["myList"],
     async () => {
-      const response = await instance.get("/my-list");
+      const response = await instance.get("/my-list/collections/name");
       return response.data;
     },
     {

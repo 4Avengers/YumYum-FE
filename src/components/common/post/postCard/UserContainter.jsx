@@ -14,7 +14,7 @@ const UserContainter = ({ post, handlePostConfigModal, isOwner }) => {
         />
         <span className="Cap3">{post?.user?.nickname}</span>
         <span className="Cap6 mt-[0.2rem] text-primary-500">
-          · {getTime(post?.restaurant?.createdAt)}
+          · {getTime(post?.updated_at)}
         </span>
       </div>
       {isOwner && (

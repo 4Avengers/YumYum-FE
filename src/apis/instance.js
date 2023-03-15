@@ -15,6 +15,16 @@ const instance = axios.create({
   },
 });
 
+// export const postApi = axios.create({
+//   baseURL,
+//   headers: {
+//     Authorization: `Bearer ${accessToken}`,
+//     "Content-Type": "multipart/form-data",
+//     "Cache-Control": "no-cache",
+//     withCredentials: true,
+//   },
+// });
+
 // // 리프레시 토큰을 발급 중인지 확인하는 boolean 값
 // let isTokenRefreshing = false;
 

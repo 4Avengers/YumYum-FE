@@ -8,7 +8,6 @@ import PostEdit from "pages/post/Edit";
 import PostWrite from "pages/post/Write";
 import Collection from "pages/profile/collection/Detail";
 import CollectionList from "pages/profile/collection/Index";
-import ProfileEdit from "pages/profile/Edit";
 import Profile from "pages/profile/Index";
 import Quest from "pages/quest/Index";
 import Search from "pages/search/Index";
@@ -32,7 +31,10 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/newsfeed" replace />} />
-        <Route path="/start" element={<Start />}>
+        <Route
+          path="/start"
+          element={isLogin ? <Navigate to="/" replace /> : <Start />}
+        >
           <Route
             path=""
             element={isLogin ? <Navigate to="/" replace /> : <Begin />}
@@ -52,7 +54,6 @@ const Router = () => {
         <Route path="/quest" element={<Quest />} />
         <Route path="/search" element={<Search />} />
         <Route path="/profile/:id" element={<Profile />} />
-        <Route path="/profile/:id/edit" element={<ProfileEdit />} />
         <Route path="/profile/:id/collection" element={<CollectionList />} />
         <Route
           path="/profile/:id/collection/:collectionId"

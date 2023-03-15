@@ -1,11 +1,16 @@
 import React from "react";
+import cls from "utils/cls";
 
-const ErrorMessage = ({ errorMessage }) => {
+const ErrorMessage = ({ errorMessage, isProfile = false }) => {
   return (
     <>
       {errorMessage && (
-        <div className="grid grid-cols-[1fr_2fr]">
-          <span className="Cap6 col-start-2 text-red-400">{errorMessage}</span>
+        <div className={cls(isProfile ? "flex" : "grid grid-cols-[1fr_2fr]")}>
+          <span
+            className={cls("Cap6  text-red-400", !isProfile && "col-start-2")}
+          >
+            {errorMessage}
+          </span>
         </div>
       )}
     </>

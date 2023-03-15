@@ -6,7 +6,7 @@ import { useSetRecoilState } from "recoil";
 import { commentModalAtom, postConfigModalAtom } from "atoms/modalAtom";
 import { postIdAtom } from "atoms/postAtom";
 import { useCallback } from "react";
-import { handleImgError } from "utils/handleImgError";
+import { defaultImage, handleImgError } from "utils/handleImgError";
 
 const PostCard = ({ post, isOwner }) => {
   const setShowCommentModal = useSetRecoilState(commentModalAtom);
@@ -35,7 +35,7 @@ const PostCard = ({ post, isOwner }) => {
         />
         <LocationWithRating post={post} />
         <img
-          src={post?.img_url}
+          src={post?.images[0]?.file_url || defaultImage}
           alt="product"
           className="w-full object-cover"
           onError={handleImgError}

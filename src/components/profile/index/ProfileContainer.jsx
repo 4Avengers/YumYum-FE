@@ -7,7 +7,7 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 const ProfileContainer = ({
   profileId,
   isOwner,
-  isFollowing,
+  setIsFollowing,
   setOpenFollowingModal,
   setOpenEditModal,
 }) => {
@@ -15,12 +15,12 @@ const ProfileContainer = ({
 
   const handleOpenFollowing = (e) => {
     setOpenFollowingModal(e);
-    isFollowing(true);
+    setIsFollowing(true);
   };
 
   const handleOpenFollower = (e) => {
     setOpenFollowingModal(e);
-    isFollowing(false);
+    setIsFollowing(false);
   };
 
   return (

@@ -51,16 +51,23 @@ const PostWrite = () => {
     delete restaurant.distance;
     delete restaurant.place_url;
 
-    const payload = {
-      ...data,
-      hashtagNames,
-      myListId: myList,
-      ...restaurant,
-      rating: +data.rating,
-      image: [url],
-    };
+    /** formData로 전송 */
+    const formData = new FormData();
+    Object.entries(restaurant)?.map(([key, value]) => {
+      formData.append(key, value);
+    });
+    Object.entries(data)?.map(([key, value]) => {
+      formData.append(key, value);
+    });
+    imgList?.forEach((file) => {
+      formData.append("files", file);
+    });
+    formData.append("hashtagNames", JSON.stringify(hashtagNames));
+    formData.append("myListId", JSON.stringify(myList));
+    formData.append("rating", +data.rating);
+
     try {
-      await PostService.AddPost(payload);
+      await PostService.AddPost(formData);
       navigate(`/newsfeed`);
     } catch (e) {
       console.log(e);

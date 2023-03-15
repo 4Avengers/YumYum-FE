@@ -4,9 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 /** 포스트 작성 */
 const AddPost = async (payload) => {
-  const response = await instance.post("posts", {
-    ...payload,
-  });
+  const response = await instance.post("posts", payload);
   return response.data;
 };
 

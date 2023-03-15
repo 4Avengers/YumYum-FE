@@ -22,7 +22,7 @@ const EditModal = ({ closeModal, user }) => {
     setValue,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm();
+  } = useForm({ mode: "onChange" });
 
   // 제출
   const onValid = (data) => {
@@ -78,14 +78,14 @@ const EditModal = ({ closeModal, user }) => {
             alt="avatar"
             onError={handleImgError}
           />
-          <span className=" flex-center absolute right-[-0.7rem] bottom-[0rem] h-[3rem] w-[3rem] cursor-pointer rounded-full bg-primary-600 text-white transition-colors hover:bg-primary-500">
+          <span className=" flex-center absolute right-[0rem] bottom-[0rem] h-[3rem] w-[3rem] cursor-pointer rounded-full bg-primary-600 text-white transition-colors hover:bg-primary-500">
             <RiPencilLine size="1.8rem" />
           </span>
         </label>
-        <label className="mb-[2rem] flex w-full flex-col">
+        <label className="mb-[2rem] flex w-full flex-col ">
           <span className="Cap3 mb-[1rem]">닉네임</span>
           <input
-            className="Cap4 rounded-[0.8rem] border p-[1rem_1rem] outline-none
+            className="Cap4 mb-[0.4rem] rounded-[0.8rem] border p-[1rem_1rem] outline-none
           focus:border-primary-500"
             text="닉네임"
             placeholder="수정할 닉네임을
@@ -93,13 +93,13 @@ const EditModal = ({ closeModal, user }) => {
             type="text"
             {...register("nickname", nicknameValid())}
           />
-          <ErrorMessage errorMessage={errors?.nickname?.message} />
+          <ErrorMessage errorMessage={errors?.nickname?.message} isProfile />
         </label>
 
         <label className="flex w-full flex-col">
           <span className="Cap3 mb-[1rem]">소개</span>
           <input
-            className="Cap4 rounded-[0.8rem] border p-[1rem_1rem] outline-none focus:border-primary-500"
+            className="Cap4 mb-[0.4rem] rounded-[0.8rem] border p-[1rem_1rem] outline-none focus:border-primary-500"
             text="소개"
             placeholder="수정할 내용을 입력해주세요"
             type="text"
@@ -110,12 +110,10 @@ const EditModal = ({ closeModal, user }) => {
               },
             })}
           />
-          <ErrorMessage errorMessage={errors?.introduce?.message} />
+          <ErrorMessage errorMessage={errors?.introduce?.message} isProfile />
         </label>
 
-        <Button className="mt-[3rem] py-[1.3rem]" disabled={!isValid}>
-          수정완료
-        </Button>
+        <Button className="mt-[3rem] py-[1.3rem]">수정완료</Button>
       </form>
     </ModalLayout>
   );

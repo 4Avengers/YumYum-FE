@@ -8,7 +8,7 @@ import useModal from "hooks/useModal";
 import useUser from "hooks/useUser";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-
+import FollowModal from "components/profile/follow/FollowModal";
 const Profile = () => {
   const { id } = useParams();
   const [user] = useUser();
@@ -30,6 +30,14 @@ const Profile = () => {
       {!isTag ? <UserPosts /> : <TaggedUserPosts />}
       {user && openEditModal && (
         <EditModal closeModal={setOpenEditModal} user={user} />
+      )}
+      {openFollowingModal && user && (
+        <FollowModal
+          closeModal={setOpenFollowingModal}
+          isFollowing={isFollowing}
+          setIsFollowing={setIsFollowing}
+          profileId={id}
+        />
       )}
     </Layout>
   );

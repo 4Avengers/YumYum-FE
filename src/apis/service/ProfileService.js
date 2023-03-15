@@ -56,6 +56,18 @@ const EditProfile = (profileId) => {
   );
 };
 
-const ProfileService = { ReadMe, ReadProfile, ReadProfilePosts, EditProfile };
+/** 해당 프로필 유저의 캐싱된 정보 가져오기  */
+const ReadCacheProfile = (profileId) => {
+  const queryClient = useQueryClient();
+  return queryClient.getQueryData(["profile", profileId]);
+};
+
+const ProfileService = {
+  ReadMe,
+  ReadProfile,
+  ReadProfilePosts,
+  EditProfile,
+  ReadCacheProfile,
+};
 
 export default ProfileService;
