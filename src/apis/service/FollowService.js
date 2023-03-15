@@ -1,12 +1,18 @@
 import instance from "apis/instance";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 /** 팔로우 Toggle */
 const ToggleFollow = (profileId) => {
-  return useMutation(async () => {
-    const response = await instance.post(`profile/${profileId}/follow`);
-    return response;
-  });
+  const queryClient = useQueryClient();
+  return useMutation(
+    async () => {
+      const response = await instance.post(`profile/${profileId}/follow`);
+      return response;
+    },
+    {
+      onSuccess: () => queryClient.invalidateQueries(["profile", profileId]),
+    }
+  );
 };
 
 /** 팔로잉 조회 */

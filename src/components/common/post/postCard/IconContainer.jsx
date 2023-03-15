@@ -2,7 +2,7 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { HiOutlinePaperAirplane } from "react-icons/hi";
 import { TbMessageCircle2 } from "react-icons/tb";
 import { FiBookmark } from "react-icons/fi";
-import { isLike } from "utils/isLike";
+import { strToBool } from "utils/isLike";
 import PostService from "apis/service/PostService";
 import { useRecoilValue } from "recoil";
 import { postQueryKeyAtom } from "atoms/queryKeyAtom";
@@ -18,7 +18,7 @@ const IconContainer = ({ handleCommentModal, post }) => {
   const { mutate: removePostLike } = PostService.RemovePostLike(queryKey);
 
   const handleToggleLike = () => {
-    if (isLike(post?.isLiked)) {
+    if (strToBool(post?.isLiked)) {
       removePostLike(post?.id);
     } else {
       addPostLike(post?.id);
@@ -28,7 +28,7 @@ const IconContainer = ({ handleCommentModal, post }) => {
   return (
     <div className="flex items-center justify-between px-[2rem] py-[1rem]  text-primary-600 ">
       <div className="flex items-center space-x-[1.5rem]">
-        {isLike(post?.isLiked) ? (
+        {strToBool(post?.isLiked) ? (
           <AiFillHeart
             size="2.7rem"
             className="cursor-pointer text-primary-600 hover:text-primary-400"

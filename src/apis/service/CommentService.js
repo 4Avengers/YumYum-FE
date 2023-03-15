@@ -15,7 +15,7 @@ const ReadComments = (postId) => {
   );
 };
 
-/** 포스트에 댓글 달기 */
+/** 포스트에 댓글 추가 */
 const AddComment = ({ postId, queryKey }) => {
   const queryClient = useQueryClient();
   return useMutation(

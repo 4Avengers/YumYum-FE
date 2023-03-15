@@ -2,7 +2,7 @@ import CommentService from "apis/service/CommentService";
 import { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import getTime from "utils/getTime";
-import { isLike } from "utils/isLike";
+import { strToBool } from "utils/isLike";
 import EditComment from "./EditComment";
 
 const CommentCard = ({ comment, postId, queryKey, isOwner }) => {
@@ -27,7 +27,7 @@ const CommentCard = ({ comment, postId, queryKey, isOwner }) => {
 
   // 좋아요
   const handleToggleList = () => {
-    if (isLike(comment?.isLiked)) {
+    if (strToBool(comment?.isLiked)) {
       removeLike(comment?.id);
     } else {
       addLike(comment?.id);
@@ -74,7 +74,7 @@ const CommentCard = ({ comment, postId, queryKey, isOwner }) => {
           <p className="Cap6">{comment?.content}</p>
         )}
       </div>
-      {isLike(comment?.isLiked) ? (
+      {strToBool(comment?.isLiked) ? (
         <AiFillHeart
           size="2rem"
           className="mt-[1rem] cursor-pointer text-primary-600 hover:text-primary-400"

@@ -1,18 +1,27 @@
 import { AiOutlineMore } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 import getTime from "utils/getTime";
 import { handleProfileError } from "utils/handleImgError";
 
 const UserContainter = ({ post, handlePostConfigModal, isOwner }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex items-center justify-between  px-[2rem] pb-[1rem]  ">
       <div className="flex items-center space-x-[0.8rem] ">
         <img
-          className="h-[3rem] w-[3rem] rounded-full"
+          className="h-[3rem] w-[3rem] cursor-pointer rounded-full bg-primary-300 object-cover hover:opacity-80"
           src={post?.user?.profile_image}
           onError={(e) => handleProfileError(e, post?.user?.id)}
           alt="프로필"
+          onClick={() => navigate(`/profile/${post?.user?.id}`)}
         />
-        <span className="Cap3">{post?.user?.nickname}</span>
+        <span
+          className="Cap3 cursor-pointer hover:opacity-80"
+          onClick={() => navigate(`/profile/${post?.user?.id}`)}
+        >
+          {post?.user?.nickname}
+        </span>
         <span className="Cap6 mt-[0.2rem] text-primary-500">
           · {getTime(post?.updated_at)}
         </span>

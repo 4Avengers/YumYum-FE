@@ -16,8 +16,7 @@ const CommentModal = () => {
   const queryKey = useRecoilValue(postQueryKeyAtom);
   const setModal = useSetRecoilState(commentModalAtom);
   const { data: comments } = CommentService.ReadComments(postId);
-  const user = useUser();
-  //postId로 데이터 불러오기
+  const [user] = useUser();
 
   const handleCloseModal = useCallback(() => {
     setModal(false);

@@ -9,6 +9,7 @@ import ErrorMessage from "elements/ErrorMessage";
 import Button from "elements/Button";
 import ProfileService from "apis/service/ProfileService";
 import { toast } from "react-toastify";
+import { modalLayoutAni } from "shared/motionStyle";
 
 const EditModal = ({ closeModal, user }) => {
   const [profile_image, setProfile_img] = useState(null);
@@ -60,7 +61,7 @@ const EditModal = ({ closeModal, user }) => {
   }, [isSuccess, closeModal]);
 
   return (
-    <ModalLayout>
+    <ModalLayout variants={modalLayoutAni}>
       <ModalHeader title="내 프로필 수정" hasBack onClick={closeModal} />
       <form
         className="flex w-full flex-1 flex-col items-center  px-[5rem] pt-[10vh]"

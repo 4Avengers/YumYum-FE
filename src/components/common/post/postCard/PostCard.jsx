@@ -27,7 +27,7 @@ const PostCard = ({ post, isOwner }) => {
 
   return (
     <>
-      <li className="flex flex-col border-b pt-[2rem] pb-[2rem] ">
+      <li className="flex flex-col border-b pt-[2rem] pb-[2rem] first:border-b last:border-none">
         <UserContainter
           post={post}
           handlePostConfigModal={handlePostConfigModal}
@@ -43,12 +43,12 @@ const PostCard = ({ post, isOwner }) => {
         <IconContainer handleCommentModal={handleCommentModal} post={post} />
         <p className="Cap3 px-[2rem]">좋아요 {post?.totalLikes}개</p>
         <Paragragh post={post} />
-        {!!post?.comments?.length && (
+        {!!post?.totalComments && (
           <button
             className="Cap4 mt-[0.8rem] cursor-pointer px-[2rem] text-start text-primary-500"
             onClick={handleCommentModal}
           >
-            {`댓글 ${post?.comments?.length}개 모두 보기`}
+            {`댓글 ${post?.totalComments}개 모두 보기`}
           </button>
         )}
       </li>

@@ -4,7 +4,7 @@ import HEADER_TYPE from "./headerType";
 const Header = ({ hasBack, title, headerType }) => {
   const navigate = useNavigate();
   return (
-    <header className="screen-width fixed top-0 flex h-[5rem] w-screen items-center justify-between border-b bg-white px-[2rem]">
+    <header className="screen-width fixed top-0 flex h-[5rem] w-screen items-center justify-between bg-white px-[2rem]">
       <div className="flex items-center space-x-[1rem]">
         {hasBack && (
           <span className="cursor-pointer" onClick={() => navigate(-1)}>

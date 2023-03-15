@@ -1,11 +1,13 @@
+import ListService from "apis/service/ListService";
 import { motion } from "framer-motion";
+import React from "react";
 import { IoMdClose } from "react-icons/io";
 import { bgAni, listModalAni } from "shared/motionStyle";
 import MyListCard from "./MyListCard";
 import MyListForm from "./MyListForm";
 
 const MyListModal = ({ setModal, myList, setMyList }) => {
-  // const { data } = ListService.ReadMyList(); // 나의 리스트 목록 불러오기
+  const { data } = ListService.ReadMyList(); // 나의 리스트 목록 불러오기
 
   const handleAddList = (value) => {
     if (myList.includes(value)) {
@@ -47,14 +49,15 @@ const MyListModal = ({ setModal, myList, setMyList }) => {
         <div className="flex flex-col ">
           <span className="Cap1 px-[2rem]">리스트</span>
           <ul className="flex flex-col">
-            {data?.map((item) => (
-              <MyListCard
-                key={item.id}
-                myListData={item}
-                isInclude={myList?.includes(item.id)}
-                setMyList={handleAddList}
-              />
-            ))}
+            {React.Children.toArray(
+              data?.map((item) => (
+                <MyListCard
+                  myListData={item}
+                  isInclude={myList?.includes(item.id)}
+                  setMyList={handleAddList}
+                />
+              ))
+            )}
           </ul>
         </div>
       </motion.div>
@@ -63,11 +66,3 @@ const MyListModal = ({ setModal, myList, setMyList }) => {
 };
 
 export default MyListModal;
-
-const data = [
-  { id: 1, name: "인생 맛집 다시 가고 싶은 곳" },
-  { id: 2, name: "제주도 카페 & 맛집" },
-  { id: 3, name: "분위기 좋은 레스토랑" },
-  { id: 4, name: "제주도 맛집" },
-  { id: 5, name: "도쿄도쿄" },
-];

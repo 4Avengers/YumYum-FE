@@ -8,9 +8,8 @@ import useUser from "hooks/useUser";
 const NewsFeedRecent = () => {
   const { data: postList } = PostService.ReadNewsFeeds();
   const [user] = useUser();
-  console.log(postList);
-  console.log(user);
   useQueryKey(["newsFeeds", "current"], postQueryKeyAtom);
+
   return (
     <>
       <ul className="flex flex-col">
