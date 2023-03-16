@@ -9,14 +9,6 @@ import MyListForm from "./MyListForm";
 const MyListModal = ({ setModal, myList, setMyList }) => {
   const { data } = ListService.ReadMyList(); // 나의 리스트 목록 불러오기
 
-  const handleAddList = (value) => {
-    if (myList.includes(value)) {
-      setMyList((prev) => prev.filter((item) => item !== value));
-    } else {
-      setMyList((prev) => [...prev, value]);
-    }
-  };
-
   return (
     <motion.div
       className=" absolute top-0 z-[100] h-full w-full bg-[rgba(0,0,0,0.3)]"
@@ -54,7 +46,7 @@ const MyListModal = ({ setModal, myList, setMyList }) => {
                 <MyListCard
                   myListData={item}
                   isInclude={myList?.includes(item.id)}
-                  setMyList={handleAddList}
+                  setMyList={setMyList}
                 />
               ))
             )}

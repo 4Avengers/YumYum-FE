@@ -21,7 +21,7 @@ const PostConfigModal = () => {
     mutate: removePost,
     isSuccess,
     isError,
-  } = PostService.RemovePost(queryKey, user?.id);
+  } = PostService.RemovePost(queryKey, user?.id + "");
 
   /** 게시글 삭제 */
   const handleDeletePost = () => {

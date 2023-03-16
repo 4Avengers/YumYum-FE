@@ -93,7 +93,7 @@ const PostEdit = () => {
         className="flex flex-1 flex-col space-y-[2.5rem] px-[2rem]"
         onSubmit={handleSubmit(onValid)}
       >
-        {restaurant && restaurant?.place_name ? (
+        {restaurant ? (
           <PlaceCard restaurant={restaurant} onClick={handleToggleSearch} />
         ) : (
           <SearchBtn onClick={handleToggleSearch} />

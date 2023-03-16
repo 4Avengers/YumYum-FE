@@ -42,7 +42,7 @@ const EditPost = ({ postId, profileId }) => {
   );
 };
 /** 포스트 삭제 */
-const RemovePost = (queryKey, profileId) => {
+const RemovePost = (queryKey) => {
   const queryClient = useQueryClient();
   return useMutation(
     async (postId) => {
@@ -52,7 +52,6 @@ const RemovePost = (queryKey, profileId) => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(queryKey);
-        queryClient.invalidateQueries(["profile", "posts", profileId + ""]);
       },
     }
   );

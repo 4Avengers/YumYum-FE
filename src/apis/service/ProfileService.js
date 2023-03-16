@@ -33,16 +33,10 @@ const ReadProfile = (profileId) => {
 
 /** 프로필 유저 게시글 목록 조회 */
 const ReadProfilePosts = ({ profileId, isOwner }) => {
-  return useQuery(
-    ["profile", "posts", profileId],
-    async () => {
-      const response = await instance.get(`profile/${profileId}/posts`);
-      return response.data;
-    },
-    {
-      refetchOnMount: isOwner ? false : true,
-    }
-  );
+  return useQuery(["profile", "posts", profileId], async () => {
+    const response = await instance.get(`profile/${profileId}/posts`);
+    return response.data;
+  });
 };
 
 /** 내 프로필 수정 */
