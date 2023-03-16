@@ -1,4 +1,3 @@
-import MapService from "apis/service/MapService";
 import Layout from "components/layout/Layout";
 import QuestMap from "components/quest/map/Map";
 import Markers from "components/quest/map/Markers";
