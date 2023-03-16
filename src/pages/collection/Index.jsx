@@ -1,10 +1,10 @@
 //import CollectionService from "apis/service/CollectionService";
 import Header from "components/layout/Header";
 import Layout from "components/layout/Layout";
-import { useParams } from "react-router-dom";
+//import { useParams } from "react-router-dom";
 
 const Collection = () => {
-  const { profileId } = useParams();
+  //const { profileId } = useParams();
   //const { data: collections } = CollectionService.ReadCollectionList(profileId);
 
   return (
