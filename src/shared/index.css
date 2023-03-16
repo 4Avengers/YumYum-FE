@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "./map.css";
 
 @font-face {
   font-family: "Pretendard";

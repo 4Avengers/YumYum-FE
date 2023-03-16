@@ -1,20 +1,11 @@
 import MapService from "apis/service/MapService";
 import Layout from "components/layout/Layout";
 import QuestMap from "components/quest/map/Map";
-import { useMemo } from "react";
 import { BiSearch } from "react-icons/bi";
 
 /** 탐색 */
 const Quest = () => {
   const { data: posts } = MapService.GetMap();
-
-  const positions = useMemo(() => {
-    if (!posts) return [];
-    return posts?.map(({ restaurant }) => [
-      Number(restaurant?.x),
-      Number(restaurant?.y),
-    ]);
-  }, [posts]);
 
   return (
     <Layout title="탐색" headerType="MAP" hasPadding={false}>
@@ -32,7 +23,7 @@ const Quest = () => {
           className="Cap4 w-full rounded-[1rem] bg-gray-50 py-[0.8rem] pl-[4rem] pr-[1rem] shadow-md outline-none focus:ring-1 focus:ring-primary-400"
         />
       </form>
-      <QuestMap posts={posts} positions={positions} />
+      <QuestMap posts={posts} />
     </Layout>
   );
 };
