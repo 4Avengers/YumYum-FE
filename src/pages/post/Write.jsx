@@ -47,6 +47,8 @@ const PostWrite = () => {
     defaultValues: { rating: 0, visibility: "public" },
   });
 
+  console.log("레스토랑", restaurant);
+
   // 포스팅 추가 + 이미지 로직 수정 필요
   const onValid = async (data) => {
     if (!imgList[0]) {

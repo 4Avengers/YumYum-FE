@@ -63,7 +63,6 @@ const PostEdit = () => {
     });
     formData.append("hashtagNames", JSON.stringify(hashtagNames));
     formData.append("myListId", JSON.stringify(myListId));
-    formData.append("visibility", "public");
 
     try {
       editPost(formData);
@@ -94,7 +93,7 @@ const PostEdit = () => {
         className="flex flex-1 flex-col space-y-[2.5rem] px-[2rem]"
         onSubmit={handleSubmit(onValid)}
       >
-        {restaurant && restaurant?.id ? (
+        {restaurant && restaurant?.place_name ? (
           <PlaceCard restaurant={restaurant} onClick={handleToggleSearch} />
         ) : (
           <SearchBtn onClick={handleToggleSearch} />

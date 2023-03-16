@@ -1,17 +1,18 @@
 import { useEffect } from "react";
 
-const Marker = ({ map, lat, lon, onClick }) => {
+const Marker = ({ map, lat, lon, onClick, icon }) => {
   useEffect(() => {
-    if (!window.naver || !map) {
-      return;
-    }
-    const { naver } = window;
+    if (!window.naver || !map) return;
+
     let marker = null;
+
+    const { naver } = window;
 
     if (map) {
       marker = new naver.maps.Marker({
         map: map,
         position: new naver.maps.LatLng(lat, lon),
+        icon,
       });
     }
 
@@ -22,7 +23,7 @@ const Marker = ({ map, lat, lon, onClick }) => {
     return () => {
       marker?.setMap(null);
     };
-  }, [map, onClick, lat, lon]);
+  }, [map, onClick, lat, lon, icon]);
 
   return null;
 };
