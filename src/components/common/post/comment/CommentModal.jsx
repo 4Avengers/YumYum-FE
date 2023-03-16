@@ -32,7 +32,7 @@ const CommentModal = () => {
     >
       <ModalHeader title="댓글" hasBack onClick={handleCloseModal} has />
       <div className="flex flex-1 flex-col  ">
-        <ul className="h-[80vh] overflow-y-auto px-[2rem] scrollbar-hide">
+        <ul className="h-[calc(100vh-18.7rem)] overflow-y-auto  px-[2rem] scrollbar-hide">
           {comments?.map((comment, idx) => (
             <CommentCard
               key={comment.id}
@@ -43,7 +43,7 @@ const CommentModal = () => {
             />
           ))}
         </ul>
-        <CommentForm postId={postId} queryKey={queryKey} />
+        <CommentForm postId={postId} queryKey={queryKey} user={user} />
       </div>
     </ModalLayout>
   );

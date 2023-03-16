@@ -2,6 +2,7 @@ import CommentService from "apis/service/CommentService";
 import { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import getTime from "utils/getTime";
+import { handleProfileError } from "utils/handleImgError";
 import { strToBool } from "utils/isLike";
 import EditComment from "./EditComment";
 
@@ -37,8 +38,9 @@ const CommentCard = ({ comment, postId, queryKey, isOwner }) => {
   return (
     <li className="flex space-x-[1.5rem] py-[1rem] first:pt-[2rem]">
       <img
-        className="h-[3rem] w-[3rem] rounded-full"
-        src="https://avatars.dicebear.com/api/identicon/wooncloud.svg"
+        className="h-[3rem] w-[3rem] rounded-full object-cover"
+        src={comment?.user?.profile_image}
+        onError={(e) => handleProfileError(e, comment?.user?.id)}
         alt="프로필"
       />
       <div className="flex flex-1 flex-col  space-y-[0.4rem]">

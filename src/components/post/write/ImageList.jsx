@@ -1,10 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import cls from "utils/cls";
 import { BiPlus } from "react-icons/bi";
-import { toast } from "react-toastify";
 import { IoMdClose } from "react-icons/io";
 
-const ImageList = ({ imgList, setImgList, style }) => {
+const ImageList = ({ defaultImage, setImgList, style }) => {
   const [imagePreview, setImagePreview] = useState([]);
 
   // 이미지 저장 및 이미지 프리뷰 저장
@@ -12,6 +11,8 @@ const ImageList = ({ imgList, setImgList, style }) => {
     (event) => {
       const imageList = event.target.files;
       setImgList((prev) => [...prev, ...Array.from(imageList)].slice(0, 3));
+      const blobImage = URL.createObjectURL(imageList[0]);
+      setImagePreview((prev) => [...prev, blobImage]);
     },
     [setImgList]
   );
@@ -19,26 +20,15 @@ const ImageList = ({ imgList, setImgList, style }) => {
   // X버튼 클릭 시 이미지 삭제
   const handleDeleteImage = useCallback(
     (idx) => {
-      // setImagePreview((prev) => prev.filter((_, index) => index !== idx));
+      setImagePreview((prev) => prev.filter((_, index) => index !== idx));
       setImgList((prev) => prev.filter((_, index) => index !== idx));
     },
     [setImgList]
   );
 
   useEffect(() => {
-    if (imagePreview.length > 3) {
-      toast.error("이미지는 3장까지 첨부가능합니다.");
-      setImagePreview((prev) => prev.slice(0, 3));
-    }
-  }, [imagePreview]);
-
-  useEffect(() => {
-    setImagePreview([]);
-    for (let i = 0; i < imgList?.length; i++) {
-      const blobImage = URL.createObjectURL(imgList[i]);
-      setImagePreview((prev) => [...prev, blobImage]);
-    }
-  }, [imgList]);
+    setImagePreview(defaultImage);
+  }, [defaultImage]);
 
   return (
     <div className={cls(style.verticalContainer)}>

@@ -29,20 +29,15 @@ const PostEdit = () => {
   const [imgList, setImgList] = useState([]); // 이미지 저장
   const [myListId, setMyListId] = useState([]); // 나의 리스트 데이터
   const [hashtagNames, setHashtagNames] = useState([]); // 해시태그 리스트
+  const [defaultImages, setDefaultImages] = useState([]); // preview 디폴트 이미지
   const [user] = useUser();
   const { mutate: editPost } = PostService.EditPost({
     postId: id,
     profileId: user?.id + "",
   }); // 포스트 수정 함수
 
-  const {
-    register,
-    watch,
-    setValue,
-    handleSubmit,
-    formState: { isValid },
-  } = useForm({
-    defaultValues: { rating: 1, visibility: "public" },
+  const { register, watch, setValue, handleSubmit } = useForm({
+    defaultValues: { rating: 0, visibility: "public" },
   });
 
   // 포스팅 추가 + 이미지 로직 수정 필요
@@ -68,12 +63,10 @@ const PostEdit = () => {
     });
     formData.append("hashtagNames", JSON.stringify(hashtagNames));
     formData.append("myListId", JSON.stringify(myListId));
-    formData.append("rating", +data.rating);
 
     try {
       editPost(formData);
     } catch (e) {
-      console.log(e);
       toast.error("글 작성에 실패하였습니다.");
     }
   };
@@ -81,11 +74,13 @@ const PostEdit = () => {
   useEffect(() => {
     (async () => {
       await PostService.ReadPost(id).then((response) => {
+        console.log(response);
         setValue("rating", response.rating);
         setValue("visibility", response.visibility);
         setRestaurant(response.restaurant);
         setValue("content", response.content);
-        setImgList([...response?.img_url]);
+        setImgList([...response.images?.map((item) => item.file_url)]);
+        setDefaultImages([...response.images?.map((item) => item.file_url)]);
         setMyListId(response.myListId);
         setHashtagNames(response.hashtags?.map((item) => item.name));
       });
@@ -117,7 +112,11 @@ const PostEdit = () => {
             style={style}
           />
 
-          <ImageList setImgList={setImgList} imgList={imgList} style={style} />
+          <ImageList
+            setImgList={setImgList}
+            defaultImage={defaultImages}
+            style={style}
+          />
           <HashTagList
             hashtagNames={hashtagNames}
             setHashtagNames={setHashtagNames}
@@ -153,7 +152,7 @@ const PostEdit = () => {
             </button>
           </div>
           <Button
-            disabled={!isValid || !imgList[0]}
+            // disabled={!isValid || !imgList[0]}
             className="absolute bottom-0"
           >
             수정하기

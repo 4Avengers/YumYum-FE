@@ -4,7 +4,7 @@ import Marker from "./Marker";
 
 const Markers = () => {
   const { data: map } = MapService.GetMap();
-  console.log(map);
+  console.log("map", map);
   if (!map) return null;
   return (
     <>

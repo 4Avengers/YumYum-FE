@@ -30,6 +30,7 @@ const PostWrite = () => {
   const [imgList, setImgList] = useState([]); // 이미지 저장
   const [myList, setMyList] = useState([]); // 나의 리스트 데이터
   const [hashtagNames, setHashtagNames] = useState([]); // 해시태그 리스트
+  const [defaultImages] = useState([]); // preview 디폴트 이미지
   const {
     mutate: addPost,
     isSuccess,
@@ -111,7 +112,11 @@ const PostWrite = () => {
             style={style}
           />
 
-          <ImageList setImgList={setImgList} imgList={imgList} style={style} />
+          <ImageList
+            setImgList={setImgList}
+            defaultImage={defaultImages}
+            style={style}
+          />
           <HashTagList
             hashtagNames={hashtagNames}
             setHashtagNames={setHashtagNames}
