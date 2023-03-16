@@ -37,7 +37,7 @@ const PostEdit = () => {
   }); // 포스트 수정 함수
 
   const { register, watch, setValue, handleSubmit } = useForm({
-    defaultValues: { rating: 0, visibility: "public" },
+    defaultValues: { rating: "0", visibility: "public" },
   });
 
   // 포스팅 추가 + 이미지 로직 수정 필요
@@ -63,6 +63,7 @@ const PostEdit = () => {
     });
     formData.append("hashtagNames", JSON.stringify(hashtagNames));
     formData.append("myListId", JSON.stringify(myListId));
+    formData.append("visibility", "public");
 
     try {
       editPost(formData);
@@ -75,13 +76,13 @@ const PostEdit = () => {
     (async () => {
       await PostService.ReadPost(id).then((response) => {
         console.log(response);
-        setValue("rating", response.rating);
-        setValue("visibility", response.visibility);
+        setValue("rating", response.rating + "");
+        setValue("visibility", "public");
         setRestaurant(response.restaurant);
         setValue("content", response.content);
         setImgList([...response.images?.map((item) => item.file_url)]);
         setDefaultImages([...response.images?.map((item) => item.file_url)]);
-        setMyListId(response.myListId);
+        setMyListId([...response.myList?.map((item) => item.id)]);
         setHashtagNames(response.hashtags?.map((item) => item.name));
       });
     })();
@@ -104,7 +105,7 @@ const PostEdit = () => {
             <span className={cls(style.title)}>평점</span>
             <Rating
               value={watch("rating")}
-              register={{ ...register("rating", { required: true }) }}
+              register={{ ...register("rating") }}
             />
           </div>
           <Textarea

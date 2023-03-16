@@ -1,10 +1,34 @@
+import { mapAtom } from "atoms/mapAtom";
+import useGeolocation from "hooks/useGeoLocation";
 import { useCallback, useEffect, useRef } from "react";
+import { useRecoilState } from "recoil";
+import Markers from "./Markers";
 
-const QuestMap = ({ latitude, longitude, onLoad }) => {
+const QuestMap = ({ posts }) => {
   const mapRef = useRef(null);
+  const [map, setMap] = useRecoilState(mapAtom);
 
+  const {
+    location: { latitude, longitude },
+  } = useGeolocation();
+
+  // 리코일에 Map 객체 저장
+  const onLoad = useCallback(
+    (map) => {
+      setMap(map);
+      window.naver.maps.Event.addListener(map, "click", () =>
+        console.log("clear")
+      );
+    },
+    [setMap]
+  );
+
+  console.log(posts);
+
+  // map 초기화
   const initializeMap = useCallback(() => {
-    // 여기에서 네이버 맵 초기화 코드를 작성하세요
+    if (!window.naver) return;
+
     const mapOptions = {
       center: new window.naver.maps.LatLng(latitude, longitude),
       zoom: 10,
@@ -15,6 +39,7 @@ const QuestMap = ({ latitude, longitude, onLoad }) => {
         position: window.naver.maps.Position.BOTTOM_LEFT,
       },
     };
+    // 맵 생성
     const map = new window.naver.maps.Map("map", mapOptions);
     mapRef.current = map;
 
@@ -23,19 +48,21 @@ const QuestMap = ({ latitude, longitude, onLoad }) => {
     }
   }, [latitude, longitude, onLoad]);
 
+  // unmount시에 ref destroy
   useEffect(() => {
     return () => {
       mapRef.current?.destroy();
     };
   }, []);
 
+  // naver 객체가 없을 경우 script 삽입
   useEffect(() => {
     if (!window.naver) {
       const script = document.createElement("script");
       script.type = "text/javascript";
       script.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.REACT_APP_NAVER_CLIENT_ID}`;
       script.async = true;
-      //script.onLoad = initializeMap;
+      script.onload = initializeMap;
       document.head.appendChild(script);
     } else {
       initializeMap();
@@ -44,7 +71,8 @@ const QuestMap = ({ latitude, longitude, onLoad }) => {
 
   return (
     <>
-      <div id="map" ref={mapRef} className="w-full flex-1" />
+      <div id="map" className="w-full flex-1 bg-primary-200 " />
+      {map && <Markers posts={posts} map={map} />}
     </>
   );
 };

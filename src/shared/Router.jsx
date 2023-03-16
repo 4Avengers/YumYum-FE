@@ -2,12 +2,11 @@ import { hasToken } from "apis/token";
 import Begin from "components/start/Begin";
 import SignIn from "components/start/SignIn";
 import SignUp from "components/start/SignUp";
+import Collection from "pages/collection/Index";
 // import Home from "pages/Index";
 import NewsFeed from "pages/newsfeed/Index";
 import PostEdit from "pages/post/Edit";
 import PostWrite from "pages/post/Write";
-import Collection from "pages/profile/collection/Detail";
-import CollectionList from "pages/profile/collection/Index";
 import Profile from "pages/profile/Index";
 import Quest from "pages/quest/Index";
 import Search from "pages/search/Index";
@@ -54,11 +53,14 @@ const Router = () => {
         <Route path="/quest" element={<Quest />} />
         <Route path="/search" element={<Search />} />
         <Route path="/profile/:id" element={<Profile />} />
-        <Route path="/profile/:id/collection" element={<CollectionList />} />
         <Route
-          path="/profile/:id/collection/:collectionId"
+          path="/profile/:profileId/collections"
           element={<Collection />}
         />
+        {/* <Route
+          path="/profile/:id/collection/:collectionId"
+          element={<Collection />}
+        /> */}
         <Route path="/post/write" element={<PostWrite />} />
         <Route path="/post/:id/edit" element={<PostEdit />} />
       </Routes>

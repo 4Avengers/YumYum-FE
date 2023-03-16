@@ -5,7 +5,6 @@ import { useQuery } from "react-query";
 const GetMap = () => {
   return useQuery(["map"], async () => {
     const response = await instance.get("map/followerPosting");
-    console.log(response, "map");
     return response.data;
   });
 };

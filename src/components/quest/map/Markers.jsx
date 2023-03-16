@@ -1,19 +1,22 @@
-import MapService from "apis/service/MapService";
 import React from "react";
 import Marker from "./Marker";
 
-const Markers = () => {
-  const { data: map } = MapService.GetMap();
-  console.log("map", map);
-  if (!map) return null;
+const Markers = ({ posts, map }) => {
+  if (!posts || !map) return null;
+
+  const onClick = () => {
+    console.log("clicked!");
+  };
+
   return (
     <>
       {React.Children.toArray(
-        map?.map((place) => (
+        posts?.map((post) => (
           <Marker
-            map={place}
-            coordinates={[place?.x, place?.y]}
-            image={place?.user?.profile_image}
+            map={map}
+            lat={+post?.restaurant?.x}
+            lon={+post?.restaurant?.y}
+            onClick={onClick}
           />
         ))
       )}
