@@ -14,11 +14,10 @@ const SearchModal = ({ setModal, setRestaurant }) => {
   const location = useRecoilValue(geoLocationAtom);
   const { places, onChangeQuery, resetPlaces } = useSearchPlaces({ location });
   const keywordRef = useRef(null);
-  console.log(places);
+
   // keyword가 변경될 때마다 places를 다시 조회
   const onChangeKeyword = debounce((e) => {
     const keyword = e.target.value;
-    console.log(location);
     if (location.latitude && location.longitude) {
       onChangeQuery(location, keyword);
     }
