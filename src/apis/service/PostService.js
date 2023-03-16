@@ -7,7 +7,7 @@ const AddPost = (profileId) => {
   const queryClient = useQueryClient();
   return useMutation(
     async (payload) => {
-      const response = await instance.post("post", payload);
+      const response = await instance.post("posts", payload);
       return response;
     },
     {

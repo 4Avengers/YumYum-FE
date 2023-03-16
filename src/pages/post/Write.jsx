@@ -71,7 +71,6 @@ const PostWrite = () => {
     });
     formData.append("hashtagNames", JSON.stringify(hashtagNames));
     formData.append("myListId", JSON.stringify(myList));
-    formData.append("rating", +data.rating);
 
     addPost(formData);
   };
