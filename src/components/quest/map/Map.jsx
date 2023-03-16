@@ -1,28 +1,8 @@
 import useGeolocation from "hooks/useGeoLocation";
+
 import { useEffect } from "react";
 import { defaultImage } from "utils/handleImgError";
 const { kakao } = window;
-
-const CustomMarker = ({ place_name }) => {
-  return (
-    <div
-      style={{
-        position: "relative",
-        width: "100px",
-        height: "30px",
-        backgroundColor: "white",
-        border: "1px solid black",
-        borderRadius: "5px",
-        textAlign: "center",
-        lineHeight: "30px",
-        fontWeight: "bold",
-        fontSize: "14px",
-      }}
-    >
-      {place_name}
-    </div>
-  );
-};
 
 const QuestMap = ({ posts }) => {
   const {
@@ -37,7 +17,7 @@ const QuestMap = ({ posts }) => {
     // 초기 설정 (중심값 및 확대레벨)
     const options = {
       center: new kakao.maps.LatLng(latitude, longitude),
-      level: 6,
+      level: 7,
     };
 
     // 맵 생성
@@ -45,7 +25,7 @@ const QuestMap = ({ posts }) => {
 
     posts?.forEach((post) => {
       var content =
-        '<div class="customoverlay">' +
+        `<div class="customoverlay" id="post${post?.id}" >` +
         `  <img class="map-avatar" src="${
           post?.user?.profile_image?.length < 20
             ? defaultImage
@@ -63,7 +43,7 @@ const QuestMap = ({ posts }) => {
         " </div>" +
         "</div>";
 
-      var customOverlay = new kakao.maps.CustomOverlay({
+      new kakao.maps.CustomOverlay({
         map: map,
         position: new kakao.maps.LatLng(
           Number(post?.restaurant?.y),
@@ -73,23 +53,6 @@ const QuestMap = ({ posts }) => {
         yAnchor: 1,
       });
     });
-
-    // // 들어갈 정보들을 마커로 뿌려주는 과정
-    // for (let i = 0; i < markers?.length; i++) {
-    //   const marker = new kakao.maps.Marker({
-    //     map: map,
-    //     position: markers[i].position,
-    //   });
-
-    //   const infowindow = new kakao.maps.InfoWindow({
-    //     content: markers[i].text,
-    //   });
-
-    //   // 클릭시 정보가 보임
-    //   kakao.maps.event.addListener(marker, "click", () => {
-    //     infowindow.open(map, marker);
-    //   });
-    // }
   }, [posts, latitude, longitude]);
 
   return <div id="map" className="w-full flex-1"></div>;

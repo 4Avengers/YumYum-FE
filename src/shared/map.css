@@ -7,8 +7,9 @@
   grid-template-columns: 30px 1fr;
   white-space: nowrap;
   border: 1.5px solid #5192ee;
-  padding: 0.6rem 1rem;
+  padding: 0.4rem 0.8rem;
   gap: 0.6rem;
+  align-items: center;
   cursor: pointer;
 }
 
@@ -17,29 +18,36 @@
   height: 30px;
   border-radius: 50%;
   object-fit: cover;
+  pointer-events: none;
 }
 .map-container {
   width: 100%;
   display: flex;
   flex-direction: column;
+  pointer-events: none;
 }
 .map-place_name {
   font-weight: 600;
   font-size: 1.2rem;
+  pointer-events: none;
 }
 .map-info {
   display: flex;
   align-items: center;
+  pointer-events: none;
 }
 .map-info_star {
   color: red;
+  pointer-events: none;
 }
 .map-info_rating {
   font-weight: 600;
   margin-left: 0.3rem;
   margin-right: 0.8rem;
+  pointer-events: none;
 }
 .map-info_category {
   font-weight: 500;
   color: rgba(0, 0, 0, 0.6);
+  pointer-events: none;
 }
