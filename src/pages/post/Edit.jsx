@@ -81,7 +81,7 @@ const PostEdit = () => {
         setValue("content", response.content);
         setImgList([...response.images?.map((item) => item.file_url)]);
         setDefaultImages([...response.images?.map((item) => item.file_url)]);
-        setMyListId([...response.myList?.map((item) => item.id)]);
+        setMyListId([...response.myList?.map((item) => item?.collection?.id)]);
         setHashtagNames(response.hashtags?.map((item) => item.name));
       });
     })();

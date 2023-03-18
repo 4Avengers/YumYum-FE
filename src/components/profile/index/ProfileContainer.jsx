@@ -5,6 +5,7 @@ import { handleImgError } from "utils/handleImgError";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { strToBool } from "utils/isLike";
 import FollowService from "apis/service/FollowService";
+import { useNavigate } from "react-router-dom";
 
 const ProfileContainer = ({
   profileId,
@@ -15,6 +16,7 @@ const ProfileContainer = ({
 }) => {
   const { data: profile } = ProfileService.ReadProfile(profileId);
   const { mutate: toggleFollow } = FollowService.ToggleFollow(profileId);
+  const navigate = useNavigate();
 
   // 팔로우 토글 버튼
 
@@ -70,7 +72,10 @@ const ProfileContainer = ({
           )}
         </div>
       </div>
-      <button className="Cap3 rounded-[1rem] bg-primary-600 py-[0.9rem] text-white  transition-colors hover:bg-[rgba(0,0,0,0.7)]">
+      <button
+        className="Cap3 rounded-[1rem] bg-primary-600 py-[0.9rem] text-white  transition-colors hover:bg-[rgba(0,0,0,0.7)]"
+        onClick={() => navigate(`collections`)}
+      >
         맛집 컬렉션 보기
       </button>
       <div className="flex space-x-[0.5rem]">

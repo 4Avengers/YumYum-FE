@@ -7,7 +7,7 @@ import UserPosts from "components/profile/index/UserPosts";
 import useModal from "hooks/useModal";
 import useUser from "hooks/useUser";
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 import FollowModal from "components/profile/follow/FollowModal";
 import useRecoilModal from "hooks/useRecoilModal";
 import { commentModalAtom, postConfigModalAtom } from "atoms/modalAtom";
@@ -16,7 +16,7 @@ import CommentModal from "components/common/post/comment/CommentModal";
 import { AnimatePresence } from "framer-motion";
 
 const Profile = () => {
-  const { id } = useParams();
+  const { profileId } = useParams();
   const [user] = useUser();
   const [isTag, setIsTag] = useState(false); // 전체게시물인지 태그된 게시물인지
   const [isFollowing, setIsFollowing] = useState(false);
@@ -33,8 +33,8 @@ const Profile = () => {
   return (
     <Layout headerType="DM">
       <ProfileContainer
-        profileId={id}
-        isOwner={user?.id === +id}
+        profileId={profileId}
+        isOwner={user?.id === +profileId}
         setIsFollowing={setIsFollowing}
         setOpenEditModal={setOpenEditModal}
         setOpenFollowingModal={setOpenFollowingModal}
@@ -55,12 +55,13 @@ const Profile = () => {
             closeModal={setOpenFollowingModal}
             isFollowing={isFollowing}
             setIsFollowing={setIsFollowing}
-            profileId={id}
+            profileId={profileId}
           />
         )}
         {showPostConfigModal && <PostConfigModal />}
         {showCommentModal && <CommentModal />}
       </AnimatePresence>
+      <Outlet />
     </Layout>
   );
 };

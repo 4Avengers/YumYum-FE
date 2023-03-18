@@ -18,6 +18,8 @@ const QuestMap = ({ posts }) => {
     const options = {
       center: new kakao.maps.LatLng(latitude, longitude),
       level: 7,
+      draggable: true,
+      scrollwheel: true,
     };
 
     // 맵 생성

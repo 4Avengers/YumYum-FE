@@ -37,7 +37,7 @@ const PostCard = ({ post, isOwner }) => {
         <img
           src={post?.images[0]?.file_url || defaultImage}
           alt="product"
-          className="w-full object-cover"
+          className=" w-full object-cover"
           onError={handleImgError}
         />
         <IconContainer handleCommentModal={handleCommentModal} post={post} />

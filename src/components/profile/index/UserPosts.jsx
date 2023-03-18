@@ -7,12 +7,12 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 const UserPosts = ({ userId }) => {
-  const { id } = useParams();
+  const { profileId } = useParams();
   const { data: posts, isError } = ProfileService.ReadProfilePosts({
-    profileId: id,
-    isOwner: id === userId + "",
+    profileId,
+    isOwner: profileId === userId + "",
   });
-  useQueryKey(["profile", "posts", id], postQueryKeyAtom);
+  useQueryKey(["profile", "posts", profileId], postQueryKeyAtom);
 
   if (isError || posts?.length === 0) return <NotPost />;
 

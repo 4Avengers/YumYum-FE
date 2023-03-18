@@ -117,3 +117,12 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+.slick-slide > div {
+  margin: 0 1rem;
+  margin-right: 0;
+}
+.slick-list {
+  margin: 0 1rem;
+  margin-right: 0;
+}

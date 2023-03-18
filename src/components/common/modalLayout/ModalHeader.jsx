@@ -5,12 +5,11 @@ const ModalHeader = ({ hasBack, title, onClick, ref }) => {
     <header className="screen-width fixed top-0 flex h-[5rem] w-screen items-center justify-between  bg-white px-[2rem]">
       <div className="flex items-center space-x-[1rem]">
         {hasBack && (
-          <span className="cursor-pointer " onClick={onClick}>
-            <BiChevronLeft
-              size="2.5rem"
-              className="#444444"
-              strokeWidth="0.1"
-            />
+          <span
+            className="cursor-pointer hover:text-primary-500 "
+            onClick={onClick}
+          >
+            <BiChevronLeft size="3rem" className="#444444" strokeWidth="0.1" />
           </span>
         )}
 
