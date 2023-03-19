@@ -1,6 +1,7 @@
 import instance from "apis/instance";
 import { useQuery, useQueryClient } from "react-query";
 
+/** 유저의 컬렉션 리스트 조회 */
 const ReadCollectionList = (profileId) => {
   return useQuery(
     ["collections", profileId],
@@ -14,6 +15,7 @@ const ReadCollectionList = (profileId) => {
   );
 };
 
+/** 해당 컬렉션의 이름 내용 이미지 그리고 프로필의 닉네임 추출*/
 const ReadCollectionDetail = ({ profileId, collectionId }) => {
   const queryClient = useQueryClient();
   const collections = queryClient.getQueryData(["collections", profileId]);

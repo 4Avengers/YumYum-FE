@@ -4,7 +4,8 @@ import React from "react";
 import { modalLayoutAni } from "shared/motionStyle";
 import CollectionHeader from "./CollectionHeader";
 
-const CollectionModal = ({ onClick }) => {
+const CollectionModal = ({ onClick, collectionId, restaurantId }) => {
+  // collectionId와 restaurantId로 데이터 조회
   return (
     <ModalLayout hasHeader={false} hasPadding={false} variants={modalLayoutAni}>
       <CollectionHeader

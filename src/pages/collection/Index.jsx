@@ -6,9 +6,12 @@ import UserContainer from "components/collection/index/UserContainer";
 import useUser from "hooks/useUser";
 import SearchForm from "components/collection/index/SearchForm";
 import CollectionList from "components/collection/index/CollectionList";
+import useRecoilModal from "hooks/useRecoilModal";
+import ListModal from "components/collection/ListModal/ListModal";
 
 const Collection = () => {
   const { profileId } = useParams();
+  const [openConfigModal, setOpenConfigModal] = useRecoilModal();
   const [user] = useUser();
 
   return (
@@ -22,6 +25,7 @@ const Collection = () => {
         </div>
       </ModalLayout>
       <Outlet />
+      {openConfigModal && <ListModal setModal={setOpenConfigModal} />}
     </>
   );
 };
