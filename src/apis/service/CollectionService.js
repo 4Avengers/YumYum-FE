@@ -28,5 +28,11 @@ const ReadCollectionDetail = ({ profileId, collectionId }) => {
   return { name, description, image, nickname };
 };
 
+/** 리스트 collection 단일 조회 */
+// GET: my-list/collections/update/:collectionId
+
+/** 리스트 collection 수정 */
+// PUT: my-list/collections/:collectionId
+
 const CollectionService = { ReadCollectionList, ReadCollectionDetail };
 export default CollectionService;

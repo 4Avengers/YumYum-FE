@@ -2,7 +2,6 @@ import React from "react";
 import cls from "utils/cls";
 
 const MyListCard = ({ myListData, isInclude, setMyList }) => {
-  console.log(myListData, isInclude);
   return (
     <li className="flex items-center justify-between border-b px-[2rem] py-[1rem]">
       <span className="Cap2 flex-1">{myListData.name}</span>

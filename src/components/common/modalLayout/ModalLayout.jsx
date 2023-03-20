@@ -15,6 +15,7 @@ const ModalLayout = ({
   hasFooter = true,
   className = "",
   variants,
+  maxZIndex,
 }) => {
   return (
     <motion.div
@@ -27,6 +28,7 @@ const ModalLayout = ({
         "screen-width mx-auto h-screen  w-screen bg-white pb-[6rem] pt-[5rem]",
         // hasHeader ? "pt-[5rem]" : "pt-0",
         "absolute top-0",
+        maxZIndex && "z-[1000]",
         className
       )}
     >

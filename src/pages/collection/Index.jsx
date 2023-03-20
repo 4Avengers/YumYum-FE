@@ -8,10 +8,15 @@ import SearchForm from "components/collection/index/SearchForm";
 import CollectionList from "components/collection/index/CollectionList";
 import useRecoilModal from "hooks/useRecoilModal";
 import ListModal from "components/collection/ListModal/ListModal";
+import { myListConfigModal, myListEditModal } from "atoms/modalAtom";
+import { AnimatePresence } from "framer-motion";
+import ListEditModal from "components/collection/listEdit/ListEditModal";
 
 const Collection = () => {
   const { profileId } = useParams();
-  const [openConfigModal, setOpenConfigModal] = useRecoilModal();
+  const [openConfigModal, setOpenConfigModal] =
+    useRecoilModal(myListConfigModal);
+  const [openEditModal, setOpenEditModal] = useRecoilModal(myListEditModal);
   const [user] = useUser();
 
   return (
@@ -25,7 +30,15 @@ const Collection = () => {
         </div>
       </ModalLayout>
       <Outlet />
-      {openConfigModal && <ListModal setModal={setOpenConfigModal} />}
+      <AnimatePresence>
+        {openConfigModal && (
+          <ListModal
+            setModal={setOpenConfigModal}
+            openEditModal={() => setOpenEditModal(true)}
+          />
+        )}
+        {openEditModal && <ListEditModal setModal={setOpenEditModal} />}
+      </AnimatePresence>
     </>
   );
 };
