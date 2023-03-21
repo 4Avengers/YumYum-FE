@@ -18,10 +18,28 @@ const AddPost = (profileId) => {
   );
 };
 
-/** 포스트 조회 */
+/** 포스트 조회 (포스트 수정용)*/
 const ReadPost = async (postId) => {
   const response = await instance.get(`posts/${postId}`);
   return response.data;
+};
+
+/** 포스트 단일 조회 */
+const ReadPostDetail = (postId) => {
+  return useQuery(
+    ["post", postId],
+    async () => {
+      const response = await instance.get(`posts/${postId}`);
+      return response.data;
+    },
+    {
+      enabled: !!postId,
+      select: (data) => {
+        const hashtags = data?.hashtags?.map((item) => item.name);
+        return { ...data, hashtags };
+      },
+    }
+  );
 };
 
 /** 포스트 수정 */
@@ -96,6 +114,7 @@ const RemovePostLike = (queryKey) => {
 const PostService = {
   AddPost,
   ReadPost,
+  ReadPostDetail,
   ReadNewsFeeds,
   AddPostLike,
   RemovePostLike,

@@ -1,15 +1,19 @@
 import CommentService from "apis/service/CommentService";
+import { postQueryKeyAtom } from "atoms/queryKeyAtom";
 import React, { useCallback, useRef } from "react";
 import { HiOutlinePaperAirplane } from "react-icons/hi";
+import { useRecoilValue } from "recoil";
 import { handleProfileError } from "utils/handleImgError";
 
 // input 대신 textarea로 autosize
-const CommentForm = ({ postId, queryKey, user }) => {
+const CommentForm = ({ postId, user }) => {
+  const queryKey = useRecoilValue(postQueryKeyAtom);
   const { mutate: addComment } = CommentService.AddComment({
     postId,
     queryKey,
   });
   const inputRef = useRef(null);
+  console.log(postId);
 
   // 코멘트 작성
   const onSumbit = useCallback(
@@ -26,7 +30,7 @@ const CommentForm = ({ postId, queryKey, user }) => {
 
   return (
     <form
-      className="absolute bottom-[6rem] h-[7.7rem] w-full  flex-1  px-[2rem] py-[2rem] shadow-[3px_3px_10px_1px_rgba(0,0,0,0.15)]"
+      className="absolute bottom-[6rem] h-[7.7rem] w-full  flex-1  bg-white px-[2rem] py-[2rem] shadow-[3px_3px_10px_1px_rgba(0,0,0,0.15)]"
       onSubmit={onSumbit}
     >
       <div className="relative flex items-center space-x-[2rem]">

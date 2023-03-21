@@ -23,3 +23,15 @@ export const myListEditModal = atom({
   key: "myListEditModal",
   default: false,
 });
+
+/** 탐색 포스트 상세 모달 */
+export const questPostModal = atom({
+  key: "questPostModal",
+  default: false,
+});
+
+/** 탐색 마커 모달 */
+export const markerModal = atom({
+  key: "markerModal",
+  default: false,
+});

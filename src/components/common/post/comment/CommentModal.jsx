@@ -30,7 +30,7 @@ const CommentModal = () => {
       hasPadding={false}
       variants={modalLayoutAni}
     >
-      <ModalHeader title="댓글" hasBack onClick={handleCloseModal} has />
+      <ModalHeader title="댓글" hasBack onClick={handleCloseModal} />
       <div className="flex flex-1 flex-col  ">
         <ul className="h-[calc(100vh-18.7rem)] overflow-y-auto  px-[2rem] scrollbar-hide">
           {comments?.map((comment, idx) => (

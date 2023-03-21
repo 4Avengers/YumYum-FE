@@ -62,7 +62,10 @@ const PostEdit = () => {
       formData.append("files", file);
     });
     formData.append("hashtagNames", JSON.stringify(hashtagNames));
-    formData.append("myListId", JSON.stringify(myListId));
+    formData.append(
+      "myListId",
+      JSON.stringify(myListId?.filter((item) => !!item))
+    );
 
     try {
       editPost(formData);
@@ -74,14 +77,13 @@ const PostEdit = () => {
   useEffect(() => {
     (async () => {
       await PostService.ReadPost(id).then((response) => {
-        console.log(response);
         setValue("rating", response.rating + "");
         setValue("visibility", "public");
         setRestaurant(response.restaurant);
         setValue("content", response.content);
         setImgList([...response.images?.map((item) => item.file_url)]);
         setDefaultImages([...response.images?.map((item) => item.file_url)]);
-        setMyListId([...response.myList?.map((item) => item?.collection?.id)]);
+        setMyListId([...response.myList?.map((item) => item?.id)]);
         setHashtagNames(response.hashtags?.map((item) => item.name));
       });
     })();
