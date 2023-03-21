@@ -1,8 +1,13 @@
+import ListService from "apis/service/ListService";
 import { collectionIdAtom } from "atoms/collectionAtom";
 import React from "react";
 import { useSetRecoilState } from "recoil";
 
-const ListCard = ({ myListData, openEditModal }) => {
+const ListCard = ({ myListData, openEditModal, profileId }) => {
+  const { mutate: removeList } = ListService.RemoveMyList({
+    collectionId: myListData?.id,
+    profileId,
+  });
   const setCollectionId = useSetRecoilState(collectionIdAtom);
 
   const handleEditClick = (e) => {
@@ -13,6 +18,7 @@ const ListCard = ({ myListData, openEditModal }) => {
 
   const handleDeleteClick = (e) => {
     e.stopPropagation();
+    removeList();
     // 리스트 삭제 api 실행 (myListData?.id)
   };
 

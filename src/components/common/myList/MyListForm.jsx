@@ -1,6 +1,7 @@
 import ListService from "apis/service/ListService";
 import { useRef } from "react";
 import { BiPlus } from "react-icons/bi";
+import { toast } from "react-toastify";
 
 const MyListForm = () => {
   const { mutate: addMyList } = ListService.AddMyList();
@@ -8,11 +9,13 @@ const MyListForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (inputRef?.current) {
-      const name = inputRef.current?.value;
-      addMyList({ name });
-      inputRef.current.value = "";
+    if (!inputRef?.current) return;
+    const name = inputRef.current?.value;
+    if (name?.trim()?.length < 2) {
+      return toast.error("맛집리스트 이름의 길이는 최소 2자입니다.");
     }
+    addMyList({ name });
+    inputRef.current.value = "";
   };
 
   return (

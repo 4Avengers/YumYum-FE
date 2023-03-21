@@ -1,4 +1,4 @@
-import CollectionService from "apis/service/CollectionService";
+import ListService from "apis/service/ListService";
 import CollectionBtns from "components/collection/detail/Btns";
 import PostList from "components/collection/detail/PostList";
 import UserContainer from "components/collection/detail/UserContainer";
@@ -11,7 +11,7 @@ import useUser from "hooks/useUser";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { modalLayoutAni } from "shared/motionStyle";
-import CollectionModal from "./CollectionModal";
+import CollectionModal from "../../components/collection/restaurant/CollectionModal";
 
 const posts = [];
 
@@ -21,7 +21,7 @@ const CollectionDetail = () => {
   const [isList, setIsList] = useState(true);
   const [restaurantId, setRestaurantId] = useState(null);
   const [openDetail, setOpenDetail] = useModal(false);
-  const collection = CollectionService.ReadCollectionDetail({
+  const collection = ListService.ReadCollectionDetail({
     profileId,
     collectionId,
   });

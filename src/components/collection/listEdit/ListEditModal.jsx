@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { bgAni, listModalAni } from "shared/motionStyle";
-import { handleImgError } from "utils/handleImgError";
+import { defaultImage, handleImgError } from "utils/handleImgError";
 import { RiPencilLine } from "react-icons/ri";
 import ErrorMessage from "elements/ErrorMessage";
 import Button from "elements/Button";
@@ -9,13 +9,18 @@ import { useRecoilValue } from "recoil";
 import { collectionIdAtom } from "atoms/collectionAtom";
 import { motion } from "framer-motion";
 import { IoMdClose } from "react-icons/io";
-// import { toast } from "react-toastify";
+import ListService from "apis/service/ListService";
+import { toast } from "react-toastify";
 
-const ListEditModal = ({ setModal }) => {
+const ListEditModal = ({ setModal, profileId }) => {
   const [image, setImage] = useState(null);
   const [previewImg, setPreviewImage] = useState("");
-  const [collectionId, setCollectionId] = useRecoilValue(collectionIdAtom);
-
+  const collectionId = useRecoilValue(collectionIdAtom);
+  const [collection, setCollection] = useState(null);
+  const { mutate: editList, isSuccess } = ListService.EditMyList({
+    collectionId,
+    profileId,
+  });
   // 리스트 item 수정 api (collectionId+"")
 
   const {
@@ -25,8 +30,6 @@ const ListEditModal = ({ setModal }) => {
     formState: { errors },
   } = useForm();
 
-  const collection = {}; // id를 통해 값 조회
-
   // 수정
   const onValid = (data) => {
     const { name, description } = data;
@@ -34,6 +37,7 @@ const ListEditModal = ({ setModal }) => {
     formData.append("image", image);
     formData.append("name", name);
     formData.append("description", description);
+    editList(formData);
   };
 
   // 이미지 프리뷰
@@ -49,18 +53,24 @@ const ListEditModal = ({ setModal }) => {
     if (collection) {
       setValue("name", collection?.name);
       setValue("description", collection?.description);
-      setImage(collection?.image?.file_url);
-      setPreviewImage(collection?.image?.file_url);
+      setImage(collection?.image);
+      setPreviewImage(collection?.image);
     }
   }, [setValue, collection]);
 
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     toast.success("리스트가 수정되었습니다.");
-  //     setModal(false);
-  //     setCollectionId(null)
-  //   }
-  // }, [isSuccess,setModal,openConfigModal,setCollectionId]);
+  useEffect(() => {
+    (async () => {
+      const response = await ListService.ReadMyListItem(collectionId);
+      setCollection(response);
+    })();
+  }, [collectionId]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("리스트가 수정되었습니다.");
+      setModal(false);
+    }
+  }, [isSuccess, setModal]);
 
   return (
     <motion.div
@@ -99,7 +109,7 @@ const ListEditModal = ({ setModal }) => {
             />
             <img
               className="h-[10rem] w-[10rem] rounded-[1rem] object-cover"
-              src={previewImg}
+              src={previewImg || defaultImage}
               alt="listImage"
               onError={handleImgError}
             />
@@ -116,6 +126,14 @@ const ListEditModal = ({ setModal }) => {
               type="text"
               {...register("name", {
                 required: "리스트 이름은 필수로 입력해야합니다.",
+                minLength: {
+                  value: 2,
+                  message: "맛집리스트 이름은 최소 2자 이상입니다.",
+                },
+                maxLength: {
+                  value: 15,
+                  message: "맛집리스트 이름은 최대 15자 이하입니다.",
+                },
               })}
             />
             <ErrorMessage errorMessage={errors?.name?.message} isProfile />

@@ -37,7 +37,9 @@ const Collection = () => {
             openEditModal={() => setOpenEditModal(true)}
           />
         )}
-        {openEditModal && <ListEditModal setModal={setOpenEditModal} />}
+        {openEditModal && (
+          <ListEditModal setModal={setOpenEditModal} profileId={profileId} />
+        )}
       </AnimatePresence>
     </>
   );

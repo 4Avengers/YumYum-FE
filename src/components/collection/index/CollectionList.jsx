@@ -1,10 +1,10 @@
-import CollectionService from "apis/service/CollectionService";
+import ListService from "apis/service/ListService";
 import React from "react";
 import CollectionCard from "./CollectionCard";
 
 const CollectionList = ({ profileId }) => {
   const { data: collections, isLoading } =
-    CollectionService.ReadCollectionList(profileId);
+    ListService.ReadCollectionList(profileId);
   console.log(collections);
   return (
     <ul className="flex flex-col space-y-[2rem] pb-[5rem]">

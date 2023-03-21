@@ -14,7 +14,6 @@ const CollectionModal = ({ onClick, collectionId, restaurantId }) => {
         title="일월 선셋 비치"
         category="카페"
       />
-
       <div className="flex flex-1 flex-col ">
         <p className="Cap4 border-b bg-white pl-[6.2rem] pb-[1.3rem]">
           {"제주도 제주시 애월읍"}
