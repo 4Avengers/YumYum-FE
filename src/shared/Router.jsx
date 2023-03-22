@@ -15,7 +15,7 @@ import Start from "pages/start/Index";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import OAuth2RedirectHandler from "pages/social/OAuth2RedirectHandler";
-import Home from "pages/Index";
+import Home from "pages/Home/Index";
 
 const Router = () => {
   const [isLogin, setIsLogin] = useState(false);
