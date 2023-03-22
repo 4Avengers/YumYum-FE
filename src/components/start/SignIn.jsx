@@ -12,18 +12,10 @@ import { setAccessToken, setRefreshToken } from "apis/token";
 // import { KAKAO_AUTH_URL} from "../OAuth"
 // import { GOOGLE_AUTH_URL } from "../OAuth"
 // import { NAVER_AUTH_URL } from "../OAuth"
- 
 
- 
+const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}&response_type=code`;
 
 const SignIn = () => {
-
-  // const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=a5a911d36e480692a2c05cec1cd685d9&redirect_uri=http://localhost:3000/auth/kakao/callback&response_type=code`;
-  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}&response_type=code`;
-  const LoginWithKakao = () => {
-    window.location.href = KAKAO_AUTH_URL;
-  };
-
   const {
     register,
     handleSubmit,
@@ -95,12 +87,12 @@ const SignIn = () => {
       <div className="flex flex-col items-center space-y-[2rem] pt-[3rem]">
         <p className="Cap3">SNS 계정으로 간편하게 로그인하세요</p>
         <ul className="grid grid-cols-3 items-center gap-[2rem]">
-          <a href={KAKAO_AUTH_URL}>
-         {/* <a href={LoginWithKakao}> */}
-            <li className="flex-center  h-[5rem] w-[5rem] rounded-[1rem] bg-[#FAE300] shadow-lg">
+          {/* <a href={LoginWithKakao}> */}
+          <li className="flex-center  h-[5rem] w-[5rem] rounded-[1rem] bg-[#FAE300] shadow-lg">
+            <a href={KAKAO_AUTH_URL}>
               <RiKakaoTalkFill size="3.7rem" />
-            </li>
-          </a>
+            </a>
+          </li>
           {/* <a href={NAVER_AUTH_URL}> */}
           <li className="flex-center  h-[5rem] w-[5rem] rounded-[1rem] bg-[#02BF19] shadow-lg">
             <SiNaver size="2rem" color="white" />
