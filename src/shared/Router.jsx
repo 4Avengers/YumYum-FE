@@ -4,7 +4,7 @@ import SignIn from "components/start/SignIn";
 import SignUp from "components/start/SignUp";
 import CollectionDetail from "pages/collection/CollectionDetail";
 import Collection from "pages/collection/Index";
-import Home from "pages/Index";
+
 import NewsFeed from "pages/newsfeed/Index";
 import PostEdit from "pages/post/Edit";
 import PostWrite from "pages/post/Write";
@@ -15,6 +15,7 @@ import Start from "pages/start/Index";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import OAuth2RedirectHandler from "pages/social/OAuth2RedirectHandler";
+import Home from "pages/Index";
 
 const Router = () => {
   const [isLogin, setIsLogin] = useState(false);
