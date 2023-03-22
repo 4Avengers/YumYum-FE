@@ -9,6 +9,11 @@ import styled from "@emotion/styled";
 import AuthService from "apis/service/AuthService";
 import { toast } from "react-toastify";
 import { setAccessToken, setRefreshToken } from "apis/token";
+// import { KAKAO_AUTH_URL} from "../OAuth"
+// import { GOOGLE_AUTH_URL } from "../OAuth"
+// import { NAVER_AUTH_URL } from "../OAuth"
+
+const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}&response_type=code`;
 
 const SignIn = () => {
   const {
@@ -82,15 +87,22 @@ const SignIn = () => {
       <div className="flex flex-col items-center space-y-[2rem] pt-[3rem]">
         <p className="Cap3">SNS 계정으로 간편하게 로그인하세요</p>
         <ul className="grid grid-cols-3 items-center gap-[2rem]">
+          {/* <a href={LoginWithKakao}> */}
           <li className="flex-center  h-[5rem] w-[5rem] rounded-[1rem] bg-[#FAE300] shadow-lg">
-            <RiKakaoTalkFill size="3.7rem" />
+            <a href={KAKAO_AUTH_URL}>
+              <RiKakaoTalkFill size="3.7rem" />
+            </a>
           </li>
+          {/* <a href={NAVER_AUTH_URL}> */}
           <li className="flex-center  h-[5rem] w-[5rem] rounded-[1rem] bg-[#02BF19] shadow-lg">
             <SiNaver size="2rem" color="white" />
           </li>
+          {/* </a> */}
+          {/* <a href={GOOGLE_AUTH_URL}> */}
           <li className="flex-center relative  h-[5rem] w-[5rem] rounded-[1rem] bg-white shadow-lg">
             <GoogleSvg className="absolute w-[6rem]" />
           </li>
+          {/* </a> */}
         </ul>
       </div>
     </main>
