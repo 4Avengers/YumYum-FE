@@ -20,6 +20,8 @@ const SignIn = () => {
 
   // const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=a5a911d36e480692a2c05cec1cd685d9&redirect_uri=http://localhost:3000/auth/kakao/callback&response_type=code`;
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}&response_type=code`;
+  const GOOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}&response_type=token&redirect_uri=${process.env.REACT_APP_GOOGLE_REDIRECT_URI}&scope=https://www.googleapis.com/auth/userinfo.email`
+  
   const LoginWithKakao = () => {
     window.location.href = KAKAO_AUTH_URL;
   };
@@ -106,11 +108,11 @@ const SignIn = () => {
             <SiNaver size="2rem" color="white" />
           </li>
           {/* </a> */}
-          {/* <a href={GOOGLE_AUTH_URL}> */}
+          <a href={GOOGLE_AUTH_URL}>
           <li className="flex-center relative  h-[5rem] w-[5rem] rounded-[1rem] bg-white shadow-lg">
             <GoogleSvg className="absolute w-[6rem]" />
           </li>
-          {/* </a> */}
+          </a>
         </ul>
       </div>
     </main>
