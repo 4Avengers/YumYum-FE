@@ -23,7 +23,7 @@ const CollectionCard = ({ collection, isLoading }) => {
       {!isLoading && !collection?.collectionItems?.length ? (
         <NotCollectionItem />
       ) : (
-        <Slider {...settings} className="flex">
+        <Slider {...settings}>
           {collection?.collectionItems?.map((item) => (
             <SliderItem key={item.id} collectionItem={item} />
           ))}

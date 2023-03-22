@@ -2,15 +2,16 @@ import { FaStar } from "react-icons/fa";
 import { handleImgError } from "utils/handleImgError";
 
 const SliderItem = ({ collectionItem }) => {
+  console.log(collectionItem);
   return (
-    <div className="flex flex-col space-y-[0.7rem]">
+    <div className="mr-[1rem] flex flex-col space-y-[0.7rem]">
       <img
         src={collectionItem?.post?.images[0]?.file_url}
         alt="resImg"
         onError={handleImgError}
         className="aspect-square  rounded-[1rem] bg-primary-300 object-cover"
       />
-      <div className="flex items-center">
+      <div className="flex">
         <p className="Cap1 flex-1">
           {collectionItem?.post?.restaurant?.place_name}
         </p>

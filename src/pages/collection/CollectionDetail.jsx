@@ -13,8 +13,6 @@ import { useParams } from "react-router-dom";
 import { modalLayoutAni } from "shared/motionStyle";
 import CollectionModal from "../../components/collection/restaurant/CollectionModal";
 
-const posts = [];
-
 const CollectionDetail = () => {
   const [user] = useUser();
   const { profileId, collectionId } = useParams();
@@ -23,6 +21,9 @@ const CollectionDetail = () => {
   const [openDetail, setOpenDetail] = useModal(false);
   const collection = ListService.ReadCollectionDetail({
     profileId,
+    collectionId,
+  });
+  const { data: collectionItem } = ListService.ReadCollectionPosts({
     collectionId,
   });
 
@@ -41,9 +42,10 @@ const CollectionDetail = () => {
             <PostList
               setOpenModal={setOpenDetail}
               setRestaurantId={setRestaurantId}
+              collectionItem={collectionItem}
             />
           ) : (
-            <QuestMap posts={posts} />
+            <QuestMap posts={collectionItem?.post} />
           )}
         </div>
       </div>

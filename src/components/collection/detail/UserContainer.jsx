@@ -16,7 +16,7 @@ const UserContainer = ({ collection }) => {
         </h3>
         <div className="flex w-full">
           <p className="Cap4 flex-1 text-primary-500 ">
-            {collection?.description || "좋은 곳만 모았다."}
+            {collection?.description}
           </p>
           {/* <button className="Cap4 hover:text-primary-500">전체공개</button> */}
         </div>
