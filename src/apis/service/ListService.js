@@ -99,13 +99,19 @@ const ReadCollectionList = (profileId) => {
 /** 해당 컬렉션의 이름 내용 이미지 그리고 프로필의 닉네임 추출*/
 const ReadCollectionDetail = ({ profileId, collectionId }) => {
   const queryClient = useQueryClient();
+  if (!profileId || !collectionId)
+    return { nickname: "", image: "", description: "", name: "" };
   const collections = queryClient.getQueryData(["collections", profileId]);
-  const { nickname } = queryClient.getQueryData(["profile", profileId]);
+  const { nickname, profile_image: image } = queryClient.getQueryData([
+    "profile",
+    profileId,
+  ]);
   const targetCollection = collections?.find(
     (item) => item.id === +collectionId
   );
-  if (!targetCollection || !nickname) return null;
-  const { name, description, image } = targetCollection;
+  if (!targetCollection || !nickname)
+    return { nickname: "", image: "", description: "", name: "" };
+  const { name, description } = targetCollection;
   return { name, description, image, nickname };
 };
 
@@ -124,8 +130,13 @@ const ReadColectionRestaurantPosts = ({ collectionId, restaurantId }) => {
   return useQuery(
     ["collections", collectionId, "restaurant", restaurantId],
     async () => {
-      const response = await instance.get("");
+      const response = await instance.get(
+        `my-list/collections/detail/posts/${collectionId}/${restaurantId}`
+      );
       return response.data;
+    },
+    {
+      enabled: !!restaurantId,
     }
   );
 };

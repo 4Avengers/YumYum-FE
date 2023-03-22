@@ -13,7 +13,6 @@ const CommentForm = ({ postId, user }) => {
     queryKey,
   });
   const inputRef = useRef(null);
-  console.log(postId);
 
   // 코멘트 작성
   const onSumbit = useCallback(

@@ -1,15 +1,15 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 
-const PostList = ({ setOpenModal, setRestaurantId, collectionItem }) => {
+const PostList = ({ setOpenModal, setRestaurantId, posts }) => {
   const handleClick = (id) => {
     setRestaurantId(id);
     setOpenModal();
   };
-  console.log("it", collectionItem);
+
   return (
     <ul className="flex w-full flex-col pb-[3rem]">
-      {collectionItem[0]?.post?.map((post) => (
+      {posts?.map((post) => (
         <li
           key={post?.id}
           className="flex cursor-pointer space-x-[2rem] px-[2rem] py-[2rem] transition-colors hover:bg-[rgba(0,0,0,0.05)]"

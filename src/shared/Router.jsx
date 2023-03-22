@@ -4,7 +4,7 @@ import SignIn from "components/start/SignIn";
 import SignUp from "components/start/SignUp";
 import CollectionDetail from "pages/collection/CollectionDetail";
 import Collection from "pages/collection/Index";
-// import Home from "pages/Index";
+import Home from "pages/Index";
 import NewsFeed from "pages/newsfeed/Index";
 import PostEdit from "pages/post/Edit";
 import PostWrite from "pages/post/Write";
@@ -35,7 +35,10 @@ const Router = () => {
           path="/auth/kakao/callback"
           element={<OAuth2RedirectHandler />}
         />
-        <Route path="/" element={<Navigate to="/newsfeed" replace />} />
+        <Route
+          path="/"
+          element={!isLogin ? <Navigate to="/start/login" replace /> : <Home />}
+        />
         <Route
           path="/start"
           element={isLogin ? <Navigate to="/" replace /> : <Start />}

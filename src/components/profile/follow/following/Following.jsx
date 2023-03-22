@@ -5,7 +5,7 @@ import { handleProfileError } from "utils/handleImgError";
 
 const ProfileFollowing = ({ profileId, closeModal }) => {
   const { data: followings } = FollowService.ReadFollowings(profileId);
-  console.log(followings);
+
   const navigate = useNavigate();
 
   const handleNaivgate = (id) => {

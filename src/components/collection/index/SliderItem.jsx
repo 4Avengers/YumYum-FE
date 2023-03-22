@@ -2,7 +2,6 @@ import { FaStar } from "react-icons/fa";
 import { handleImgError } from "utils/handleImgError";
 
 const SliderItem = ({ collectionItem }) => {
-  console.log(collectionItem);
   return (
     <div className="mr-[1rem] flex flex-col space-y-[0.7rem]">
       <img

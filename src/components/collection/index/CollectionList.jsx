@@ -5,7 +5,7 @@ import CollectionCard from "./CollectionCard";
 const CollectionList = ({ profileId }) => {
   const { data: collections, isLoading } =
     ListService.ReadCollectionList(profileId);
-  console.log(collections);
+
   return (
     <ul className="flex flex-col space-y-[2rem] pb-[5rem]">
       {React.Children.toArray(
