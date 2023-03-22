@@ -2,5 +2,5 @@
   "compilerOptions": {
     "baseUrl": "src"
   },
-  "include": ["src"]
+  "include": ["src", "OAuth2RedirectHandler.js", "OAuth2RedirectHandler.js", "OAuth.js"]
 }
