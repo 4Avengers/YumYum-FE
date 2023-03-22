@@ -14,6 +14,8 @@ import Search from "pages/search/Index";
 import Start from "pages/start/Index";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import OAuth2RedirectHandler from "pages/social/OAuth2RedirectHandler"
+ 
 
 const Router = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -30,6 +32,7 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
+      <Route path="/auth/kakao/callback" element={<OAuth2RedirectHandler />} />
         <Route path="/" element={<Navigate to="/newsfeed" replace />} />
         <Route
           path="/start"
@@ -40,6 +43,8 @@ const Router = () => {
             element={isLogin ? <Navigate to="/" replace /> : <Begin />}
           />
           <Route path="login" element={<SignIn />} />
+  
+          
           <Route
             path="signup"
             element={isLogin ? <Navigate to="/" replace /> : <SignUp />}
@@ -65,6 +70,10 @@ const Router = () => {
         /> */}
         <Route path="/post/write" element={<PostWrite />} />
         <Route path="/post/:id/edit" element={<PostEdit />} />
+        
+        <Route path="/api/users/google/callback"     
+           element={<Profile />}>     </Route>
+
       </Routes>
     </BrowserRouter>
   );
