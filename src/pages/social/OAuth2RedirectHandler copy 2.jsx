@@ -8,17 +8,12 @@ const OAuth2RedirectHandler = (props) => {
   // Authorization code
   const provider = props.provider; 
   let code = new URL(window.location.href).searchParams.get("code");
-
   const access_token = new URLSearchParams(window.location.hash.substring(1)).get(
     "access_token"
   );
 
-  if (!code && access_token) {
-    code = access_token;
-  }
-  
   // const provider = new URL(window.location.href).searchParams.get("provider");
-  const body = {provider,  code};
+  const body = {provider,  code, access_token };
   console.log(body);
 
 
