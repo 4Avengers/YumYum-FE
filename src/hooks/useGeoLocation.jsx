@@ -1,5 +1,6 @@
 import { geoLocationAtom } from "atoms/geoLocationAtom";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import { useRecoilState } from "recoil";
 
 const useGeolocation = () => {
@@ -22,6 +23,7 @@ const useGeolocation = () => {
     };
 
     const errorHandler = (error) => {
+      toast.error("위치 정보를 승인해주세요.");
       setError(error.message);
     };
 

@@ -38,6 +38,12 @@ html {
   font-size: 62.5%;
 }
 
+@media (max-width: 480px) {
+  html {
+    font-size: 58%;
+  }
+}
+
 * {
   box-sizing: border-box;
 }

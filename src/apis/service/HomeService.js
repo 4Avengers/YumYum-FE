@@ -30,7 +30,7 @@ const ReadAroundPlaceList = ({ x, y }) => {
 /** 회원들의 추천 맛집리스트 */
 const ReadRecommandPlaceList = (category) => {
   return useQuery(
-    ["recommandPlaceList"],
+    ["recommandPlaceList", category],
     async () => {
       const response = await instance.get(
         `posts/main/trending?category=${category}`
@@ -39,6 +39,7 @@ const ReadRecommandPlaceList = (category) => {
     },
     {
       enabled: !!category,
+      staleTime: 60000,
     }
   );
 };

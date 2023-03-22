@@ -25,7 +25,7 @@ const PostDetailModal = ({ user }) => {
   };
 
   return (
-    <ModalLayout variants={modalLayoutAni} maxZIndex>
+    <ModalLayout variants={modalLayoutAni} maxZIndex hasPadding={false}>
       <ModalHeader
         title={post?.restaurant?.place_name}
         hasBack

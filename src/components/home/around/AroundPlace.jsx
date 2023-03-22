@@ -4,17 +4,19 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaStar } from "react-icons/fa";
 import Header from "../Header";
+import { useNavigate } from "react-router-dom";
 
 // 내 주변 맛집
 const AroundPlace = ({ x, y }) => {
   const { data: places } = HomeService.ReadAroundPlaceList({ x, y });
-  console.log("around", places);
+  const navigate = useNavigate();
+
   return (
     <div className="mt-[4rem] flex flex-col justify-center space-y-[1rem] overflow-x-hidden">
       <Header
         title="내 주변 맛집"
         subTitle="가까운 추천 맛집"
-        onClick={() => {}}
+        onClick={() => navigate("/quest")}
       />
 
       <Slider {...settings} className="">

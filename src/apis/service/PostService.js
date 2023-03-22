@@ -83,6 +83,20 @@ const ReadNewsFeeds = () => {
   });
 };
 
+/** 뉴스피드 내 주변 피드 목록 조회 */
+const ReadNewsFeedsAround = ({ x, y }) => {
+  return useQuery(
+    ["newsFeeds", "around"],
+    async () => {
+      const response = await instance.get("feed/aroundMe?page=1", { x, y });
+      return response.data;
+    },
+    {
+      enabled: !!x && !!y,
+    }
+  );
+};
+
 /** 포스트 좋아요 (성공하면 refetch해야함)*/
 const AddPostLike = (queryKey) => {
   const queryClient = useQueryClient();
@@ -120,5 +134,6 @@ const PostService = {
   RemovePostLike,
   EditPost,
   RemovePost,
+  ReadNewsFeedsAround,
 };
 export default PostService;
