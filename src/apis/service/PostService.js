@@ -78,7 +78,7 @@ const RemovePost = (queryKey) => {
 /** 뉴스피드 최신 포스트 목록 조회 */
 const ReadNewsFeeds = () => {
   return useQuery(["newsFeeds", "current"], async () => {
-    const response = await instance.get("posts");
+    const response = await instance.get("posts?page=1");
     return response.data;
   });
 };

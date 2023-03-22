@@ -6,7 +6,7 @@ const ReadComments = (postId) => {
   return useQuery(
     ["comments", postId],
     async () => {
-      const response = await instance.get(`posts/${postId}/comments`);
+      const response = await instance.get(`posts/${postId}/comments?page=1`);
       return response.data;
     },
     {
