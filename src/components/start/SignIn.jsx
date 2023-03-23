@@ -9,42 +9,22 @@ import styled from "@emotion/styled";
 import AuthService from "apis/service/AuthService";
 import { toast } from "react-toastify";
 import { setAccessToken, setRefreshToken } from "apis/token";
-// import { KAKAO_AUTH_URL} from "../OAuth"
-// import { GOOGLE_AUTH_URL } from "../OAuth"
-// import { NAVER_AUTH_URL } from "../OAuth"
- 
-
- 
 
 const SignIn = () => {
-
-  // const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=a5a911d36e480692a2c05cec1cd685d9&redirect_uri=http://localhost:3000/auth/kakao/callback&response_type=code`;
-  // const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}&response_type=code`;
-  // const GOOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}&response_type=token&redirect_uri=${process.env.REACT_APP_GOOGLE_REDIRECT_URI}&scope=https://www.googleapis.com/auth/userinfo.email`
-  
-  // const LoginWithKakao = () => {
-  //   window.location.href = KAKAO_AUTH_URL;
-  // };
-
-
   const LoginWithKakao = () => {
     const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}&response_type=code`;
     window.location.href = KAKAO_AUTH_URL;
   };
-  
+
   const LoginWithGoogle = () => {
     const GOOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${process.env.REACT_APP_GOOGLE_REDIRECT_URI}`;
-   
-    // const GOOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}&response_type=token&redirect_uri=${process.env.REACT_APP_GOOGLE_REDIRECT_URI}&scope=https://www.googleapis.com/auth/userinfo.email`;
     window.location.href = GOOGLE_AUTH_URL;
   };
-  
-    
+
   const LoginWithNaver = () => {
     const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.REACT_APP_NAVER_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_NAVER_REDIRECT_URI}`;
     window.location.href = NAVER_AUTH_URL;
   };
-
 
   const {
     register,
@@ -117,22 +97,26 @@ const SignIn = () => {
       <div className="flex flex-col items-center space-y-[2rem] pt-[3rem]">
         <p className="Cap3">SNS 계정으로 간편하게 로그인하세요</p>
         <ul className="grid grid-cols-3 items-center gap-[2rem]">
-        <a onClick={LoginWithKakao}>
-         {/* <a href={LoginWithKakao}> */}
-            <li className="flex-center  h-[5rem] w-[5rem] rounded-[1rem] bg-[#FAE300] shadow-lg">
-              <RiKakaoTalkFill size="3.7rem" />
-            </li>
-          </a>
-          <a onClick={LoginWithNaver}>
-          <li className="flex-center  h-[5rem] w-[5rem] rounded-[1rem] bg-[#02BF19] shadow-lg">
+          <li
+            className="flex-center  h-[5rem] w-[5rem] cursor-pointer rounded-[1rem] bg-[#FAE300] shadow-lg"
+            onClick={LoginWithKakao}
+          >
+            <RiKakaoTalkFill size="3.7rem" />
+          </li>
+
+          <li
+            className="flex-center  h-[5rem] w-[5rem] cursor-pointer rounded-[1rem] bg-[#02BF19] shadow-lg"
+            onClick={LoginWithNaver}
+          >
             <SiNaver size="2rem" color="white" />
           </li>
-          </a>
-          <a onClick={LoginWithGoogle}>
-          <li className="flex-center relative  h-[5rem] w-[5rem] rounded-[1rem] bg-white shadow-lg">
+
+          <li
+            className="flex-center relative  h-[5rem] w-[5rem] cursor-pointer rounded-[1rem] bg-white shadow-lg"
+            onClick={LoginWithGoogle}
+          >
             <GoogleSvg className="absolute w-[6rem]" />
           </li>
-          </a>
         </ul>
       </div>
     </main>

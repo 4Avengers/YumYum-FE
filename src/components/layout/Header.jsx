@@ -1,3 +1,4 @@
+import { hasToken } from "apis/token";
 import { BiChevronLeft } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import cls from "utils/cls";
@@ -31,7 +32,7 @@ const Header = ({
 
         <h3 className="text-[2rem] font-semibold">{title}</h3>
       </div>
-      <nav>{headerType ? HEADER_TYPE[headerType] : null}</nav>
+      {hasToken() && <nav>{headerType ? HEADER_TYPE[headerType] : null}</nav>}
     </header>
   );
 };

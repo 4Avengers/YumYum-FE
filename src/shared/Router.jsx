@@ -32,14 +32,21 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-      <Route path="/auth/kakao/callback" element={<OAuth2RedirectHandler provider="kakao" />} />
+        <Route
+          path="/auth/kakao/callback"
+          element={<OAuth2RedirectHandler provider="kakao" />}
+        />
 
-      <Route path="/auth/google/callback" element={<OAuth2RedirectHandler provider="google" />} />
-        <Route path="/auth/naver/callback" element={<OAuth2RedirectHandler provider="naver" />} />
+        <Route
+          path="/auth/google/callback"
+          element={<OAuth2RedirectHandler provider="google" />}
+        />
+        <Route
+          path="/auth/naver/callback"
+          element={<OAuth2RedirectHandler provider="naver" />}
+        />
 
-
-
-        <Route path="/" element={<Navigate to="/newsfeed" replace />} />
+        <Route path="/" element={<Home />} />
         <Route
           path="/start"
           element={isLogin ? <Navigate to="/" replace /> : <Start />}
@@ -61,15 +68,54 @@ const Router = () => {
             !isLogin ? <Navigate to="/start/login" replace /> : <NewsFeed />
           }
         />
-        <Route path="/quest" element={<Quest />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/profile/:profileId" element={<Profile />}>
-          <Route path="collections" element={<Collection />}>
-            <Route path=":collectionId" element={<CollectionDetail />} />
+        <Route
+          path="/quest"
+          element={
+            !isLogin ? <Navigate to="/start/login" replace /> : <Quest />
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            !isLogin ? <Navigate to="/start/login" replace /> : <Search />
+          }
+        />
+        <Route
+          path="/profile/:profileId"
+          element={
+            !isLogin ? <Navigate to="/start/login" replace /> : <Profile />
+          }
+        >
+          <Route
+            path="collections"
+            element={
+              !isLogin ? <Navigate to="/start/login" replace /> : <Collection />
+            }
+          >
+            <Route
+              path=":collectionId"
+              element={
+                !isLogin ? (
+                  <Navigate to="/start/login" replace />
+                ) : (
+                  <CollectionDetail />
+                )
+              }
+            />
           </Route>
         </Route>
-        <Route path="/post/write" element={<PostWrite />} />
-        <Route path="/post/:id/edit" element={<PostEdit />} />
+        <Route
+          path="/post/write"
+          element={
+            !isLogin ? <Navigate to="/start/login" replace /> : <PostWrite />
+          }
+        />
+        <Route
+          path="/post/:id/edit"
+          element={
+            !isLogin ? <Navigate to="/start/login" replace /> : <PostEdit />
+          }
+        />
 
         {/* <Route path="/api/users/google/callback" element={<Profile />}></Route> */}
       </Routes>
