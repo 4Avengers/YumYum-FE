@@ -48,6 +48,13 @@ html {
   box-sizing: border-box;
 }
 
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("../../public/image/mainBg.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .screen-width {
   max-width: 460px;
 }

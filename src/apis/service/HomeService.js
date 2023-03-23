@@ -11,18 +11,16 @@ const ReadHotPlaceList = () => {
 
 /** 내 주변 맛집리스트 */
 const ReadAroundPlaceList = ({ x, y }) => {
-  console.log({ x, y });
   return useQuery(
-    ["aroundPlaceList"],
+    ["aroundPlaceList", x + y],
     async () => {
-      const response = await instance.get("restaurant/main/near-restaurant", {
-        x,
-        y,
-      });
+      const response = await instance.get(
+        `restaurant/main/near-restaurant?x=${x}&y=${y}`
+      );
       return response.data;
     },
     {
-      enabled: !!x && !!y,
+      enabled: !!x,
     }
   );
 };

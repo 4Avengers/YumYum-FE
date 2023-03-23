@@ -20,14 +20,26 @@ const AroundPlace = ({ x, y }) => {
       />
 
       <Slider {...settings} className="">
-        {[1, 2, 3, 4, 5, 6]?.map((item) => (
+        {places?.map((item) => (
           <div key={item} className="flex flex-col">
-            <div className="aspect-square w-[100%] rounded-[1rem] bg-gray-400" />
+            <img
+              src={item?.image_file_url}
+              alt="placeImg"
+              className="aspect-square w-[100%] rounded-[1rem] bg-gray-400 object-cover"
+            />
+
             <div className="flex flex-col">
-              <span className="Cap3">맥도날드</span>
-              <div className="flex items-center space-x-[0.4rem]">
-                <FaStar size="1.3rem" className="text-primary-600" />
-                <span className="Cap3">4</span>
+              <span className="Cap3">{item?.restaurant_place_name}</span>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-[0.4rem]">
+                  <FaStar size="1.3rem" className="text-primary-600" />
+                  <span className="Cap3">
+                    {Number(item["AVG(`post`.`rating`)"]).toFixed(1)}
+                  </span>
+                </div>
+                <span className="Cap6 text-primary-500">
+                  {item?.distance?.toFixed(1)}km
+                </span>
               </div>
             </div>
           </div>
