@@ -4,29 +4,16 @@ import { setAccessToken, setRefreshToken } from "apis/token";
 
 const OAuth2RedirectHandler = (props) => {
   
-  console.log("props는", props);
+
   // Authorization code
-  const provider = props.provider; 
   let code = new URL(window.location.href).searchParams.get("code");
-  console.log("code확인하자", code);
-
-  // const access_token = new URLSearchParams(window.location.hash.substring(1)).get(
-  //   "access_token"
-  // );
-
-  // if (!code && access_token) {
-  //   code = access_token;
-  // }
-  
-  // const provider = new URL(window.location.href).searchParams.get("provider");
-  const body = {provider,  code};
-  console.log(body);
-
+  console.log("code값", code)
+  const body = { code };
 
   useEffect(() => {
-    if (code && provider){ 
+    if (code){ 
       (async () => {
-        const res = await instance.post(`oauth/login/${provider}`, body)
+        const res = await instance.post(`oauth/login/kakao`, body)
         console.log(res);
 
         const { accessToken, refreshToken } = res.data;   

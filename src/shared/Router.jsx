@@ -32,14 +32,14 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/auth/kakao/callback"
-          element={<OAuth2RedirectHandler />}
-        />
-        <Route
-          path="/"
-          element={!isLogin ? <Navigate to="/start/login" replace /> : <Home />}
-        />
+      <Route path="/auth/kakao/callback" element={<OAuth2RedirectHandler />} />
+
+      <Route path="/auth/google/callback" element={<OAuth2RedirectHandler provider="google" />} />
+        <Route path="/auth/naver/callback" element={<OAuth2RedirectHandler provider="naver" />} />
+
+
+
+        <Route path="/" element={<Navigate to="/newsfeed" replace />} />
         <Route
           path="/start"
           element={isLogin ? <Navigate to="/" replace /> : <Start />}
