@@ -14,6 +14,7 @@ const Layout = ({
   isModal = false,
   hasFooter = true,
   className = "",
+  isScroll = true,
 }) => {
   return (
     <div
@@ -29,9 +30,10 @@ const Layout = ({
         <Header hasBack={hasBack} title={title} headerType={headerType} />
       )}
 
-      <Main hasPadding={hasPadding} hasHeader={hasHeader}>
+      <Main hasPadding={hasPadding} hasHeader={hasHeader} isScroll={isScroll}>
         {children}
       </Main>
+
       {hasFooter && <Footer />}
     </div>
   );

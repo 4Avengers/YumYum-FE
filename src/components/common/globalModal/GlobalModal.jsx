@@ -45,7 +45,7 @@ const GlobalModal = () => {
       >
         <li className={cls(styles.li)} onClick={handleBookClick}>
           <FiBookmark
-            size="2,5rem"
+            size="2.5rem"
             strokeWidth="1.5"
             className="justify-self-center text-primary-600 "
           />

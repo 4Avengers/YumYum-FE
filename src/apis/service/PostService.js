@@ -1,5 +1,10 @@
 import instance from "apis/instance";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "react-query";
 import { useNavigate } from "react-router-dom";
 
 /** 포스트 작성 */
@@ -76,19 +81,49 @@ const RemovePost = (queryKey) => {
 };
 
 /** 뉴스피드 최신 포스트 목록 조회 */
+// const ReadNewsFeeds = () => {
+//   return useQuery(["newsFeeds", "current"], async () => {
+//     const response = await instance.get("posts?page=1");
+//     return response.data;
+//   });
+// };
+
+/** 뉴스피드 최신 포스트 목록 조회 */
 const ReadNewsFeeds = () => {
-  return useQuery(["newsFeeds", "current"], async () => {
-    const response = await instance.get("posts?page=1");
-    return response.data;
-  });
+  return useInfiniteQuery(
+    ["newsFeeds", "current"],
+    async ({ pageParam = 1 }) => {
+      const response = await instance.get(`posts?page=${pageParam}`);
+      return response.data;
+    },
+    {
+      getNextPageParam: (lastPage, allPages) => {
+        const nextPage = lastPage?.length < 8 ? undefined : allPages.length + 1;
+        return nextPage;
+      },
+    }
+  );
 };
 
 /** 뉴스피드 내 주변 피드 목록 조회 */
 const ReadNewsFeedsAround = ({ x, y }) => {
-  return useQuery(
+  return useInfiniteQuery(
     ["newsFeeds", "around"],
-    async () => {
-      const response = await instance.get("feed/aroundMe?page=1", { x, y });
+    async ({ pageParam = 1 }) => {
+      const response = await instance.get(
+        `posts/feed/aroundMe?page=${pageParam}`,
+        {
+          x,
+          y,
+        },
+        {
+          getNextPageParam: (lastPage, allPages) => {
+            const nextPage =
+              lastPage?.length < 8 ? undefined : allPages.length + 1;
+            return nextPage;
+          },
+        }
+      );
       return response.data;
     },
     {

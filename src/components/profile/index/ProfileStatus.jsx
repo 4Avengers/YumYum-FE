@@ -1,23 +1,23 @@
 import { motion } from "framer-motion";
 import React from "react";
 import cls from "utils/cls";
-import { FaUserTag } from "react-icons/fa";
+import { FaUserTag, FaMapMarkerAlt } from "react-icons/fa";
 import { IoMdGrid } from "react-icons/io";
 
-const ProfileStatus = ({ isTag, setIsTag }) => {
+const ProfileStatus = ({ status, setStatus }) => {
   return (
-    <div className="Cap4 grid grid-cols-2">
+    <div className="Cap4 mt-[1rem] grid grid-cols-3">
       <button
         className={cls(
           "relative flex flex-col items-center border-b py-[0.8rem]",
-          !isTag ? "text-primary-600" : "text-primary-400"
+          status === "USER" ? "text-primary-600" : "text-primary-400"
         )}
-        onClick={() => setIsTag(false)}
+        onClick={() => setStatus("USER")}
       >
         <IoMdGrid size="2.5rem " />
-        {!isTag && (
+        {status === "USER" && (
           <motion.div
-            className="absolute  bottom-[-0.2rem] w-full bg-primary-400  py-[0.1rem]"
+            className="absolute  bottom-[-0.2rem] z-[100] w-full  bg-primary-400 py-[0.1rem]"
             layoutId="profileStatus"
           />
         )}
@@ -25,12 +25,27 @@ const ProfileStatus = ({ isTag, setIsTag }) => {
       <button
         className={cls(
           "relative flex flex-col items-center border-b py-[0.8rem]",
-          isTag ? "text-primary-600" : "text-primary-400"
+          status === "MAP" ? "text-primary-600" : "text-primary-400"
         )}
-        onClick={() => setIsTag(true)}
+        onClick={() => setStatus("MAP")}
+      >
+        <FaMapMarkerAlt size="2rem" />
+        {status === "MAP" && (
+          <motion.div
+            className="absolute  bottom-[-0.2rem] z-[100] w-full bg-primary-400 py-[0.1rem] "
+            layoutId="profileStatus"
+          />
+        )}
+      </button>
+      <button
+        className={cls(
+          "relative flex flex-col items-center border-b py-[0.8rem]",
+          status === "TAG" ? "text-primary-600" : "text-primary-400"
+        )}
+        onClick={() => setStatus("TAG")}
       >
         <FaUserTag size="2.3rem" />
-        {isTag && (
+        {status === "TAG" && (
           <motion.div
             className="absolute  bottom-[-0.2rem] w-full bg-primary-400 py-[0.1rem]"
             layoutId="profileStatus"

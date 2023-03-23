@@ -16,6 +16,7 @@ const ModalLayout = ({
   className = "",
   variants,
   maxZIndex,
+  isScroll = true,
 }) => {
   return (
     <motion.div
@@ -36,7 +37,9 @@ const ModalLayout = ({
         <Header hasBack={hasBack} title={title} headerType={headerType} />
       )}
 
-      <Main hasPadding={hasPadding}>{children}</Main>
+      <Main hasPadding={hasPadding} isScroll={isScroll}>
+        {children}
+      </Main>
       {hasFooter && <Footer />}
     </motion.div>
   );

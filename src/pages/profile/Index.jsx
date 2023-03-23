@@ -10,28 +10,37 @@ import React, { useEffect, useState } from "react";
 import { Outlet, useLocation, useParams } from "react-router-dom";
 import FollowModal from "components/profile/follow/FollowModal";
 import useRecoilModal from "hooks/useRecoilModal";
-import { commentModalAtom, postConfigModalAtom } from "atoms/modalAtom";
+import {
+  commentModalAtom,
+  postConfigModalAtom,
+  questPostModal,
+} from "atoms/modalAtom";
 import PostConfigModal from "components/common/post/config/PostConfigModal";
 import CommentModal from "components/common/post/comment/CommentModal";
 import { AnimatePresence } from "framer-motion";
+import ProfileMap from "components/profile/index/profileMap/ProfileMap";
+import PostDetailModal from "components/common/post/detailModal/PostDetailModal";
+
+// type TStatus = USER | MAP | TAG
 
 const Profile = () => {
   const { profileId } = useParams();
   const [user] = useUser();
-  const [isTag, setIsTag] = useState(false); // 전체게시물인지 태그된 게시물인지
+  const [status, setStatus] = useState("USER"); // 전체게시물인지 태그된 게시물인지
   const [isFollowing, setIsFollowing] = useState(false);
   const location = useLocation();
   const [showPostConfigModal] = useRecoilModal(postConfigModalAtom);
   const [showCommentModal] = useRecoilModal(commentModalAtom);
   const [openEditModal, setOpenEditModal] = useModal();
   const [openFollowingModal, setOpenFollowingModal] = useModal();
+  const [openPostDetailModal] = useRecoilModal(questPostModal);
 
   useEffect(() => {
-    setIsTag(false);
+    setStatus("USER");
   }, [location]);
 
   return (
-    <Layout headerType="DM">
+    <Layout headerType="DM" isScroll={false} hasPadding={false}>
       <ProfileContainer
         profileId={profileId}
         isOwner={user?.id === +profileId}
@@ -39,13 +48,12 @@ const Profile = () => {
         setOpenEditModal={setOpenEditModal}
         setOpenFollowingModal={setOpenFollowingModal}
       />
-      <ProfileStatus isTag={isTag} setIsTag={setIsTag} />
+      <ProfileStatus status={status} setStatus={setStatus} />
 
-      {!isTag ? (
-        <UserPosts userId={user?.id} />
-      ) : (
-        <TaggedUserPosts userId={user?.id} />
-      )}
+      {status === "USER" && <UserPosts userId={user?.id} />}
+      {status === "MAP" && <ProfileMap profileId={profileId} />}
+      {status === "TAG" && <TaggedUserPosts userId={user?.id} />}
+
       <AnimatePresence>
         {user && openEditModal && (
           <EditModal closeModal={setOpenEditModal} user={user} />
@@ -60,6 +68,7 @@ const Profile = () => {
         )}
         {showPostConfigModal && <PostConfigModal />}
         {showCommentModal && <CommentModal />}
+        {openPostDetailModal && <PostDetailModal user={user} />}
       </AnimatePresence>
       <Outlet />
     </Layout>

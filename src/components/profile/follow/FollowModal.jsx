@@ -16,7 +16,7 @@ const FollowModal = ({
   const profileUser = ProfileService.ReadCacheProfile(profileId);
 
   return (
-    <ModalLayout hasPadding={false} variants={modalLayoutAni}>
+    <ModalLayout hasPadding={false} variants={modalLayoutAni} isScroll={false}>
       <ModalHeader title={profileUser?.nickname} hasBack onClick={closeModal} />
       <FollowStatus isFollowing={isFollowing} setIsFollowing={setIsFollowing} />
       {isFollowing ? (

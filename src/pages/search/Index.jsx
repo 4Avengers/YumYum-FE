@@ -15,7 +15,7 @@ const Search = () => {
   const [status, setStatus] = useState("user");
 
   return (
-    <Layout hasHeader={false} hasPadding={false}>
+    <Layout hasHeader={false} hasPadding={false} isScroll={false}>
       <SearchForm setKeyword={setKeyword} />
       <SearchStatus status={status} setStatus={setStatus} />
       {status === "user" && (

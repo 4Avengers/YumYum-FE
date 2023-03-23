@@ -15,10 +15,14 @@ const NewsFeed = () => {
   const [showCommentModal] = useRecoilModal(commentModalAtom);
 
   return (
-    <Layout title="뉴스피드" headerType="SEARCH" hasPadding={false}>
+    <Layout
+      title="뉴스피드"
+      headerType="SEARCH"
+      hasPadding={false}
+      isScroll={false}
+    >
       <StatusHeader isCurrent={isCurrent} setIsCurrent={setIsCurrent} />
       {isCurrent ? <NewsFeedRecent /> : <NewsFeedArround />}
-
       <AnimatePresence>
         {showPostConfigModal && <PostConfigModal />}
         {showCommentModal && <CommentModal />}

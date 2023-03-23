@@ -1,15 +1,22 @@
 import instance from "apis/instance";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useInfiniteQuery, useMutation, useQueryClient } from "react-query";
 
 /** 포스트에 해당하는 댓글들 불러오기 */
 const ReadComments = (postId) => {
-  return useQuery(
+  return useInfiniteQuery(
     ["comments", postId],
-    async () => {
-      const response = await instance.get(`posts/${postId}/comments?page=1`);
+    async ({ pageParam = 1 }) => {
+      const response = await instance.get(
+        `posts/${postId}/comments?page=${pageParam}`
+      );
       return response.data;
     },
     {
+      getNextPageParam: (lastPage, allPages) => {
+        const nextPage =
+          lastPage?.length < 13 ? undefined : allPages.length + 1;
+        return nextPage;
+      },
       enabled: !!postId,
     }
   );

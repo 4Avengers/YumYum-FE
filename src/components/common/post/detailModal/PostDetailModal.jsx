@@ -9,7 +9,6 @@ import CommentForm from "../comment/CommentForm";
 import PostCard from "./PostCard";
 import useQueryKey from "hooks/useQueryKey";
 import { postQueryKeyAtom } from "atoms/queryKeyAtom";
-import CommentService from "apis/service/CommentService";
 import CommentList from "../comment/CommentList";
 
 const PostDetailModal = ({ user }) => {
@@ -17,7 +16,7 @@ const PostDetailModal = ({ user }) => {
   const [postId] = useRecoilState(postIdAtom);
 
   const { data: post } = PostService.ReadPostDetail(postId);
-  const { data: comments } = CommentService.ReadComments(postId);
+
   useQueryKey(["post", postId], postQueryKeyAtom);
 
   const handleCloseModal = () => {
@@ -33,7 +32,7 @@ const PostDetailModal = ({ user }) => {
       />
       <div className="flex flex-1 flex-col ">
         <PostCard post={post} />
-        <CommentList post={post} comments={comments} />
+        <CommentList postId={post?.id} />
         <CommentForm postId={post?.id} user={user} /> */
       </div>
     </ModalLayout>

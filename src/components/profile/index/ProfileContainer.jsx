@@ -33,7 +33,7 @@ const ProfileContainer = ({
   };
 
   return (
-    <div className="flex flex-col space-y-[1.8rem] px-[2rem]">
+    <div className="mt-[2rem] flex flex-col space-y-[1.8rem] px-[2rem]">
       <div className="flex space-x-[4rem]">
         <img
           className="h-[6rem] w-[6rem] rounded-full bg-primary-300 object-cover ring-1 ring-primary-400 ring-offset-2"

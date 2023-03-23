@@ -66,6 +66,15 @@ body {
   max-width: 460px;
 }
 
+.inner-height {
+  max-height: calc(100vh-11rem);
+  height: 100vh;
+}
+.inner-height-no-header {
+  max-height: calc((100vh-6rem));
+  height: 100vh;
+}
+
 .H1 {
   font-size: 2rem;
   font-weight: 600;

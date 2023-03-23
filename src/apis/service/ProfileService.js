@@ -1,5 +1,10 @@
 import instance from "apis/instance";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "react-query";
 
 /** 나의 정보 조회 */
 const ReadMe = (isExist) => {
@@ -32,11 +37,36 @@ const ReadProfile = (profileId) => {
 };
 
 /** 프로필 유저 게시글 목록 조회 */
-const ReadProfilePosts = ({ profileId, isOwner }) => {
-  return useQuery(["profile", "posts", profileId], async () => {
-    const response = await instance.get(`profile/${profileId}/posts`);
-    return response.data;
-  });
+const ReadProfilePosts = ({ profileId }) => {
+  return useInfiniteQuery(
+    ["profile", "posts", profileId],
+    async ({ pageParam = 1 }) => {
+      const response = await instance.get(
+        `profile/${profileId}/posts?page=${pageParam}`
+      );
+      return response.data;
+    },
+    {
+      getNextPageParam: (lastPage, allPages) => {
+        const nextPage = lastPage?.length < 8 ? undefined : allPages.length + 1;
+        return nextPage;
+      },
+    }
+  );
+};
+
+/** 프로필 유저 지도 게시글 목록 조회  */
+const ReadProfileMapPosts = ({ profileId }) => {
+  return useQuery(
+    ["profile", "map", profileId],
+    async () => {
+      const response = await instance.get(`map/user-posting/${profileId}`);
+      return response.data;
+    },
+    {
+      enabled: !!profileId,
+    }
+  );
 };
 
 /** 내 프로필 수정 */
@@ -68,6 +98,7 @@ const ProfileService = {
   ReadProfilePosts,
   EditProfile,
   ReadCacheProfile,
+  ReadProfileMapPosts,
 };
 
 export default ProfileService;

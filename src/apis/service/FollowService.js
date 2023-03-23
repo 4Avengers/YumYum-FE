@@ -1,5 +1,5 @@
 import instance from "apis/instance";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useInfiniteQuery, useMutation, useQueryClient } from "react-query";
 
 /** 팔로우 Toggle */
 const ToggleFollow = (profileId) => {
@@ -17,18 +17,42 @@ const ToggleFollow = (profileId) => {
 
 /** 팔로잉 조회 */
 const ReadFollowings = (profileId) => {
-  return useQuery(["followings", profileId], async () => {
-    const response = await instance.get(`profile/${profileId}/followings`);
-    return response.data;
-  });
+  return useInfiniteQuery(
+    ["followings", profileId],
+    async ({ pageParam = 1 }) => {
+      const response = await instance.get(
+        `profile/${profileId}/followings?page=${pageParam}`
+      );
+      return response.data;
+    },
+    {
+      getNextPageParam: (lastPage, allPages) => {
+        const nextPage =
+          lastPage?.length < 13 ? undefined : allPages.length + 1;
+        return nextPage;
+      },
+    }
+  );
 };
 
 /** 팔로워 조회 */
 const ReadFollowers = (profileId) => {
-  return useQuery(["followers", profileId], async () => {
-    const response = await instance.get(`profile/${profileId}/followers`);
-    return response.data;
-  });
+  return useInfiniteQuery(
+    ["followers", profileId],
+    async ({ pageParam = 1 }) => {
+      const response = await instance.get(
+        `profile/${profileId}/followers?page=${pageParam}`
+      );
+      return response.data;
+    },
+    {
+      getNextPageParam: (lastPage, allPages) => {
+        const nextPage =
+          lastPage?.length < 13 ? undefined : allPages.length + 1;
+        return nextPage;
+      },
+    }
+  );
 };
 
 const FollowService = { ReadFollowers, ReadFollowings, ToggleFollow };
