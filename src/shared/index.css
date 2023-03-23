@@ -49,11 +49,18 @@ html {
 }
 
 body {
+  background-image: url("../../public/image/mainBg.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+/* body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
     url("../../public/image/mainBg.webp");
   background-repeat: no-repeat;
   background-size: cover;
-}
+} */
 
 .screen-width {
   max-width: 460px;
@@ -132,14 +139,52 @@ a {
 }
 
 .slick-slide > div {
-  margin: 0 1rem;
+  /* margin: 0 1rem; */
   margin-right: 0;
 }
 .slick-list {
-  margin: 0 1rem;
+  /* margin: 0 1rem; */
   margin-right: 0;
 }
 
 .slick-track {
   margin: 0;
+}
+
+.slider-image {
+  margin: 0;
+  padding: 0;
+}
+
+/** react-slick - dots*/
+
+.dots_custom {
+  display: inline-block;
+  vertical-align: middle;
+  margin: auto 0;
+  padding: 0;
+}
+
+.dots_custom li {
+  list-style: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 6px;
+  padding: 0;
+}
+
+.dots_custom li button {
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  color: transparent;
+  cursor: pointer;
+  display: block;
+  height: 6px;
+  width: 6px;
+  border-radius: 100%;
+  padding: 0;
+}
+
+.dots_custom li.slick-active button {
+  background-color: rgba(255, 255, 255, 0.8);
 }

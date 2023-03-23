@@ -34,7 +34,7 @@ const ListEditModal = ({ setModal, profileId }) => {
   const onValid = (data) => {
     const { name, description } = data;
     const formData = new FormData();
-    formData.append("image", image);
+    formData.append("file", image);
     formData.append("name", name);
     formData.append("description", description);
     editList(formData);

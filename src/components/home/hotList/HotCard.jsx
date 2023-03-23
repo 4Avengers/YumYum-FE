@@ -8,7 +8,7 @@ const HotCard = ({ collection }) => {
   return (
     <div
       key={collection?.id}
-      className="relative flex cursor-pointer flex-col"
+      className="relative mr-[1rem] flex cursor-pointer flex-col"
       onClick={() =>
         navigate(
           `/profile/${collection?.user?.id}/collections/${collection?.id}`

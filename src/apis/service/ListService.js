@@ -43,6 +43,7 @@ const ReadMyListItem = async (collectionId) => {
 
 /** 나의 맛집리스트  수정 */
 const EditMyList = ({ collectionId, profileId }) => {
+  console.log("수정", collectionId, profileId);
   const queryClient = useQueryClient();
   return useMutation(
     async (payload) => {
@@ -55,6 +56,7 @@ const EditMyList = ({ collectionId, profileId }) => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["myList"]);
+        queryClient.invalidateQueries(["collections", collectionId, "posts"]);
         if (profileId)
           queryClient.invalidateQueries(["collections", profileId]);
       },

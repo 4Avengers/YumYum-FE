@@ -7,6 +7,7 @@ const PostList = ({ setOpenModal, setRestaurantId, posts }) => {
     setOpenModal();
   };
 
+  console.log(posts);
   return (
     <ul className="flex w-full flex-col pb-[3rem]">
       {posts?.map((post) => (
@@ -25,7 +26,7 @@ const PostList = ({ setOpenModal, setRestaurantId, posts }) => {
               <h3 className="Cap1">{post?.restaurant?.place_name}</h3>
               <div className="flex items-center space-x-[0.5rem]">
                 <FaStar size="2rem" className="text-primary-600" />
-                <span className="Cap2">{post?.rating}</span>
+                <span className="Cap2">{post?.AvgRating || post?.rating}</span>
               </div>
             </div>
             <p className="Cap4 overflow-hidden text-ellipsis  whitespace-pre-wrap line-clamp-3">

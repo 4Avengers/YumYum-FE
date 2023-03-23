@@ -17,7 +17,7 @@ const HotList = () => {
         subTitle=""
         onClick={handleMoreClick}
       />
-      <Slider {...settings} className="">
+      <Slider {...settings} className="pl-[2rem]">
         {hotList?.map((collection) => (
           <HotCard collection={collection} key={collection?.id} />
         ))}

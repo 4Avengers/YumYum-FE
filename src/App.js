@@ -1,3 +1,4 @@
+import Wrapper from "components/layout/Wrapper";
 import CustomAlert from "elements/CustomAlert";
 import useGeolocation from "hooks/useGeoLocation";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -7,12 +8,11 @@ function App() {
   useGeolocation();
 
   return (
-    <div className="flex w-screen items-center justify-center bg-red-200">
-      <div>hello</div>
+    <Wrapper>
       <Router />
       <CustomAlert />
       <ReactQueryDevtools initialIsOpen={false} />
-    </div>
+    </Wrapper>
   );
 }
 

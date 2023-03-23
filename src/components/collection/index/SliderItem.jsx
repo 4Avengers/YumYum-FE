@@ -3,7 +3,7 @@ import { handleImgError } from "utils/handleImgError";
 
 const SliderItem = ({ collectionItem }) => {
   return (
-    <div className="mr-[1rem] flex flex-col space-y-[0.7rem]">
+    <div className="mr-[1rem] flex flex-col space-y-[0.7rem] ">
       <img
         src={collectionItem?.post?.images[0]?.file_url}
         alt="resImg"

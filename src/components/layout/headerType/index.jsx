@@ -1,5 +1,5 @@
 import { isListAtom } from "atoms/mapAtom";
-import { myListConfigModal } from "atoms/modalAtom";
+import { globalConfigModal, myListConfigModal } from "atoms/modalAtom";
 import { BiSearch, BiDotsVerticalRounded, BiPlus } from "react-icons/bi";
 import { BsList, BsBell, BsMap } from "react-icons/bs";
 import { CiPaperplane } from "react-icons/ci";
@@ -9,6 +9,7 @@ import cls from "utils/cls";
 
 const HeaderSearch = () => {
   const navigate = useNavigate();
+  const setGlobalModal = useSetRecoilState(globalConfigModal);
   return (
     <ul className="flex items-center space-x-[1.5rem]">
       <li
@@ -20,7 +21,10 @@ const HeaderSearch = () => {
       <li>
         <BsBell size="2.5rem" className="#444444" strokeWidth="0.3" />
       </li>
-      <li>
+      <li
+        onClick={() => setGlobalModal(true)}
+        className="cursor-pointer hover:text-primary-500"
+      >
         <BsList size="2.5rem" className="#444444" strokeWidth="0.3" />
       </li>
     </ul>
@@ -64,6 +68,7 @@ const HeaderMap = () => {
 };
 
 const HeaderDm = () => {
+  const setGlobalModal = useSetRecoilState(globalConfigModal);
   return (
     <ul className="flex items-center space-x-[1.5rem]">
       <li className="mt-[-0.3rem] rotate-[-45deg]">
@@ -72,7 +77,10 @@ const HeaderDm = () => {
       <li>
         <BsBell size="2.5rem" className="#444444" strokeWidth="0.3" />
       </li>
-      <li>
+      <li
+        onClick={() => setGlobalModal(true)}
+        className="cursor-pointer hover:text-primary-500"
+      >
         <BsList size="2.5rem" className="#444444" strokeWidth="0.3" />
       </li>
     </ul>

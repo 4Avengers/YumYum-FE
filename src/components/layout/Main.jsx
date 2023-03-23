@@ -1,7 +1,12 @@
+import { globalConfigModal } from "atoms/modalAtom";
+import GlobalModal from "components/common/globalModal/GlobalModal";
+import { AnimatePresence } from "framer-motion";
+import useRecoilModal from "hooks/useRecoilModal";
 import React from "react";
 import cls from "utils/cls";
 
 const Main = ({ hasPadding, children, hasHeader }) => {
+  const [openGlobalModal] = useRecoilModal(globalConfigModal);
   return (
     <main
       className={cls(
@@ -11,6 +16,7 @@ const Main = ({ hasPadding, children, hasHeader }) => {
       )}
     >
       {children}
+      <AnimatePresence>{openGlobalModal && <GlobalModal />}</AnimatePresence>
     </main>
   );
 };

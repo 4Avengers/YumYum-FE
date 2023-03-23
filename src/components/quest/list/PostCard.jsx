@@ -41,8 +41,14 @@ const PostCard = ({ post, lat, lng, isMarker = false }) => {
         <span className="Cap2 text-primary-500">{distanceGap}km</span>
       </div>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(13rem,1fr))] gap-[1rem]">
-        <div className="h-[13rem] w-full bg-gray-200" />
-        <div className="h-[13rem] w-full bg-gray-200" />
+        {post?.images?.map((item) => (
+          <img
+            key={item?.id}
+            src={item?.file_url}
+            alt="img"
+            className="h-[13rem] w-full bg-gray-200 object-cover"
+          />
+        ))}
       </div>
       <div className="flex space-x-[1.5rem] pt-[0.5rem]">
         <img

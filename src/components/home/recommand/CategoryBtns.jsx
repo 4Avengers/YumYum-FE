@@ -4,12 +4,12 @@ import cls from "utils/cls";
 
 const CategoryBtns = ({ categoryValue, setCategory }) => {
   return (
-    <Slider {...settings} className="mt-[1rem] ">
+    <Slider {...settings} className="mt-[1rem] pl-[2rem]">
       {React.Children.toArray(
         category?.map((value) => (
           <button
             className={cls(
-              "Cap3 max-w-[7rem] whitespace-nowrap rounded-[0.5rem] border py-[0.6rem] transition-colors",
+              "Cap3 mr-[1rem] max-w-[7rem] whitespace-nowrap rounded-[0.5rem] border py-[0.6rem] transition-colors",
               categoryValue === value && "bg-primary-600 text-primary-100"
             )}
             onClick={() => setCategory(value)}

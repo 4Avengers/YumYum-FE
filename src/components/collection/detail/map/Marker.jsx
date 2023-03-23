@@ -29,7 +29,7 @@ const CollectionMarker = ({ post, setOpenModal, setRestaurantId }) => {
         <div className="flex items-center">
           <FaStar className="text-red-500" size="1rem" />
           <span className="ml-[0.3rem] mr-[0.8rem] font-semibold">
-            {post?.rating}
+            {post?.AvgRating || post?.rating}
           </span>
           <span className="font-medium text-primary-500">
             {post?.restaurant?.category_name?.split(">")[1]}

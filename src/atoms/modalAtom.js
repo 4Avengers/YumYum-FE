@@ -35,3 +35,9 @@ export const markerModal = atom({
   key: "markerModal",
   default: false,
 });
+
+/** 글로벌 모달  */
+export const globalConfigModal = atom({
+  key: "globalModal",
+  default: false,
+});

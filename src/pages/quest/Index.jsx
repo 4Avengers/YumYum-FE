@@ -41,7 +41,7 @@ const Quest = () => {
         />
       </form>
       {isList ? (
-        <QuestList posts={posts} lat={latitude} lng={longitude} />
+        <QuestList lat={latitude} lng={longitude} />
       ) : (
         // 지도 레벨 수정
         <QuestMap posts={posts} lat={latitude} lng={longitude} />
