@@ -5,6 +5,7 @@ import "shared/index.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { RecoilRoot } from "recoil";
 import axios from "axios";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const queryClient = new QueryClient({
@@ -20,7 +21,9 @@ axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
 root.render(
   <QueryClientProvider client={queryClient}>
     <RecoilRoot>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </RecoilRoot>
   </QueryClientProvider>
 );
