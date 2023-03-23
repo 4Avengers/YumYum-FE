@@ -1,4 +1,5 @@
 import ProfileService from "apis/service/ProfileService";
+import NotPost from "components/common/post/notPost/NotPost";
 import { useMemo } from "react";
 import { CustomOverlayMap, Map } from "react-kakao-maps-sdk";
 import ProfileMarker from "./ProfileMarker";
@@ -14,7 +15,7 @@ const ProfileMap = ({ setOpenModal, setRestaurantId, profileId }) => {
       user: { profile_image: profile?.profile_image },
     }));
   }, [posts, profile]);
-  if (!posts) return null;
+  if (!posts || posts?.length === 0) return <NotPost />;
 
   return (
     <Map

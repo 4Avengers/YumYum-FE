@@ -30,7 +30,7 @@ const UserPosts = ({ userId }) => {
     return posts?.pages?.flat();
   }, [posts]);
 
-  if (isError || posts?.length === 0) return <NotPost />;
+  if (isError || postList?.length === 0) return <NotPost />;
 
   return (
     <ul className=".inner-height flex flex-col overflow-x-hidden overflow-y-scroll   scrollbar-hide">
