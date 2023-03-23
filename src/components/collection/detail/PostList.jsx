@@ -7,7 +7,6 @@ const PostList = ({ setOpenModal, setRestaurantId, posts }) => {
     setOpenModal();
   };
 
-  console.log(posts);
   return (
     <ul className="flex w-full flex-col pb-[3rem]">
       {posts?.map((post) => (

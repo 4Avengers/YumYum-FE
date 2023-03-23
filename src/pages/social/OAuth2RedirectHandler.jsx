@@ -11,7 +11,6 @@ const OAuth2RedirectHandler = (props) => {
       (async () => {
         const body = { provider, code };
         const res = await instance.post(`oauth/login/${provider}`, body);
-        console.log(res);
 
         const { accessToken, refreshToken } = res.data;
         setAccessToken(accessToken);

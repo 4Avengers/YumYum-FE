@@ -16,7 +16,6 @@ const ProfileMap = ({ setOpenModal, setRestaurantId, profileId }) => {
   }, [posts, profile]);
   if (!posts) return null;
 
-  console.log(postList);
   return (
     <Map
       center={{

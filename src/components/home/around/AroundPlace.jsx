@@ -10,7 +10,7 @@ import ArroundCard from "./ArroundCard";
 const AroundPlace = ({ x, y }) => {
   const { data: places } = HomeService.ReadAroundPlaceList({ x, y });
   const navigate = useNavigate();
-  console.log(places);
+
   return (
     <div className="mt-[4rem] flex flex-col justify-center space-y-[1rem] overflow-x-hidden">
       <Header
