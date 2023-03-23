@@ -18,10 +18,28 @@ const AddPost = (profileId) => {
   );
 };
 
-/** 포스트 조회 */
+/** 포스트 조회 (포스트 수정용)*/
 const ReadPost = async (postId) => {
   const response = await instance.get(`posts/${postId}`);
   return response.data;
+};
+
+/** 포스트 단일 조회 */
+const ReadPostDetail = (postId) => {
+  return useQuery(
+    ["post", postId],
+    async () => {
+      const response = await instance.get(`posts/${postId}`);
+      return response.data;
+    },
+    {
+      enabled: !!postId,
+      select: (data) => {
+        const hashtags = data?.hashtags?.map((item) => item.name);
+        return { ...data, hashtags };
+      },
+    }
+  );
 };
 
 /** 포스트 수정 */
@@ -60,9 +78,23 @@ const RemovePost = (queryKey) => {
 /** 뉴스피드 최신 포스트 목록 조회 */
 const ReadNewsFeeds = () => {
   return useQuery(["newsFeeds", "current"], async () => {
-    const response = await instance.get("posts");
+    const response = await instance.get("posts?page=1");
     return response.data;
   });
+};
+
+/** 뉴스피드 내 주변 피드 목록 조회 */
+const ReadNewsFeedsAround = ({ x, y }) => {
+  return useQuery(
+    ["newsFeeds", "around"],
+    async () => {
+      const response = await instance.get("feed/aroundMe?page=1", { x, y });
+      return response.data;
+    },
+    {
+      enabled: !!x && !!y,
+    }
+  );
 };
 
 /** 포스트 좋아요 (성공하면 refetch해야함)*/
@@ -96,10 +128,12 @@ const RemovePostLike = (queryKey) => {
 const PostService = {
   AddPost,
   ReadPost,
+  ReadPostDetail,
   ReadNewsFeeds,
   AddPostLike,
   RemovePostLike,
   EditPost,
   RemovePost,
+  ReadNewsFeedsAround,
 };
 export default PostService;

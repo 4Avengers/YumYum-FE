@@ -13,7 +13,7 @@ const useSearch = ({ status, keyword }) => {
       (async () => {
         try {
           const response = await instance.get(
-            `search/${status}?keyword=${keyword}`,
+            `search/${status}?keyword=${keyword}&page=1`,
             {
               signal: abortController.signal,
             }

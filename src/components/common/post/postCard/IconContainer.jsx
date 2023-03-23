@@ -6,6 +6,7 @@ import { strToBool } from "utils/isLike";
 import PostService from "apis/service/PostService";
 import { useRecoilValue } from "recoil";
 import { postQueryKeyAtom } from "atoms/queryKeyAtom";
+import { useEffect, useState } from "react";
 
 //import { BsBookmarkFill } from "react-icons/bs"
 
@@ -13,17 +14,28 @@ import { postQueryKeyAtom } from "atoms/queryKeyAtom";
 // [] 북마크
 
 const IconContainer = ({ handleCommentModal, post }) => {
+  const [isLikeLoading, setIsLikeLoading] = useState(false);
   const queryKey = useRecoilValue(postQueryKeyAtom);
-  const { mutate: addPostLike } = PostService.AddPostLike(queryKey);
+  const { mutate: addPostLike, isLoading: addLoading } =
+    PostService.AddPostLike(queryKey);
   const { mutate: removePostLike } = PostService.RemovePostLike(queryKey);
 
   const handleToggleLike = () => {
+    if (isLikeLoading) return;
     if (strToBool(post?.isLiked)) {
       removePostLike(post?.id);
     } else {
       addPostLike(post?.id);
     }
   };
+
+  useEffect(() => {
+    if (addLoading) {
+      setIsLikeLoading(true);
+    } else {
+      setIsLikeLoading(false);
+    }
+  }, [addLoading]);
 
   return (
     <div className="flex items-center justify-between px-[2rem] py-[1rem]  text-primary-600 ">

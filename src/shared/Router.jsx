@@ -4,7 +4,7 @@ import SignIn from "components/start/SignIn";
 import SignUp from "components/start/SignUp";
 import CollectionDetail from "pages/collection/CollectionDetail";
 import Collection from "pages/collection/Index";
-// import Home from "pages/Index";
+
 import NewsFeed from "pages/newsfeed/Index";
 import PostEdit from "pages/post/Edit";
 import PostWrite from "pages/post/Write";
@@ -14,8 +14,8 @@ import Search from "pages/search/Index";
 import Start from "pages/start/Index";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import OAuth2RedirectHandler from "pages/social/OAuth2RedirectHandler"
- 
+import OAuth2RedirectHandler from "pages/social/OAuth2RedirectHandler";
+import Home from "pages/Home/Index";
 
 const Router = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -32,9 +32,13 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/auth/kakao/callback" element={<OAuth2RedirectHandler provider="kakao" />} />
-        <Route path="/auth/google/callback" element={<OAuth2RedirectHandler provider="google" />} />
+      <Route path="/auth/kakao/callback" element={<OAuth2RedirectHandler />} />
+
+      <Route path="/auth/google/callback" element={<OAuth2RedirectHandler provider="google" />} />
         <Route path="/auth/naver/callback" element={<OAuth2RedirectHandler provider="naver" />} />
+
+
+
         <Route path="/" element={<Navigate to="/newsfeed" replace />} />
         <Route
           path="/start"
@@ -45,8 +49,7 @@ const Router = () => {
             element={isLogin ? <Navigate to="/" replace /> : <Begin />}
           />
           <Route path="login" element={<SignIn />} />
-  
-          
+
           <Route
             path="signup"
             element={isLogin ? <Navigate to="/" replace /> : <SignUp />}
@@ -65,17 +68,10 @@ const Router = () => {
             <Route path=":collectionId" element={<CollectionDetail />} />
           </Route>
         </Route>
-
-        {/* <Route
-          path="/profile/:id/collection/:collectionId"
-          element={<Collection />}
-        /> */}
         <Route path="/post/write" element={<PostWrite />} />
         <Route path="/post/:id/edit" element={<PostEdit />} />
-        
-        <Route path="/api/users/google/callback"     
-           element={<Profile />}>     </Route>
 
+        {/* <Route path="/api/users/google/callback" element={<Profile />}></Route> */}
       </Routes>
     </BrowserRouter>
   );

@@ -1,10 +1,23 @@
 import { BiChevronLeft } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import cls from "utils/cls";
 import HEADER_TYPE from "./headerType";
-const Header = ({ hasBack, title, headerType }) => {
+const Header = ({
+  hasBack,
+  title,
+  headerType,
+  className = "",
+  isTransparent = false,
+}) => {
   const navigate = useNavigate();
   return (
-    <header className="screen-width fixed top-0 flex h-[5rem] w-screen items-center justify-between bg-white px-[2rem]">
+    <header
+      className={cls(
+        className,
+        "screen-width fixed top-0 flex h-[5rem] w-screen items-center justify-between  px-[2rem] transition-colors",
+        !isTransparent && "bg-white"
+      )}
+    >
       <div className="flex items-center space-x-[1rem]">
         {hasBack && (
           <span className="cursor-pointer" onClick={() => navigate(-1)}>

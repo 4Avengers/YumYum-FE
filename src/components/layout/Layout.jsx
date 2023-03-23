@@ -18,7 +18,7 @@ const Layout = ({
   return (
     <div
       className={cls(
-        "screen-width mx-auto h-screen  w-screen overflow-hidden bg-white pb-[6rem] ",
+        "screen-width  h-screen  w-screen overflow-hidden bg-white pb-[6rem] ",
         // hasHeader ? "pt-[5rem]" : "pt-0",
         isModal ? "absolute top-0" : "relative",
         hasHeader ? "pt-[5rem]" : "pt-0",

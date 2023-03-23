@@ -7,11 +7,12 @@ function App() {
   useGeolocation();
 
   return (
-    <>
+    <div className="flex w-screen items-center justify-center bg-red-200">
+      <div>hello</div>
       <Router />
       <CustomAlert />
       <ReactQueryDevtools initialIsOpen={false} />
-    </>
+    </div>
   );
 }
 

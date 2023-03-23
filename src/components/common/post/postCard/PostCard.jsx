@@ -16,13 +16,13 @@ const PostCard = ({ post, isOwner }) => {
   // 해당 포스트 id에 해당하는 설정 모달을 가져오는 기능
   const handlePostConfigModal = useCallback(() => {
     setShowPostConfigModal(true);
-    setPostId(post.id);
+    setPostId(post?.id);
   }, [post, setShowPostConfigModal, setPostId]);
 
   // 해당 포스트 id에 해당하는 코멘트 모달을 가져오는 기능
   const handleCommentModal = useCallback(() => {
     setShowCommentModal(true);
-    setPostId(post.id);
+    setPostId(post?.id);
   }, [setPostId, setShowCommentModal, post]);
 
   return (

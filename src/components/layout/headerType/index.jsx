@@ -1,9 +1,10 @@
 import { isListAtom } from "atoms/mapAtom";
+import { myListConfigModal } from "atoms/modalAtom";
 import { BiSearch, BiDotsVerticalRounded, BiPlus } from "react-icons/bi";
 import { BsList, BsBell, BsMap } from "react-icons/bs";
 import { CiPaperplane } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import cls from "utils/cls";
 
 const HeaderSearch = () => {
@@ -97,15 +98,20 @@ const HeaderBell = () => {
 
 const HeaderPlus = () => {
   const navigate = useNavigate();
+  const setOpenListConfigModal = useSetRecoilState(myListConfigModal);
   return (
     <ul className="flex items-center space-x-[1.5rem]">
       <li onClick={() => navigate("/post/write")}>
-        <BiPlus size="2.5rem" className="#444444" strokeWidth="0.1" />
+        <BiPlus
+          size="2.5rem"
+          className="#444444 cursor-pointer transition-colors hover:text-primary-500"
+          strokeWidth="0.1"
+        />
       </li>
-      <li>
+      <li onClick={() => setOpenListConfigModal((prev) => !prev)}>
         <BiDotsVerticalRounded
           size="2.5rem"
-          className="#444444"
+          className="#444444  cursor-pointer transition-colors hover:text-primary-500"
           strokeWidth="0.1"
         />
       </li>

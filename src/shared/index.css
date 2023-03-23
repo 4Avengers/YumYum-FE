@@ -38,8 +38,21 @@ html {
   font-size: 62.5%;
 }
 
+@media (max-width: 480px) {
+  html {
+    font-size: 58%;
+  }
+}
+
 * {
   box-sizing: border-box;
+}
+
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("../../public/image/mainBg.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .screen-width {
@@ -125,4 +138,8 @@ a {
 .slick-list {
   margin: 0 1rem;
   margin-right: 0;
+}
+
+.slick-track {
+  margin: 0;
 }
