@@ -41,7 +41,7 @@ const Home = () => {
       <Header headerType="SEARCH" className="z-[99]" isTransparent />
       <div className="flex flex-1 flex-col  pb-[2rem] scrollbar-hide">
         <HomeForm />
-        <AroundPlace x={longitude + ""} y={latitude + ""} />
+        <AroundPlace x={longitude} y={latitude} />
         <Button />
         <HotList />
         <RecommandPlace />

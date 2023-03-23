@@ -1,18 +1,22 @@
+import { hasToken } from "apis/token";
 import { questPostModal } from "atoms/modalAtom";
 import { postIdAtom } from "atoms/postAtom";
-import React from "react";
+import React, { useCallback } from "react";
 import { FaStar } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { handleImgError } from "utils/handleImgError";
 
 const RecommandCard = ({ post }) => {
   const setPostId = useSetRecoilState(postIdAtom);
   const setOpenPostDetail = useSetRecoilState(questPostModal);
+  const navigate = useNavigate();
 
-  const handleOpenModal = () => {
+  const handleOpenModal = useCallback(() => {
+    if (!hasToken()) return navigate("/start/login");
     setPostId(post?.id);
     setOpenPostDetail(true);
-  };
+  }, [navigate, post, setOpenPostDetail, setPostId]);
 
   return (
     <li

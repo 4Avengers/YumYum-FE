@@ -1,9 +1,10 @@
 import React from "react";
-import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Button = () => {
+  const navigate = useNavigate();
   const handleClick = () => {
-    toast.info("개발중인 기능입니다 🤗");
+    navigate("/quest");
   };
   return (
     <button

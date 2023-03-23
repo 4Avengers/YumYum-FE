@@ -1,5 +1,7 @@
 import { hasToken } from "apis/token";
+import { useMemo } from "react";
 import { BiChevronLeft } from "react-icons/bi";
+import { CiLogin } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import cls from "utils/cls";
 import HEADER_TYPE from "./headerType";
@@ -11,6 +13,9 @@ const Header = ({
   isTransparent = false,
 }) => {
   const navigate = useNavigate();
+
+  const isLogin = useMemo(() => hasToken(), []);
+
   return (
     <header
       className={cls(
@@ -32,7 +37,16 @@ const Header = ({
 
         <h3 className="text-[2rem] font-semibold">{title}</h3>
       </div>
-      {hasToken() && <nav>{headerType ? HEADER_TYPE[headerType] : null}</nav>}
+      {isLogin ? (
+        <nav>{headerType ? HEADER_TYPE[headerType] : null}</nav>
+      ) : (
+        <CiLogin
+          size="3rem"
+          strokeWidth={0.8}
+          className="cursor-pointer text-primary-600 hover:text-primary-500"
+          onClick={() => window.location.replace("/start/login")}
+        />
+      )}
     </header>
   );
 };

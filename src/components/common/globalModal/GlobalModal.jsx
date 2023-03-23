@@ -17,11 +17,13 @@ const GlobalModal = () => {
 
   const handleBookClick = () => {
     toast.info("현재 개발중인 기능입니다. 🤗");
+    setGlobalModal(false);
   };
 
   const handleLogout = () => {
     removeToken();
-    navigate("/start/login");
+    setGlobalModal(false);
+    window.location.replace("/");
   };
 
   return (

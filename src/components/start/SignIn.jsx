@@ -10,22 +10,22 @@ import AuthService from "apis/service/AuthService";
 import { toast } from "react-toastify";
 import { setAccessToken, setRefreshToken } from "apis/token";
 
+export const LoginWithKakao = () => {
+  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}&response_type=code`;
+  window.location.href = KAKAO_AUTH_URL;
+};
+
+export const LoginWithGoogle = () => {
+  const GOOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${process.env.REACT_APP_GOOGLE_REDIRECT_URI}`;
+  window.location.href = GOOGLE_AUTH_URL;
+};
+
+export const LoginWithNaver = () => {
+  const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.REACT_APP_NAVER_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_NAVER_REDIRECT_URI}`;
+  window.location.href = NAVER_AUTH_URL;
+};
+
 const SignIn = () => {
-  const LoginWithKakao = () => {
-    const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}&response_type=code`;
-    window.location.href = KAKAO_AUTH_URL;
-  };
-
-  const LoginWithGoogle = () => {
-    const GOOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${process.env.REACT_APP_GOOGLE_REDIRECT_URI}`;
-    window.location.href = GOOGLE_AUTH_URL;
-  };
-
-  const LoginWithNaver = () => {
-    const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.REACT_APP_NAVER_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_NAVER_REDIRECT_URI}`;
-    window.location.href = NAVER_AUTH_URL;
-  };
-
   const {
     register,
     handleSubmit,
@@ -87,10 +87,7 @@ const SignIn = () => {
       </form>
       <div className="Cap5  flex justify-between text-primary-500">
         <span>계정 정보를 잊으셨나요?</span>
-        <span
-          className="cursor-pointer"
-          onClick={() => navigate("/start/signup")}
-        >
+        <span className="cursor-pointer" onClick={() => navigate("/start")}>
           회원가입 하기
         </span>
       </div>

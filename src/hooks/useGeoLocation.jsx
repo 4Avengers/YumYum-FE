@@ -30,6 +30,12 @@ const useGeolocation = () => {
     navigator.geolocation.getCurrentPosition(successHandler, errorHandler);
   }, [setLocation]);
 
+  useEffect(() => {
+    if (!location.latitude && navigator.geolocation) {
+      navigator.permissions.query({ name: "geolocation" });
+    }
+  }, [location]);
+
   return { location, error };
 };
 
