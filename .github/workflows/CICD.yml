@@ -29,6 +29,10 @@ jobs:
           echo "REACT_APP_KAKAO_REDIRECT_URI=${{ secrets.REACT_APP_KAKAO_REDIRECT_URI }}" >> .env
           echo "REACT_APP_KAKAO_APP_KEY=${{ secrets.REACT_APP_KAKAO_APP_KEY }}" >> .env
           echo "REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID=${{ secrets.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID}}" >> .env
+          echo "REACT_APP_GOOGLE_CLIENT_ID=${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }}" >> .env
+          echo "REACT_APP_GOOGLE_REDIRECT_URI=${{ secrets.REACT_APP_GOOGLE_REDIRECT_URI }}" >> .env
+          echo "REACT_APP_NAVER_CLIENT_ID=${{ secrets.REACT_APP_NAVER_CLIENT_ID }}" >> .env
+          echo "REACT_APP_NAVER_REDIRECT_URI=${{ secrets.REACT_APP_NAVER_REDIRECT_URI }}" >> .env
           cat .env
 
       - name: Build # React Build
