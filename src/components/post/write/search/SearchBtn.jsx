@@ -11,7 +11,7 @@ const SearchBtn = ({ onClick }) => {
       )}
     >
       <BiSearch size="2rem" className="text-primary-500" />
-      <span className="Cap2 text-primary-400">검색</span>
+      <span className="Cap2 text-primary-400">맛집을 선택해주세요</span>
     </button>
   );
 };

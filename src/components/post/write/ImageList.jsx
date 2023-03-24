@@ -10,7 +10,7 @@ const ImageList = ({ defaultImage, setImgList, style }) => {
   const handleAddImages = useCallback(
     (event) => {
       const imageList = event.target.files;
-      setImgList((prev) => [...prev, ...Array.from(imageList)].slice(0, 3));
+      setImgList((prev) => [...prev, imageList[0]]);
       const blobImage = URL.createObjectURL(imageList[0]);
       setImagePreview((prev) => [...prev, blobImage]);
     },

@@ -92,7 +92,7 @@ const EditModal = ({ closeModal, user }) => {
             className="Cap4 mb-[0.4rem] rounded-[0.8rem] border p-[1rem_1rem] outline-none
           focus:border-primary-500"
             text="이메일"
-            placeholder="수정할 이메일을 입력해주세요"
+            placeholder="이메일을 입력해주세요"
             type="email"
             disabled={true}
             {...register("email", emailValid())}
@@ -105,8 +105,7 @@ const EditModal = ({ closeModal, user }) => {
             className="Cap4 mb-[0.4rem] rounded-[0.8rem] border p-[1rem_1rem] outline-none
           focus:border-primary-500"
             text="닉네임"
-            placeholder="수정할 닉네임을
-          입력해주세요"
+            placeholder="닉네임을 입력해주세요"
             type="text"
             {...register("nickname", nicknameValid())}
           />
@@ -118,7 +117,7 @@ const EditModal = ({ closeModal, user }) => {
             className="Cap4 mb-[0.4rem] rounded-[0.8rem] border p-[1rem_1rem] outline-none
           focus:border-primary-500"
             text="이름"
-            placeholder="수정할 이름을 입력해주세요"
+            placeholder="이름을 입력해주세요"
             type="text"
             {...register("name", nameValid())}
           />
@@ -130,7 +129,7 @@ const EditModal = ({ closeModal, user }) => {
           <input
             className="Cap4 mb-[0.4rem] rounded-[0.8rem] border p-[1rem_1rem] outline-none focus:border-primary-500"
             text="소개"
-            placeholder="수정할 내용을 입력해주세요"
+            placeholder="내용을 입력해주세요"
             type="text"
             {...register("introduce", {
               maxLength: {
