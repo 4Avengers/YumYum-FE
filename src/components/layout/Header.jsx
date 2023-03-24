@@ -1,10 +1,14 @@
 import { hasToken } from "apis/token";
-import { useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { BiChevronLeft } from "react-icons/bi";
 import { CiLogin } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import cls from "utils/cls";
+import { motion } from "framer-motion";
 import HEADER_TYPE from "./headerType";
+
+const main = document.getElementById("main-wrapper");
+
 const Header = ({
   hasBack,
   title,
@@ -17,10 +21,10 @@ const Header = ({
   const isLogin = useMemo(() => hasToken(), []);
 
   return (
-    <header
+    <motion.header
       className={cls(
         className,
-        "screen-width fixed top-0 flex h-[5rem] w-screen items-center justify-between  px-[2rem] transition-colors",
+        "screen-width fixed top-0 flex h-[5rem] w-screen items-center justify-between   px-[2rem] transition-colors",
         !isTransparent && "bg-white"
       )}
     >
@@ -47,7 +51,7 @@ const Header = ({
           onClick={() => window.location.replace("/start/login")}
         />
       )}
-    </header>
+    </motion.header>
   );
 };
 

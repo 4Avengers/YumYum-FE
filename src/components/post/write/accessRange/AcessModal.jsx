@@ -62,7 +62,7 @@ const AcessModal = ({ setModal, setValue, value }) => {
             value="private"
             onClick={onChange}
           >
-            팔로워 공개
+            비공개
           </button>
         </div>
       </motion.div>

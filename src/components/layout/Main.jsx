@@ -9,6 +9,7 @@ const Main = ({ hasPadding, children, hasHeader, isScroll }) => {
   const [openGlobalModal] = useRecoilModal(globalConfigModal);
   return (
     <main
+      id="main-wrapper"
       className={cls(
         "flex h-screen flex-col bg-white scrollbar-hide",
         hasPadding ? "py-[2rem]" : "py-0",
