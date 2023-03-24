@@ -74,6 +74,7 @@ const EditModal = ({ closeModal, user }) => {
           <input
             type="file"
             className="hidden"
+            accept="image/*"
             onChange={handlePreviewChange}
           />
           <img

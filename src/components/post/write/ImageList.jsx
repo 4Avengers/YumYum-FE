@@ -67,6 +67,7 @@ const ImageList = ({ defaultImage, setImgList, style }) => {
                 <input
                   type="file"
                   className="hidden"
+                  accept="image/*"
                   onChange={handleAddImages}
                 />
                 <BiPlus

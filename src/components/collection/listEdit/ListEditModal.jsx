@@ -105,6 +105,7 @@ const ListEditModal = ({ setModal, profileId }) => {
             <input
               type="file"
               className="hidden"
+              accept="image/*"
               onChange={handlePreviewChange}
             />
             <img
