@@ -46,7 +46,6 @@ const SignUp = () => {
 
         navigate("/start/login");
       } catch (e) {
-        console.log(e);
         toast.error(e?.response?.data?.message || "회원가입 실패");
       }
     },

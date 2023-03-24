@@ -111,17 +111,14 @@ const ReadNewsFeedsAround = ({ x, y }) => {
     ["newsFeeds", "around"],
     async ({ pageParam = 1 }) => {
       const response = await instance.get(
-        `posts/feed/aroundMe?page=${pageParam}`,
-        {
-          x,
-          y,
-        },
+        `posts/feed/aroundMe?page=${pageParam}&x=${x}&y=${y}`,
         {
           getNextPageParam: (lastPage, allPages) => {
             const nextPage =
               lastPage?.length < 8 ? undefined : allPages.length + 1;
             return nextPage;
           },
+          enabled: !!x,
         }
       );
       return response.data;

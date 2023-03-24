@@ -1,17 +1,14 @@
 import React from "react";
-import { toast } from "react-toastify";
 import cls from "utils/cls";
 
 const MyListCard = ({ myListData, isInclude, setMyList }) => {
   const handleAddList = (e) => {
     e.stopPropagation();
     setMyList((prev) => [...prev, myListData.id]);
-    toast.success(`${myListData?.name}에 추가하였습니다.`);
   };
   const handleDeleteList = (e) => {
     e.stopPropagation();
     setMyList((prev) => [...prev.filter((item) => item !== myListData?.id)]);
-    toast.success(`${myListData?.name}에서 삭제하였습니다.`);
   };
 
   return (

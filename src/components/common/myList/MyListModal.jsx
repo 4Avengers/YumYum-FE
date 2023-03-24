@@ -1,4 +1,5 @@
 import ListService from "apis/service/ListService";
+import Button from "elements/Button";
 import { motion } from "framer-motion";
 import React from "react";
 import { IoMdClose } from "react-icons/io";
@@ -20,7 +21,7 @@ const MyListModal = ({ setModal, myList, setMyList }) => {
       onClick={setModal}
     >
       <motion.div
-        className="absolute bottom-0  flex h-[80vh] w-full flex-col rounded-[1rem] bg-white"
+        className="absolute bottom-0  flex h-[80vh] w-full flex-col rounded-[1rem] bg-white pb-[2rem]"
         variants={listModalAni}
         initial="initial"
         animate="animate"
@@ -38,7 +39,7 @@ const MyListModal = ({ setModal, myList, setMyList }) => {
         </div>
 
         <MyListForm />
-        <div className="flex flex-col ">
+        <div className="flex flex-1 flex-col ">
           <span className="Cap1 px-[2rem]">리스트</span>
           <ul className="flex flex-col">
             {React.Children.toArray(
@@ -51,6 +52,14 @@ const MyListModal = ({ setModal, myList, setMyList }) => {
               ))
             )}
           </ul>
+        </div>
+        <div className="px-[2rem] pb-[2rem]">
+          <Button
+            className="hover:bg-[rgba(0,0,0,0.7)]"
+            onClick={() => setModal(false)}
+          >
+            완료하기
+          </Button>
         </div>
       </motion.div>
     </motion.div>

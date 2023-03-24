@@ -17,7 +17,7 @@ const ProfileStatus = ({ status, setStatus }) => {
         <IoMdGrid size="2.5rem " />
         {status === "USER" && (
           <motion.div
-            className="absolute  bottom-[-0.2rem] z-[100] w-full  bg-primary-400 py-[0.1rem]"
+            className="absolute  bottom-[-0.2rem]  w-full  bg-primary-400 py-[0.1rem]"
             layoutId="profileStatus"
           />
         )}
@@ -32,7 +32,7 @@ const ProfileStatus = ({ status, setStatus }) => {
         <FaMapMarkerAlt size="2rem" />
         {status === "MAP" && (
           <motion.div
-            className="absolute  bottom-[-0.2rem] z-[100] w-full bg-primary-400 py-[0.1rem] "
+            className="absolute  bottom-[-0.2rem]  w-full bg-primary-400 py-[0.1rem] "
             layoutId="profileStatus"
           />
         )}

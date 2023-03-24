@@ -1,5 +1,7 @@
 import PostService from "apis/service/PostService";
 import { postQueryKeyAtom } from "atoms/queryKeyAtom";
+import NotMap from "components/common/post/notPost/NotMap";
+import NotPost from "components/common/post/notPost/NotPost";
 import PostCard from "components/common/post/postCard/PostCard";
 import useGeolocation from "hooks/useGeoLocation";
 import useObserver from "hooks/useObserver";
@@ -14,10 +16,11 @@ const NewsFeedArround = () => {
   const {
     data: posts,
     hasNextPage,
+    isLoading,
     fetchNextPage,
   } = PostService.ReadNewsFeedsAround({
-    x: longitude + "",
-    y: latitude + "",
+    x: longitude,
+    y: latitude,
   });
 
   const [user] = useUser();
@@ -35,6 +38,9 @@ const NewsFeedArround = () => {
     return posts?.pages?.flat();
   }, [posts]);
 
+  if (!latitude && postList?.length === 0) return <NotMap />;
+  if (latitude && postList?.length === 0 && !isLoading)
+    return <NotPost text="주위에 작성된 맛집이 없습니다." />;
   return (
     <>
       <ul className=".inner-height flex flex-col overflow-x-hidden overflow-y-scroll   scrollbar-hide">

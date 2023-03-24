@@ -9,7 +9,7 @@ import { AnimatePresence } from "framer-motion";
 import useGeolocation from "hooks/useGeoLocation";
 import useRecoilModal from "hooks/useRecoilModal";
 import useUser from "hooks/useUser";
-import React, { useEffect } from "react";
+import React from "react";
 import PostDetailModal from "components/common/post/detailModal/PostDetailModal";
 import Header from "components/layout/Header";
 
@@ -20,21 +20,6 @@ const Home = () => {
   } = useGeolocation();
   const [openPostDetailModal] = useRecoilModal(questPostModal);
   const [user] = useUser();
-
-  useEffect(() => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          console.log(position);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    } else {
-      console.log("Geolocation not available");
-    }
-  }, []);
 
   return (
     <Layout hasHeader={false} hasPadding={false}>
