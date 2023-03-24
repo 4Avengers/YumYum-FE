@@ -1,10 +1,26 @@
+import useSlider from "hooks/useSlider";
 import React from "react";
 import Slider from "react-slick";
 import cls from "utils/cls";
 
 const CategoryBtns = ({ categoryValue, setCategory }) => {
+  const [isDragging, beforeFn, afterFn] = useSlider();
+
+  const onCliked = (e, value) => {
+    if (isDragging) {
+      e.stopPropagation();
+      return;
+    }
+    setCategory(value);
+  };
+
   return (
-    <Slider {...settings} className="mt-[1rem] pl-[2rem]">
+    <Slider
+      {...settings}
+      beforeChange={beforeFn}
+      afterChange={afterFn}
+      className="mt-[1rem] pl-[2rem]"
+    >
       {React.Children.toArray(
         category?.map((value) => (
           <button
@@ -12,7 +28,7 @@ const CategoryBtns = ({ categoryValue, setCategory }) => {
               "Cap3 mr-[1rem] max-w-[7rem] whitespace-nowrap rounded-[0.5rem] border py-[0.6rem] transition-colors",
               categoryValue === value && "bg-primary-600 text-primary-100"
             )}
-            onClick={() => setCategory(value)}
+            onClick={(e) => onCliked(e, value)}
           >
             {value}
           </button>
@@ -41,6 +57,7 @@ const category = [
 const settings = {
   dots: false,
   infinite: false,
+  draggable: true,
   speed: 500,
   slidesToShow: 5.2,
   slidesToScroll: 2,

@@ -2,18 +2,22 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { handleImgError } from "utils/handleImgError";
 
-const HotCard = ({ collection }) => {
+const HotCard = ({ collection, isDragging }) => {
   const navigate = useNavigate();
+
+  const onCliked = (e) => {
+    if (isDragging) {
+      e.stopPropagation();
+      return;
+    }
+    navigate(`/profile/${collection?.user?.id}/collections/${collection?.id}`);
+  };
 
   return (
     <div
       key={collection?.id}
       className="relative mr-[1rem] flex cursor-pointer flex-col"
-      onClick={() =>
-        navigate(
-          `/profile/${collection?.user?.id}/collections/${collection?.id}`
-        )
-      }
+      onClick={onCliked}
     >
       <div
         className=" z-10 flex aspect-[1/1.8] w-[100%] flex-col rounded-[1rem] bg-gray-400 px-[1rem] pt-[3rem] pb-[2rem]"

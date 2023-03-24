@@ -1,4 +1,5 @@
 import HomeService from "apis/service/HomeService";
+import useSlider from "hooks/useSlider";
 import Slider from "react-slick";
 import { toast } from "react-toastify";
 
@@ -7,6 +8,7 @@ import HotCard from "./HotCard";
 
 const HotList = () => {
   const { data: hotList } = HomeService.ReadHotPlaceList();
+  const [isDragging, beforeFn, afterFn] = useSlider();
   const handleMoreClick = () => {
     toast.info("현재 개발중인 기능입니다 🤗");
   };
@@ -17,9 +19,18 @@ const HotList = () => {
         subTitle=""
         onClick={handleMoreClick}
       />
-      <Slider {...settings} className="pl-[2rem]">
+      <Slider
+        {...settings}
+        beforeChange={beforeFn}
+        afterChange={afterFn}
+        className="pl-[2rem]"
+      >
         {hotList?.map((collection) => (
-          <HotCard collection={collection} key={collection?.id} />
+          <HotCard
+            collection={collection}
+            key={collection?.id}
+            isDragging={isDragging}
+          />
         ))}
         <div />
       </Slider>
@@ -32,6 +43,7 @@ export default HotList;
 const settings = {
   dots: false,
   infinite: false,
+  draggable: true,
   speed: 500,
   slidesToShow: 3.2,
   slidesToScroll: 2,
