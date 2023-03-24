@@ -61,7 +61,7 @@ const PostCard = ({ post, lat, lng, isMarker = false }) => {
           <div className="flex items-center">
             <span className="Cap1">{post?.user?.nickname}</span>
             <FaStar
-              className="bg-text-600 ml-[1rem] mr-[0.4rem] text-primary-600"
+              className="bg-text-600 ml-[1rem] mr-[0.4rem] text-star-200 shadow-lg shadow-[#f8e58f]"
               size="1.4rem"
             />
             <span className="Cap3">{post?.rating}</span>

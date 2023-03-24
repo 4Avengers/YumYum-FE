@@ -15,7 +15,7 @@ const LocationWithRating = ({ post }) => {
         </span>
       </div>
       <div className="flex items-center space-x-[1rem] text-primary-600">
-        <FaStar size="1.6rem" />
+        <FaStar size="1.6rem" className=" text-star-200 " />
         <span className="Cap3">{post?.rating}</span>
       </div>
     </div>

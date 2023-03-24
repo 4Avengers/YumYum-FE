@@ -38,7 +38,7 @@ const RecommandCard = ({ post }) => {
         </div>
         <div className="flex flex-col justify-between">
           <div className="flex  w-[4rem] items-center justify-end space-x-[0.5rem] ">
-            <FaStar size="1.4rem" className="text-primary-600" />
+            <FaStar size="1.4rem" className="text-star-200" />
             <span className="Cap5">{post?.rating}</span>
           </div>
           <img

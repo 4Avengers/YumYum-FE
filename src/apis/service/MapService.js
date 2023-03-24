@@ -2,9 +2,9 @@ import instance from "apis/instance";
 import { useQuery } from "react-query";
 
 /** 팔로잉한 유저들 포스팅 조회 */
-const GetMap = () => {
-  return useQuery(["map"], async () => {
-    const response = await instance.get("map/followerPosting");
+const GetMap = (type) => {
+  return useQuery(["map", type], async () => {
+    const response = await instance.get(`map/following-posting?type=${type}`);
     return response.data;
   });
 };

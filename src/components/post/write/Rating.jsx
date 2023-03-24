@@ -12,7 +12,7 @@ const Rating = ({ register, value }) => {
             {item > value ? (
               <CiStar size="2rem" className="text-primary-500" />
             ) : (
-              <FaStar size="2rem" />
+              <FaStar size="2rem" className="text-star-200" />
             )}
           </label>
         ))

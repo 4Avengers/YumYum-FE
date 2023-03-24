@@ -23,6 +23,9 @@ module.exports = {
           red: "#E74E42",
           hoverRed: "#e52012",
         },
+        star: {
+          200: "#F4CD24",
+        },
       },
       screens: {
         sm: "480px",

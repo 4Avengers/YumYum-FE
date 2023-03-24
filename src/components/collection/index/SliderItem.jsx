@@ -15,7 +15,7 @@ const SliderItem = ({ collectionItem }) => {
           {collectionItem?.post?.restaurant?.place_name}
         </p>
         <div className="flex items-center space-x-[0.5rem]">
-          <FaStar size="1.4rem" className="text-primary-600" />
+          <FaStar size="1.4rem" className="text-star-200" />
           <span className="Cap4">{collectionItem?.post?.rating}</span>
         </div>
       </div>

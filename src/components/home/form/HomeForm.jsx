@@ -3,7 +3,7 @@ import React from "react";
 const HomeForm = () => {
   return (
     <div
-      className="relative h-[24rem] bg-gray-300 bg-cover"
+      className="relative aspect-[16/9] bg-gray-300 bg-cover "
       style={{
         backgroundImage: "url('image/banner.webp')",
       }}

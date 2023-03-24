@@ -24,7 +24,7 @@ const PostList = ({ setOpenModal, setRestaurantId, posts }) => {
             <div className="flex justify-between">
               <h3 className="Cap1">{post?.restaurant?.place_name}</h3>
               <div className="flex items-center space-x-[0.5rem]">
-                <FaStar size="2rem" className="text-primary-600" />
+                <FaStar size="2rem" className="text-star-200 " />
                 <span className="Cap2">{post?.AvgRating || post?.rating}</span>
               </div>
             </div>

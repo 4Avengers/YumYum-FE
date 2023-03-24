@@ -1,4 +1,3 @@
-import MapService from "apis/service/MapService";
 import { isListAtom } from "atoms/mapAtom";
 import { markerModal, questPostModal } from "atoms/modalAtom";
 import PostDetailModal from "components/common/post/detailModal/PostDetailModal";
@@ -16,11 +15,11 @@ import { useRecoilValue } from "recoil";
 
 /** 탐색 */
 const Quest = () => {
-  const { data: posts } = MapService.GetMap();
   const [user] = useUser();
   const {
     location: { latitude, longitude },
   } = useGeolocation();
+
   const [openPostDetailModal] = useRecoilModal(questPostModal);
   const [openMarkerModal] = useRecoilModal(markerModal);
   const isList = useRecoilValue(isListAtom);
@@ -46,7 +45,7 @@ const Quest = () => {
         <QuestList lat={latitude} lng={longitude} />
       ) : (
         // 지도 레벨 수정
-        <QuestMap posts={posts} lat={latitude} lng={longitude} />
+        <QuestMap lat={latitude} lng={longitude} />
       )}
       <AnimatePresence>
         {openPostDetailModal && <PostDetailModal user={user} />}

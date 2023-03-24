@@ -1,11 +1,13 @@
+import MapService from "apis/service/MapService";
 import NotMap from "components/common/post/notPost/NotMap";
 import { useState } from "react";
 import { BsList } from "react-icons/bs";
 import { CustomOverlayMap, Map } from "react-kakao-maps-sdk";
 import Marker from "./Marker";
 
-const QuestMap = ({ posts, lat, lng }) => {
-  const [isFollowing, setIsFollowing] = useState(true);
+const QuestMap = ({ lat, lng }) => {
+  const [isFollowing, setIsFollowing] = useState(false);
+  const { data: posts } = MapService.GetMap(isFollowing ? "FOLLOWING" : "ALL");
   if (!lat || !lng) return <NotMap />;
   return (
     <>

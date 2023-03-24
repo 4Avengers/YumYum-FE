@@ -14,7 +14,7 @@ const ArroundCard = ({ place }) => {
         <span className="Cap3">{place?.restaurant_place_name}</span>
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-[0.4rem]">
-            <FaStar size="1.3rem" className="text-primary-600" />
+            <FaStar size="1.3rem" className="text-star-200" />
             <span className="Cap3">
               {Number(place["AVG(`post`.`rating`)"]).toFixed(1)}
             </span>
