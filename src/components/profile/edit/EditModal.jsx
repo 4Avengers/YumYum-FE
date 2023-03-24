@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { handleImgError } from "utils/handleImgError";
 import { RiPencilLine } from "react-icons/ri";
-import { nicknameValid } from "utils/valids";
+import { emailValid, nameValid, nicknameValid } from "utils/valids";
 import ErrorMessage from "elements/ErrorMessage";
 import Button from "elements/Button";
 import ProfileService from "apis/service/ProfileService";
@@ -27,10 +27,11 @@ const EditModal = ({ closeModal, user }) => {
 
   // 제출
   const onValid = (data) => {
-    const { nickname, introduce } = data;
+    const { nickname, introduce, name } = data;
     const formData = new FormData();
     formData.append("file", profile_image);
     formData.append("nickname", nickname);
+    formData.append("name", name);
     formData.append("introduce", introduce);
     editProfile(formData);
   };
@@ -46,7 +47,9 @@ const EditModal = ({ closeModal, user }) => {
   // 초기 세팅
   useEffect(() => {
     if (user) {
-      setValue("nickname", user.nickname);
+      setValue("nickname", user?.nickname);
+      setValue("name", user?.name);
+      setValue("email", user?.email);
       setValue("introduce", user?.introduce);
       setProfile_img(user?.profile_image);
       setPreviewImage(user?.profile_image);
@@ -84,6 +87,19 @@ const EditModal = ({ closeModal, user }) => {
           </span>
         </label>
         <label className="mb-[2rem] flex w-full flex-col ">
+          <span className="Cap3 mb-[1rem]">이메일</span>
+          <input
+            className="Cap4 mb-[0.4rem] rounded-[0.8rem] border p-[1rem_1rem] outline-none
+          focus:border-primary-500"
+            text="이메일"
+            placeholder="수정할 이메일을 입력해주세요"
+            type="email"
+            disabled={true}
+            {...register("email", emailValid())}
+          />
+          <ErrorMessage errorMessage={errors?.email?.message} isProfile />
+        </label>
+        <label className="mb-[2rem] flex w-full flex-col ">
           <span className="Cap3 mb-[1rem]">닉네임</span>
           <input
             className="Cap4 mb-[0.4rem] rounded-[0.8rem] border p-[1rem_1rem] outline-none
@@ -95,6 +111,18 @@ const EditModal = ({ closeModal, user }) => {
             {...register("nickname", nicknameValid())}
           />
           <ErrorMessage errorMessage={errors?.nickname?.message} isProfile />
+        </label>
+        <label className="mb-[2rem] flex w-full flex-col ">
+          <span className="Cap3 mb-[1rem]">이름</span>
+          <input
+            className="Cap4 mb-[0.4rem] rounded-[0.8rem] border p-[1rem_1rem] outline-none
+          focus:border-primary-500"
+            text="이름"
+            placeholder="수정할 이름을 입력해주세요"
+            type="text"
+            {...register("name", nameValid())}
+          />
+          <ErrorMessage errorMessage={errors?.name?.message} isProfile />
         </label>
 
         <label className="flex w-full flex-col">
