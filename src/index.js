@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { RecoilRoot } from "recoil";
 import axios from "axios";
 import { BrowserRouter } from "react-router-dom";
-
+import { HelmetProvider } from "react-helmet-async";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,9 +21,11 @@ axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
 root.render(
   <QueryClientProvider client={queryClient}>
     <RecoilRoot>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <HelmetProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </HelmetProvider>
     </RecoilRoot>
   </QueryClientProvider>
 );

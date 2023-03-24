@@ -20,6 +20,7 @@ import CommentModal from "components/common/post/comment/CommentModal";
 import { AnimatePresence } from "framer-motion";
 import ProfileMap from "components/profile/index/profileMap/ProfileMap";
 import PostDetailModal from "components/common/post/detailModal/PostDetailModal";
+import CustomHelmet from "elements/CustomHelmet";
 
 // type TStatus = USER | MAP | TAG
 
@@ -41,6 +42,7 @@ const Profile = () => {
 
   return (
     <Layout headerType="DM" isScroll={false} hasPadding={false}>
+      <CustomHelmet title="프로필" />
       <ProfileContainer
         profileId={profileId}
         isOwner={user?.id === +profileId}

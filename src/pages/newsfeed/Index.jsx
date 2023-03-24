@@ -5,6 +5,7 @@ import Layout from "components/layout/Layout";
 import NewsFeedArround from "components/newsfeed/arround/Arround";
 import NewsFeedRecent from "components/newsfeed/recent/Recent";
 import StatusHeader from "components/newsfeed/StatusHeader";
+import CustomHelmet from "elements/CustomHelmet";
 import { AnimatePresence } from "framer-motion";
 import useRecoilModal from "hooks/useRecoilModal";
 import { useState } from "react";
@@ -21,6 +22,7 @@ const NewsFeed = () => {
       hasPadding={false}
       isScroll={false}
     >
+      <CustomHelmet title="뉴스피드" />
       <StatusHeader isCurrent={isCurrent} setIsCurrent={setIsCurrent} />
       {isCurrent ? <NewsFeedRecent /> : <NewsFeedArround />}
       <AnimatePresence>

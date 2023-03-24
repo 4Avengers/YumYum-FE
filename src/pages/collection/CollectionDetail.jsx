@@ -8,6 +8,7 @@ import UserContainer from "components/collection/detail/UserContainer";
 import ModalLayout from "components/common/modalLayout/ModalLayout";
 import CommentModal from "components/common/post/comment/CommentModal";
 import Header from "components/layout/Header";
+import CustomHelmet from "elements/CustomHelmet";
 import { AnimatePresence } from "framer-motion";
 import useModal from "hooks/useModal";
 import useRecoilModal from "hooks/useRecoilModal";
@@ -32,6 +33,7 @@ const CollectionDetail = () => {
 
   return (
     <ModalLayout variants={modalLayoutAni} hasPadding={false}>
+      <CustomHelmet title={collectionItem?.name || "맛집리스트"} />
       <Header
         headerType={user?.id === +profileId ? "PLUS" : null}
         hasBack

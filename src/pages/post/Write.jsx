@@ -19,6 +19,7 @@ import { toast } from "react-toastify";
 
 import cls from "utils/cls";
 import useUser from "hooks/useUser";
+import CustomHelmet from "elements/CustomHelmet";
 
 const PostWrite = () => {
   const navigate = useNavigate();
@@ -89,6 +90,7 @@ const PostWrite = () => {
 
   return (
     <Layout title="맛집 포스팅">
+      <CustomHelmet title="맛집 포스팅" />
       <form
         className="flex flex-1 flex-col space-y-[2.5rem] px-[2rem]"
         onSubmit={handleSubmit(onValid)}

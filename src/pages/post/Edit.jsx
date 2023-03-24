@@ -19,6 +19,7 @@ import { toast } from "react-toastify";
 
 import cls from "utils/cls";
 import useUser from "hooks/useUser";
+import CustomHelmet from "elements/CustomHelmet";
 
 const PostEdit = () => {
   const { id } = useParams();
@@ -90,7 +91,8 @@ const PostEdit = () => {
   }, [id, setValue]);
 
   return (
-    <Layout title="맛집 포스팅">
+    <Layout title="게시글 수정">
+      <CustomHelmet title="게시글 수정" />
       <form
         className="flex flex-1 flex-col space-y-[2.5rem] px-[2rem]"
         onSubmit={handleSubmit(onValid)}

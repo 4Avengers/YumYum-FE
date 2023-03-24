@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import AuthService from "apis/service/AuthService";
 import AuthLabel from "elements/AuthLabel";
+import CustomHelmet from "elements/CustomHelmet";
 import ErrorMessage from "elements/ErrorMessage";
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
@@ -54,6 +55,7 @@ const SignUp = () => {
 
   return (
     <main className="flex flex-col space-y-[4rem] pt-[10vh]">
+      <CustomHelmet title="회원가입" />
       <h3 className="text-[2.5rem] font-bold">회원가입</h3>
       <form className="flex flex-col" onSubmit={handleSubmit(onValid)}>
         <div className="mb-[4rem] flex flex-col space-y-[2rem]">

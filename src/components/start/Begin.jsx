@@ -3,12 +3,14 @@ import { SiNaver } from "react-icons/si";
 import GoogleSvg from "assets/svg/GoogleSvg";
 import { useNavigate } from "react-router-dom";
 import { LoginWithKakao, LoginWithGoogle, LoginWithNaver } from "./SignIn";
+import CustomHelmet from "elements/CustomHelmet";
 
 const Begin = () => {
   const navigate = useNavigate();
 
   return (
     <main className="flex flex-col justify-center space-y-[5rem] pt-[20vh]">
+      <CustomHelmet title="시작페이지" />
       <h1 className="text-center text-[2.8rem] font-bold">회원가입</h1>
       <div className="flex w-full flex-col space-y-[2rem]">
         <button

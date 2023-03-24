@@ -11,6 +11,7 @@ import ListModal from "components/collection/ListModal/ListModal";
 import { myListConfigModal, myListEditModal } from "atoms/modalAtom";
 import { AnimatePresence } from "framer-motion";
 import ListEditModal from "components/collection/listEdit/ListEditModal";
+import CustomHelmet from "elements/CustomHelmet";
 
 const Collection = () => {
   const { profileId } = useParams();
@@ -22,6 +23,7 @@ const Collection = () => {
   return (
     <>
       <ModalLayout variants={modalLayoutAni} hasPadding={false}>
+        <CustomHelmet title="맛집리스트" />
         <Header headerType={user?.id === +profileId ? "PLUS" : null} hasBack />
         <div className="flex flex-1 flex-col space-y-[2rem] py-[2rem]">
           <UserContainer profileId={profileId} />

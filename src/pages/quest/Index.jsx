@@ -6,6 +6,7 @@ import Layout from "components/layout/Layout";
 import QuestList from "components/quest/list/QuestList";
 import QuestMap from "components/quest/map/Map";
 import MarkerModal from "components/quest/markerModal/MarkerModal";
+import CustomHelmet from "elements/CustomHelmet";
 import { AnimatePresence } from "framer-motion";
 import useGeolocation from "hooks/useGeoLocation";
 import useRecoilModal from "hooks/useRecoilModal";
@@ -26,6 +27,7 @@ const Quest = () => {
 
   return (
     <Layout title="탐색" headerType="MAP" hasPadding={false}>
+      <CustomHelmet title="탐색" />
       <form
         className="absolute top-[6rem] z-[2] flex w-full  items-center px-[2rem] py-[2rem] "
         onSubmit={(e) => e.preventDefault()}

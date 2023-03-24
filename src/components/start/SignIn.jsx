@@ -9,6 +9,7 @@ import styled from "@emotion/styled";
 import AuthService from "apis/service/AuthService";
 import { toast } from "react-toastify";
 import { setAccessToken, setRefreshToken } from "apis/token";
+import CustomHelmet from "elements/CustomHelmet";
 
 export const LoginWithKakao = () => {
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}&response_type=code`;
@@ -49,6 +50,7 @@ const SignIn = () => {
 
   return (
     <main className="flex flex-col space-y-[2rem] pt-[10vh]">
+      <CustomHelmet title="로그인" />
       <h3 className=" text-[2.5rem] font-bold">로그인</h3>
       <form className="flex flex-col " onSubmit={handleSubmit(onValid)}>
         <InputBox className="flex flex-col">

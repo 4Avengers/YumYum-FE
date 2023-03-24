@@ -6,6 +6,7 @@ import SearchForm from "../../components/search/SearchForm";
 import SearchStatus from "components/search/SearchStatus";
 import SearchTagList from "components/search/tagList/SearchTagList";
 import SearchUserList from "components/search/userList/SearchUserList";
+import CustomHelmet from "elements/CustomHelmet";
 
 // type TSTATUS = "user" | "hashtag" | "restaurant"
 
@@ -16,6 +17,7 @@ const Search = () => {
 
   return (
     <Layout hasHeader={false} hasPadding={false} isScroll={false}>
+      <CustomHelmet title="검색" />
       <SearchForm setKeyword={setKeyword} />
       <SearchStatus status={status} setStatus={setStatus} />
       {status === "user" && (
