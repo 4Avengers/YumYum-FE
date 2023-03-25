@@ -18,6 +18,7 @@ const Home = () => {
   const {
     location: { latitude, longitude },
   } = useGeolocation();
+
   const [openPostDetailModal] = useRecoilModal(questPostModal);
   const [user] = useUser();
 

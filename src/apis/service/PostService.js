@@ -81,14 +81,6 @@ const RemovePost = (queryKey) => {
 };
 
 /** 뉴스피드 최신 포스트 목록 조회 */
-// const ReadNewsFeeds = () => {
-//   return useQuery(["newsFeeds", "current"], async () => {
-//     const response = await instance.get("posts?page=1");
-//     return response.data;
-//   });
-// };
-
-/** 뉴스피드 최신 포스트 목록 조회 */
 const ReadNewsFeeds = () => {
   return useInfiniteQuery(
     ["newsFeeds", "current"],
@@ -129,7 +121,7 @@ const ReadNewsFeedsAround = ({ x, y }) => {
   );
 };
 
-/** 포스트 좋아요 (성공하면 refetch해야함)*/
+/** 포스트 좋아요 (성공하면 refetch해야함)*/ // optimistic update 예정
 const AddPostLike = (queryKey) => {
   const queryClient = useQueryClient();
   return useMutation(
@@ -143,7 +135,7 @@ const AddPostLike = (queryKey) => {
   );
 };
 
-/** 포스트 좋아요 취소 (성공하면 refetch해야함)*/
+/** 포스트 좋아요 취소 (성공하면 refetch해야함)*/ // optimistic update 예정
 const RemovePostLike = (queryKey) => {
   const queryClient = useQueryClient();
   return useMutation(
