@@ -8,7 +8,6 @@ import { modalLayoutAni } from "shared/motionStyle";
 import CommentForm from "../comment/CommentForm";
 import PostCard from "./PostCard";
 import useQueryKey from "hooks/useQueryKey";
-import { postQueryKeyAtom } from "atoms/queryKeyAtom";
 import CommentList from "../comment/CommentList";
 
 const PostDetailModal = ({ user }) => {
@@ -17,7 +16,7 @@ const PostDetailModal = ({ user }) => {
 
   const { data: post } = PostService.ReadPostDetail(postId);
 
-  useQueryKey(["post", postId], postQueryKeyAtom);
+  useQueryKey(["post", postId]);
 
   const handleCloseModal = () => {
     setOpenPostDetailModal(false);

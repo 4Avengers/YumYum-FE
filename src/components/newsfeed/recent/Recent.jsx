@@ -1,5 +1,4 @@
 import PostService from "apis/service/PostService";
-import { postQueryKeyAtom } from "atoms/queryKeyAtom";
 import PostCard from "components/common/post/postCard/PostCard";
 import useQueryKey from "hooks/useQueryKey";
 import useUser from "hooks/useUser";
@@ -16,7 +15,7 @@ const NewsFeedRecent = () => {
 
   const [user] = useUser();
 
-  useQueryKey(["newsFeeds", "current"], postQueryKeyAtom);
+  useQueryKey(["newsFeeds", "current"]);
 
   const getNextPage = useCallback(() => {
     if (hasNextPage) fetchNextPage();

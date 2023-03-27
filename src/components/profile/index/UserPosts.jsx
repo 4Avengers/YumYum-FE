@@ -1,5 +1,4 @@
 import ProfileService from "apis/service/ProfileService";
-import { postQueryKeyAtom } from "atoms/queryKeyAtom";
 import NotPost from "components/common/post/notPost/NotPost";
 import PostCard from "components/common/post/postCard/PostCard";
 import useObserver from "hooks/useObserver";
@@ -17,7 +16,7 @@ const UserPosts = ({ userId }) => {
   } = ProfileService.ReadProfilePosts({
     profileId,
   });
-  useQueryKey(["profile", "posts", profileId], postQueryKeyAtom);
+  useQueryKey(["profile", "posts", profileId]);
 
   const getNextPage = useCallback(() => {
     if (hasNextPage) fetchNextPage();

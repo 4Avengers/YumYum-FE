@@ -1,5 +1,4 @@
 import PostService from "apis/service/PostService";
-import { postQueryKeyAtom } from "atoms/queryKeyAtom";
 import NotMap from "components/common/post/notPost/NotMap";
 import NotPost from "components/common/post/notPost/NotPost";
 import PostCard from "components/common/post/postCard/PostCard";
@@ -13,6 +12,7 @@ const NewsFeedArround = () => {
   const {
     location: { latitude, longitude },
   } = useGeolocation();
+
   const {
     data: posts,
     hasNextPage,
@@ -31,7 +31,7 @@ const NewsFeedArround = () => {
 
   const [observerRef] = useObserver(getNextPage);
 
-  useQueryKey(["newsFeeds", "around"], postQueryKeyAtom);
+  useQueryKey(["newsFeeds", "around"]);
 
   const postList = useMemo(() => {
     if (!posts) return [];

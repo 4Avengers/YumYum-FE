@@ -85,7 +85,9 @@ const AddCommentLike = (postId) => {
       return response;
     },
     {
-      onSuccess: () => queryClient.invalidateQueries(["comments", postId]),
+      onSuccess: () => {
+        queryClient.invalidateQueries(["comments", +postId]);
+      },
     }
   );
 };
@@ -93,6 +95,7 @@ const AddCommentLike = (postId) => {
 /** 댓글 좋아요 삭제 */
 const RemoveCommentLike = (postId) => {
   const queryClient = useQueryClient();
+
   return useMutation(
     async (commentId) => {
       const response = await instance.delete(
@@ -101,7 +104,9 @@ const RemoveCommentLike = (postId) => {
       return response;
     },
     {
-      onSuccess: () => queryClient.invalidateQueries(["comments", postId]),
+      onSuccess: () => {
+        queryClient.invalidateQueries(["comments", +postId]);
+      },
     }
   );
 };
