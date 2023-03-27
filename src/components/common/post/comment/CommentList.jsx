@@ -25,7 +25,7 @@ const CommentList = ({ postId }) => {
   }, [comments]);
 
   return (
-    <ul className="h-[calc(100vh-18.7rem)] overflow-y-auto  px-[2rem] scrollbar-hide">
+    <ul className="mb-[12rem] h-[calc(100vh-18.7rem)]  overflow-y-auto px-[2rem] scrollbar-hide">
       {commentList?.map((comment) => (
         <CommentCard
           key={comment.id}

@@ -73,7 +73,12 @@ const CommentCard = ({ comment, postId, queryKey, isOwner }) => {
             handleEditMode={() => setEditMode(false)}
           />
         ) : (
-          <p className="Cap6">{comment?.content}</p>
+          <div>
+            <p className="Cap6">{comment?.content}</p>
+            <span className="text-primary-500">
+              좋아요 {comment?.totalLikes}개
+            </span>
+          </div>
         )}
       </div>
       {strToBool(comment?.isLiked) ? (
