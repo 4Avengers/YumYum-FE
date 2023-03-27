@@ -1,13 +1,11 @@
 import { hasToken } from "apis/token";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { BiChevronLeft } from "react-icons/bi";
 import { CiLogin } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import cls from "utils/cls";
 import { motion } from "framer-motion";
 import HEADER_TYPE from "./headerType";
-
-const main = document.getElementById("main-wrapper");
 
 const Header = ({
   hasBack,
