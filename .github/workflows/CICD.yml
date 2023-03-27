@@ -33,6 +33,7 @@ jobs:
           echo "REACT_APP_GOOGLE_REDIRECT_URI=${{ secrets.REACT_APP_GOOGLE_REDIRECT_URI }}" >> .env
           echo "REACT_APP_NAVER_CLIENT_ID=${{ secrets.REACT_APP_NAVER_CLIENT_ID }}" >> .env
           echo "REACT_APP_NAVER_REDIRECT_URI=${{ secrets.REACT_APP_NAVER_REDIRECT_URI }}" >> .env
+           echo "REACT_APP_REST_API_KEY=${{ secrets.REACT_APP_REST_API_KEY}}" >> .env
           cat .env
 
       - name: Build # React Build
