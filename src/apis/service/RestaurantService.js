@@ -15,7 +15,7 @@ const ReadRestaurantPosts = (placeId) => {
     ["restaurant", "posts", placeId],
     async ({ pageParam = 1 }) => {
       const response = await instance(
-        `/restaurant/restaurant-detail/related-posting?kakao_place_id=${placeId}&page=${pageParam}`
+        `restaurant/restaurant-detail/related-posting?kakao_place_id=${placeId}&page=${pageParam}`
       );
       return response.data;
     },

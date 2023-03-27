@@ -3,11 +3,20 @@ import useSearchPlaces from "hooks/useSearchPlaces";
 import { debounce } from "lodash";
 import { MdPlace } from "react-icons/md";
 import React, { useCallback, useEffect } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { restaurantModal } from "atoms/modalAtom";
+import { restaurantAtom } from "atoms/restaurantAtom";
 
 const SearchPlaceList = ({ keyword }) => {
   const location = useRecoilValue(geoLocationAtom);
   const { places, onChangeQuery, resetPlaces } = useSearchPlaces({ location });
+  const setOpenRestaurantModal = useSetRecoilState(restaurantModal);
+  const setRestaurant = useSetRecoilState(restaurantAtom);
+
+  const handleOpenModal = (place) => {
+    setOpenRestaurantModal(true);
+    setRestaurant(place);
+  };
 
   // keyword가 변경될 때마다 places를 다시 조회
   const onChangeKeyword = useCallback(() => {
@@ -32,6 +41,7 @@ const SearchPlaceList = ({ keyword }) => {
         <li
           key={place?.id}
           className="flex cursor-pointer space-x-[2rem] border-b p-[2rem] last:border-none"
+          onClick={() => handleOpenModal(place)}
         >
           <span className="mt-[0.2rem]">
             <MdPlace size="2rem" className="text-primary-500" />

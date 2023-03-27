@@ -7,6 +7,10 @@ import SearchStatus from "components/search/SearchStatus";
 import SearchTagList from "components/search/tagList/SearchTagList";
 import SearchUserList from "components/search/userList/SearchUserList";
 import CustomHelmet from "elements/CustomHelmet";
+import { AnimatePresence } from "framer-motion";
+import useRecoilModal from "hooks/useRecoilModal";
+import { restaurantModal } from "atoms/modalAtom";
+import RestaurantModal from "components/common/restaurant/RestaurantModal";
 
 // type TSTATUS = "user" | "hashtag" | "restaurant"
 
@@ -14,6 +18,7 @@ import CustomHelmet from "elements/CustomHelmet";
 const Search = () => {
   const [keyword, setKeyword] = useState("");
   const [status, setStatus] = useState("user");
+  const [openRestaurantModal] = useRecoilModal(restaurantModal);
 
   return (
     <Layout hasHeader={false} hasPadding={false} isScroll={false}>
@@ -29,6 +34,9 @@ const Search = () => {
       {status === "restaurant" && (
         <SearchPlaceList keyword={keyword} status={status} />
       )}
+      <AnimatePresence>
+        {openRestaurantModal && <RestaurantModal />}
+      </AnimatePresence>
     </Layout>
   );
 };
