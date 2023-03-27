@@ -36,8 +36,14 @@ export const markerModal = atom({
   default: false,
 });
 
-/** 글로벌 모달  */
+/** 글로벌 설정 모달  */
 export const globalConfigModal = atom({
   key: "globalModal",
+  default: false,
+});
+
+/** 레스토랑 상세 모달 */
+export const restaurantModal = atom({
+  key: "restaurantModal",
   default: false,
 });

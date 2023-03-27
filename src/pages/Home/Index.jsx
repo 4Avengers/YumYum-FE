@@ -1,4 +1,4 @@
-import { questPostModal } from "atoms/modalAtom";
+import { questPostModal, restaurantModal } from "atoms/modalAtom";
 import AroundPlace from "components/home/around/AroundPlace";
 import Button from "components/home/button/Button";
 import HomeForm from "components/home/form/HomeForm";
@@ -12,6 +12,7 @@ import useUser from "hooks/useUser";
 import React from "react";
 import PostDetailModal from "components/common/post/detailModal/PostDetailModal";
 import Header from "components/layout/Header";
+import RestaurantModal from "components/common/restaurant/RestaurantModal";
 
 /** 메인페이지 */
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
   } = useGeolocation();
 
   const [openPostDetailModal] = useRecoilModal(questPostModal);
+  const [openRestaurantModal] = useRecoilModal(restaurantModal);
   const [user] = useUser();
 
   return (
@@ -34,6 +36,7 @@ const Home = () => {
       </div>
       <AnimatePresence>
         {openPostDetailModal && <PostDetailModal user={user} />}
+        {openRestaurantModal && <RestaurantModal />}
       </AnimatePresence>
     </Layout>
   );
