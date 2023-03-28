@@ -1,9 +1,23 @@
+import { restaurantModal } from "atoms/modalAtom";
+import { restaurantAtom } from "atoms/restaurantAtom";
 import React from "react";
 import { FaStar } from "react-icons/fa";
+import { useSetRecoilState } from "recoil";
 
 const ArroundCard = ({ place }) => {
+  const setOpenRestaurantModal = useSetRecoilState(restaurantModal);
+  const setRestaurant = useSetRecoilState(restaurantAtom);
+
+  const handleOpenModal = () => {
+    setOpenRestaurantModal(true);
+
+    setRestaurant(place);
+  };
   return (
-    <div key={place?.restaurant_id} className=" mr-[1rem]  flex flex-col">
+    <div
+      className=" mr-[1rem]  flex cursor-pointer flex-col"
+      onClick={handleOpenModal}
+    >
       <img
         src={place?.image_file_url}
         alt="placeImg"
@@ -11,7 +25,7 @@ const ArroundCard = ({ place }) => {
       />
 
       <div className="flex flex-col">
-        <span className="Cap3">{place?.restaurant_place_name}</span>
+        <span className="Cap3">{place?.place_name}</span>
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-[0.4rem]">
             <FaStar size="1.3rem" className="text-star-200" />

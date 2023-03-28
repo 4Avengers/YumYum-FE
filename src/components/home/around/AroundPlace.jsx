@@ -24,7 +24,7 @@ const AroundPlace = ({ x, y }) => {
         {places
           ?.sort((a, b) => a.distance - b.distance)
           ?.map((place) => (
-            <ArroundCard place={place} key={place?.restaurant_id} />
+            <ArroundCard place={place} key={place?.id} />
           ))}
         <div />
       </Slider>

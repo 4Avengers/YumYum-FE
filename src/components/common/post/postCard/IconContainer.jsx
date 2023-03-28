@@ -4,21 +4,25 @@ import { TbMessageCircle2 } from "react-icons/tb";
 import { FiBookmark } from "react-icons/fi";
 import { strToBool } from "utils/isLike";
 import PostService from "apis/service/PostService";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { postQueryKeyAtom } from "atoms/queryKeyAtom";
 import { useEffect, useState } from "react";
-
-//import { BsBookmarkFill } from "react-icons/bs"
-
-// [] DM
-// [] 북마크
+import { FaBookmark } from "react-icons/fa";
+import { postIdAndImageAtom } from "atoms/postAtom";
+import BookmarkService from "apis/service/BookmarkService";
 
 const IconContainer = ({ handleCommentModal, post, setOpenBookmarkBtn }) => {
   const [isLikeLoading, setIsLikeLoading] = useState(false);
+  const [isBookmarkLoading, setIsBookmarkLoading] = useState(false);
+  const setPostIdAndImage = useSetRecoilState(postIdAndImageAtom);
   const queryKey = useRecoilValue(postQueryKeyAtom);
+
   const { mutate: addPostLike, isLoading: addLoading } =
     PostService.AddPostLike(queryKey);
   const { mutate: removePostLike } = PostService.RemovePostLike(queryKey);
+  const { mutate: addBookmark } = BookmarkService.AddAllCollectionPost({
+    queryKey,
+  });
 
   // 좋아요 상태에 따라 다른 api
   const handleToggleLike = () => {
@@ -27,6 +31,20 @@ const IconContainer = ({ handleCommentModal, post, setOpenBookmarkBtn }) => {
       removePostLike(post?.id);
     } else {
       addPostLike(post?.id);
+    }
+  };
+
+  // 북마크 추가 / 삭제
+  const handleToggleBookmark = () => {
+    //if (isBookmarkLoading) return;
+    if (strToBool(post?.isBookmarked)) {
+      // 삭제
+      setOpenBookmarkBtn(false);
+    } else {
+      // 추가
+      setPostIdAndImage({ id: post?.id, image: post?.images[0]?.file_url });
+      addBookmark(post?.id);
+      setOpenBookmarkBtn(true);
     }
   };
 
@@ -66,12 +84,21 @@ const IconContainer = ({ handleCommentModal, post, setOpenBookmarkBtn }) => {
           className="mt-[-0.4rem] rotate-[45deg] cursor-pointer hover:text-primary-500"
         />
       </div>
-      <FiBookmark
-        size="2.7rem"
-        className="cursor-pointer text-primary-600 hover:text-primary-500"
-        onClick={() => setOpenBookmarkBtn(true)}
-      />
-      {/* <BsBookmarkFill size={"2.3rem"} /> */}
+      {strToBool(post?.isBookmarked) ? (
+        <FaBookmark
+          size="2.5rem"
+          className="cursor-pointer text-primary-600 hover:text-primary-500"
+          strokeWidth="1.5"
+          onClick={handleToggleBookmark}
+        />
+      ) : (
+        <FiBookmark
+          size="3rem"
+          className="mr-[-0.3rem]   cursor-pointer text-primary-600 hover:text-primary-500"
+          strokeWidth="1.5"
+          onClick={handleToggleBookmark}
+        />
+      )}
     </div>
   );
 };

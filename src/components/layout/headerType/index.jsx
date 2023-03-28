@@ -1,5 +1,9 @@
 import { isListAtom } from "atoms/mapAtom";
-import { globalConfigModal, myListConfigModal } from "atoms/modalAtom";
+import {
+  bookmarkConfigModal,
+  globalConfigModal,
+  myListConfigModal,
+} from "atoms/modalAtom";
 import { BiSearch, BiDotsVerticalRounded, BiPlus } from "react-icons/bi";
 import { BsList, BsBell, BsMap } from "react-icons/bs";
 import { CiPaperplane } from "react-icons/ci";
@@ -88,16 +92,15 @@ const HeaderDm = () => {
 };
 
 const HeaderBell = () => {
+  const setOpenBookmarkCofingModal = useSetRecoilState(bookmarkConfigModal);
   return (
     <ul className="flex items-center space-x-[1.5rem]">
       <li>
-        <BsBell size="2.5rem" className="#444444" strokeWidth="0.3" />
-      </li>
-      <li>
         <BiDotsVerticalRounded
           size="2.5rem"
-          className="#444444"
+          className="#444444 cursor-pointer transition-colors hover:text-primary-500"
           strokeWidth="0.1"
+          onClick={() => setOpenBookmarkCofingModal(true)}
         />
       </li>
     </ul>

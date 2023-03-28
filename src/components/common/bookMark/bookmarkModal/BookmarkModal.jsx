@@ -1,15 +1,19 @@
+import BookmarkService from "apis/service/BookmarkService";
 import { bookmarkModal } from "atoms/modalAtom";
+import { postIdAndImageAtom } from "atoms/postAtom";
 import { motion } from "framer-motion";
 import React, { useCallback } from "react";
 import { FaBookmark } from "react-icons/fa";
 import { FiBookmark } from "react-icons/fi";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { bgAni, listModalAni } from "shared/motionStyle";
+import { handleImgError } from "utils/handleImgError";
 import BookmarkCard from "./BookmarkCard";
 import BookmarkForm from "./BookmarkForm";
 
 const BookmarkModal = () => {
-  const data = [1, 2, 3, 4];
+  const postIdAndImage = useRecoilValue(postIdAndImageAtom);
+  const { data: collections } = BookmarkService.ReadBookmarkList();
 
   const setOpenModal = useSetRecoilState(bookmarkModal);
 
@@ -38,9 +42,14 @@ const BookmarkModal = () => {
       >
         <div className="flex  justify-between border-b p-[2rem]">
           <div className="flex gap-[2rem]">
-            <div className="h-[7rem] w-[7rem] rounded-[0.8rem] bg-gray-200" />
+            <img
+              src={postIdAndImage?.image}
+              alt="postImg"
+              className="h-[7rem] w-[7rem] rounded-[0.8rem] bg-gray-200 object-cover"
+              onError={handleImgError}
+            />
             <div className="flex flex-col py-[0.7rem]">
-              <span className="Cap1">저장됨</span>
+              <span className="Cap1">{true ? "저장됨" : "저장 취소"}</span>
               <span className="Cap4 text-primary-500">모든 북마크</span>
             </div>
           </div>
@@ -64,7 +73,9 @@ const BookmarkModal = () => {
           <span className="Cap1  px-[2rem]">컬렉션</span>
           <ul className="flex flex-col">
             {React.Children.toArray(
-              data?.map((item) => <BookmarkCard bookmarkData={item} />)
+              collections?.map((collection) => (
+                <BookmarkCard collection={collection} />
+              ))
             )}
           </ul>
         </div>

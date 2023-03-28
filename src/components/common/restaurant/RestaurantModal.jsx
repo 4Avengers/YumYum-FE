@@ -17,7 +17,7 @@ const RestaurantModal = ({ isSearch = true }) => {
   return (
     <ModalLayout variants={modalLayoutAni}>
       <RestaurantHeader
-        title={restaurant && restaurant?.place_name}
+        restaurant={restaurant}
         hasBack
         onClick={handleCloseModal}
       />

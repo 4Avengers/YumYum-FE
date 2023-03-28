@@ -53,3 +53,15 @@ export const bookmarkModal = atom({
   key: "bookmarkModal",
   default: false,
 });
+
+/** 북마크 설정 모달 */
+export const bookmarkConfigModal = atom({
+  key: "bookmarkConfigModal",
+  default: false,
+});
+
+/** 북마크 포스트 상세보기 모달 */
+export const bookmarkDetailModal = atom({
+  key: "bookmarkDetailModal",
+  default: false,
+});

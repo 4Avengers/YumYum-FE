@@ -16,6 +16,8 @@ import { useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import OAuth2RedirectHandler from "pages/social/OAuth2RedirectHandler";
 import Home from "pages/Home/Index";
+import Bookmark from "pages/bookmark/Index";
+import BookmarkDetail from "pages/bookmark/BookmarkDetail";
 
 const Router = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -111,8 +113,14 @@ const Router = () => {
           !isLogin ? <Navigate to="/start/login" replace /> : <PostEdit />
         }
       />
-
-      {/* <Route path="/api/users/google/callback" element={<Profile />}></Route> */}
+      <Route
+        path="/bookmark"
+        element={
+          !isLogin ? <Navigate to="/start/login" replace /> : <Bookmark />
+        }
+      >
+        <Route path=":bookmarkId" element={<BookmarkDetail />} />
+      </Route>
     </Routes>
   );
 };

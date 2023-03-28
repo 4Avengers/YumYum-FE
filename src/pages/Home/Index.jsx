@@ -36,7 +36,7 @@ const Home = () => {
       </div>
       <AnimatePresence>
         {openPostDetailModal && <PostDetailModal user={user} />}
-        {openRestaurantModal && <RestaurantModal />}
+        {openRestaurantModal && <RestaurantModal isSearch={false} />}
       </AnimatePresence>
     </Layout>
   );

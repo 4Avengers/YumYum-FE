@@ -16,7 +16,7 @@ const GlobalModal = () => {
   const navigate = useNavigate();
 
   const handleBookClick = () => {
-    toast.info("현재 개발중인 기능입니다. 🤗");
+    navigate("/bookmark");
     setGlobalModal(false);
   };
 

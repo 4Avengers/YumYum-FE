@@ -1,11 +1,11 @@
-import ListService from "apis/service/ListService";
+import BookmarkService from "apis/service/BookmarkService";
 import { useRef } from "react";
 import { BiPlus } from "react-icons/bi";
 import { toast } from "react-toastify";
 
 const BookmarkForm = () => {
   // bookmark 추가로 변경
-  const { mutate: addMyList } = ListService.AddMyList();
+  const { mutate: addBookmark } = BookmarkService.AddBookmark();
   const inputRef = useRef(null);
 
   const onSubmit = (e) => {
@@ -15,7 +15,7 @@ const BookmarkForm = () => {
     if (name?.trim()?.length < 2) {
       return toast.error("북마크 이름의 길이는 최소 2자입니다.");
     }
-    addMyList({ name });
+    addBookmark({ name });
     inputRef.current.value = "";
   };
 

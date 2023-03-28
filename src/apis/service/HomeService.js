@@ -21,6 +21,39 @@ const ReadAroundPlaceList = ({ x, y }) => {
     },
     {
       enabled: !!x,
+      select: (data) => {
+        return data?.map((item) => {
+          const {
+            restaurant_id,
+            restaurant_address_name,
+            restaurant_kakao_place_id,
+            restaurant_place_name,
+            restaurant_road_address_name,
+            restaurant_x,
+            restaurant_y,
+          } = item;
+
+          const payload = {
+            id: restaurant_id,
+            address_name: restaurant_address_name,
+            kakao_place_id: restaurant_kakao_place_id,
+            place_name: restaurant_place_name,
+            road_address_name: restaurant_road_address_name,
+            x: +restaurant_x,
+            y: +restaurant_y,
+          };
+
+          const newData = { ...item, ...payload };
+          delete newData.restaurant_id;
+          delete newData.restaurant_address_name;
+          delete newData.restaurant_kakao_place_id;
+          delete newData.restaurant_place_name;
+          delete newData.restaurant_road_address_name;
+          delete newData.restaurant_x;
+          delete newData.restaurant_y;
+          return newData;
+        });
+      },
     }
   );
 };
