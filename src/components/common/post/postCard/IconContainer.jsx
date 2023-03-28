@@ -13,13 +13,14 @@ import { useEffect, useState } from "react";
 // [] DM
 // [] 북마크
 
-const IconContainer = ({ handleCommentModal, post }) => {
+const IconContainer = ({ handleCommentModal, post, setOpenBookmarkBtn }) => {
   const [isLikeLoading, setIsLikeLoading] = useState(false);
   const queryKey = useRecoilValue(postQueryKeyAtom);
   const { mutate: addPostLike, isLoading: addLoading } =
     PostService.AddPostLike(queryKey);
   const { mutate: removePostLike } = PostService.RemovePostLike(queryKey);
 
+  // 좋아요 상태에 따라 다른 api
   const handleToggleLike = () => {
     if (isLikeLoading) return;
     if (strToBool(post?.isLiked)) {
@@ -29,6 +30,7 @@ const IconContainer = ({ handleCommentModal, post }) => {
     }
   };
 
+  // 좋아요 적용중일 때는 api요청 발생하지 않기 위한 loading state
   useEffect(() => {
     if (addLoading) {
       setIsLikeLoading(true);
@@ -67,6 +69,7 @@ const IconContainer = ({ handleCommentModal, post }) => {
       <FiBookmark
         size="2.7rem"
         className="cursor-pointer text-primary-600 hover:text-primary-500"
+        onClick={() => setOpenBookmarkBtn(true)}
       />
       {/* <BsBookmarkFill size={"2.3rem"} /> */}
     </div>

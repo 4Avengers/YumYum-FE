@@ -5,14 +5,17 @@ import Paragragh from "./Paragragh";
 import { useSetRecoilState } from "recoil";
 import { commentModalAtom, postConfigModalAtom } from "atoms/modalAtom";
 import { postIdAtom } from "atoms/postAtom";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { defaultImage, handleImgError } from "utils/handleImgError";
 import Slider from "react-slick";
+import BookMarkBtn from "components/common/bookMark/BookMarkBtn";
+import { AnimatePresence } from "framer-motion";
 
 const PostCard = ({ post, isOwner }) => {
   const setShowCommentModal = useSetRecoilState(commentModalAtom);
   const setShowPostConfigModal = useSetRecoilState(postConfigModalAtom);
   const setPostId = useSetRecoilState(postIdAtom);
+  const [openBookmarkBtn, setOpenBookmarkBtn] = useState(false);
 
   // 해당 포스트 id에 해당하는 설정 모달을 가져오는 기능
   const handlePostConfigModal = useCallback(() => {
@@ -35,19 +38,30 @@ const PostCard = ({ post, isOwner }) => {
           isOwner={isOwner}
         />
         <LocationWithRating post={post} />
-        <Slider {...settings} className="slider-image ml-0 pl-0">
-          {post?.images?.map((item, idx) => (
-            <img
-              key={idx}
-              src={item?.file_url || defaultImage}
-              alt="product"
-              className=" h-[35vh] w-full object-cover"
-              onError={handleImgError}
-            />
-          ))}
-        </Slider>
+        <div className="relative flex w-full overflow-hidden">
+          <Slider {...settings} className="slider-image ml-0 w-full pl-0">
+            {post?.images?.map((item, idx) => (
+              <img
+                key={idx}
+                src={item?.file_url || defaultImage}
+                alt="product"
+                className=" h-[35vh] w-full object-cover"
+                onError={handleImgError}
+              />
+            ))}
+          </Slider>
+          <AnimatePresence>
+            {openBookmarkBtn && (
+              <BookMarkBtn setOpenBookmarkBtn={setOpenBookmarkBtn} />
+            )}
+          </AnimatePresence>
+        </div>
 
-        <IconContainer handleCommentModal={handleCommentModal} post={post} />
+        <IconContainer
+          handleCommentModal={handleCommentModal}
+          post={post}
+          setOpenBookmarkBtn={setOpenBookmarkBtn}
+        />
         <p className="Cap3 px-[2rem]">좋아요 {post?.totalLikes}개</p>
         <Paragragh post={post} />
         {!!post?.totalComments && (

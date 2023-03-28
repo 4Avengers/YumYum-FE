@@ -47,3 +47,9 @@ export const restaurantModal = atom({
   key: "restaurantModal",
   default: false,
 });
+
+/** 북마크 컬렉션 추가 모달 */
+export const bookmarkModal = atom({
+  key: "bookmarkModal",
+  default: false,
+});

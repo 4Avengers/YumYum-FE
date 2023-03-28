@@ -1,4 +1,5 @@
-import { globalConfigModal } from "atoms/modalAtom";
+import { bookmarkModal, globalConfigModal } from "atoms/modalAtom";
+import BookmarkModal from "components/common/bookMark/bookmarkModal/BookmarkModal";
 import GlobalModal from "components/common/globalModal/GlobalModal";
 import { AnimatePresence } from "framer-motion";
 import useRecoilModal from "hooks/useRecoilModal";
@@ -7,6 +8,7 @@ import cls from "utils/cls";
 
 const Main = ({ hasPadding, children, hasHeader, isScroll }) => {
   const [openGlobalModal] = useRecoilModal(globalConfigModal);
+  const [openBookmarkAddModal] = useRecoilModal(bookmarkModal);
   return (
     <main
       id="main-wrapper"
@@ -18,7 +20,10 @@ const Main = ({ hasPadding, children, hasHeader, isScroll }) => {
       )}
     >
       {children}
-      <AnimatePresence>{openGlobalModal && <GlobalModal />}</AnimatePresence>
+      <AnimatePresence>
+        {openGlobalModal && <GlobalModal />}
+        {openBookmarkAddModal && <BookmarkModal />}
+      </AnimatePresence>
     </main>
   );
 };
