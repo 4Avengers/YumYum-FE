@@ -13,7 +13,7 @@ import BookmarkService from "apis/service/BookmarkService";
 
 const IconContainer = ({ handleCommentModal, post, setOpenBookmarkBtn }) => {
   const [isLikeLoading, setIsLikeLoading] = useState(false);
-  const [isBookmarkLoading, setIsBookmarkLoading] = useState(false);
+  //const [isBookmarkLoading, setIsBookmarkLoading] = useState(false);
   const setPostIdAndImage = useSetRecoilState(postIdAndImageAtom);
   const queryKey = useRecoilValue(postQueryKeyAtom);
 

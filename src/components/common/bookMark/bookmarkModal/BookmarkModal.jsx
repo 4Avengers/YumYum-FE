@@ -73,9 +73,9 @@ const BookmarkModal = () => {
           <span className="Cap1  px-[2rem]">컬렉션</span>
           <ul className="flex flex-col">
             {React.Children.toArray(
-              collections?.map((collection) => (
-                <BookmarkCard collection={collection} />
-              ))
+              collections
+                ?.slice(1)
+                ?.map((collection) => <BookmarkCard collection={collection} />)
             )}
           </ul>
         </div>
