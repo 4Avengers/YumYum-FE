@@ -4,7 +4,7 @@ import { Cookies } from "react-cookie";
 const baseURL = process.env.REACT_APP_SERVER_URL;
 const cookies = new Cookies();
 // const refreshToken = cookies.get("RefreshToken");
-const accessToken = cookies.get("Authorization");
+const accessToken = cookies.get("Authorization"); // 꺼내와서 요청 보낼 때 헤더에 넣어준다.
 
 const instance = axios.create({
   baseURL,

@@ -22,4 +22,10 @@ export const bgAni = {
   exit: { backgroundColor: "rgba(0,0,0,0)" },
 };
 
+export const bookmarkBtnAni = {
+  initial: { y: 100 },
+  animate: { y: 0 },
+  exit: { y: 100 },
+};
+
 // initial: { backgroundColor: "rgba(0,0,0,0)", backdropFilter: "blur(0px)" },
