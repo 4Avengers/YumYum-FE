@@ -23,6 +23,9 @@ const IconContainer = ({ handleCommentModal, post, setOpenBookmarkBtn }) => {
   const { mutate: addBookmark } = BookmarkService.AddAllCollectionPost({
     queryKey,
   });
+  const { mutate: removeBookmark } = BookmarkService.RemoveAllCollectionPost({
+    queryKey,
+  });
 
   // 좋아요 상태에 따라 다른 api
   const handleToggleLike = () => {
@@ -39,6 +42,7 @@ const IconContainer = ({ handleCommentModal, post, setOpenBookmarkBtn }) => {
     //if (isBookmarkLoading) return;
     if (strToBool(post?.isBookmarked)) {
       // 삭제
+      removeBookmark(post?.id);
       setOpenBookmarkBtn(false);
     } else {
       // 추가

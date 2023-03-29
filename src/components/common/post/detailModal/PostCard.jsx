@@ -5,8 +5,13 @@ import Paragragh from "../postCard/Paragragh";
 
 import { defaultImage, handleImgError } from "utils/handleImgError";
 import Slider from "react-slick";
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import BookMarkBtn from "components/common/bookMark/BookMarkBtn";
 
 const PostCard = ({ post, isOwner = false }) => {
+  const [openBookmarkBtn, setOpenBookmarkBtn] = useState(false);
+
   return (
     <>
       <li className="flex flex-col border-b pt-[2rem] pb-[2rem] first:border-b last:border-none">
@@ -16,18 +21,29 @@ const PostCard = ({ post, isOwner = false }) => {
           isOwner={isOwner}
         />
         <LocationWithRating post={post} />
-        <Slider {...settings} className="slider-image ml-0 pl-0">
-          {post?.images?.map((item, idx) => (
-            <img
-              key={idx}
-              src={item?.file_url || defaultImage}
-              alt="product"
-              className=" h-[35vh] w-full object-cover"
-              onError={handleImgError}
-            />
-          ))}
-        </Slider>
-        <IconContainer handleCommentModal={() => {}} post={post} />
+        <div className="relative flex w-full overflow-hidden">
+          <Slider {...settings} className="slider-image ml-0 w-full pl-0">
+            {post?.images?.map((item, idx) => (
+              <img
+                key={idx}
+                src={item?.file_url || defaultImage}
+                alt="product"
+                className=" h-[35vh] w-full object-cover"
+                onError={handleImgError}
+              />
+            ))}
+          </Slider>
+          <AnimatePresence>
+            {openBookmarkBtn && (
+              <BookMarkBtn setOpenBookmarkBtn={setOpenBookmarkBtn} />
+            )}
+          </AnimatePresence>
+        </div>
+        <IconContainer
+          handleCommentModal={() => {}}
+          post={post}
+          setOpenBookmarkBtn={setOpenBookmarkBtn}
+        />
         <p className="Cap3 px-[2rem]">좋아요 {post?.totalLikes}개</p>
         <Paragragh post={post} />
       </li>

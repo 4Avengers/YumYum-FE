@@ -75,7 +75,12 @@ const BookmarkModal = () => {
             {React.Children.toArray(
               collections
                 ?.slice(1)
-                ?.map((collection) => <BookmarkCard collection={collection} />)
+                ?.map((collection) => (
+                  <BookmarkCard
+                    collection={collection}
+                    postId={postIdAndImage?.id}
+                  />
+                ))
             )}
           </ul>
         </div>

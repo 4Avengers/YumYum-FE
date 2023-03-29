@@ -8,7 +8,7 @@ const CollectionCard = ({ collection }) => {
   return (
     <div
       className="flex  cursor-pointer flex-col space-y-[0.6rem] "
-      onClick={() => navigate(`${collection}`)}
+      onClick={() => navigate(`${collection?.id}?name=${collection?.name}`)}
     >
       <img
         src={collection?.image || defaultImage}

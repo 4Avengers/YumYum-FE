@@ -119,7 +119,7 @@ const Router = () => {
           !isLogin ? <Navigate to="/start/login" replace /> : <Bookmark />
         }
       >
-        <Route path=":bookmarkId" element={<BookmarkDetail />} />
+        <Route path=":collectionId" element={<BookmarkDetail />} />
       </Route>
     </Routes>
   );

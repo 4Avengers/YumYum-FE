@@ -1,4 +1,5 @@
-import { bookmarkDetailModal } from "atoms/modalAtom";
+import BookmarkService from "apis/service/BookmarkService";
+import { questPostModal } from "atoms/modalAtom";
 import BookmarkDetailCard from "components/bookmark/detail/BookmarkDetailCard";
 import ModalLayout from "components/common/modalLayout/ModalLayout";
 import PostDetailModal from "components/common/post/detailModal/PostDetailModal";
@@ -7,20 +8,26 @@ import CustomHelmet from "elements/CustomHelmet";
 import { AnimatePresence } from "framer-motion";
 import useRecoilModal from "hooks/useRecoilModal";
 import useUser from "hooks/useUser";
+import { useParams, useSearchParams } from "react-router-dom";
 import { modalLayoutAni } from "shared/motionStyle";
 
 const BookmarkDetail = () => {
-  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+  const { collectionId } = useParams();
+  const { data: posts } = BookmarkService.ReadBookmarkCollectionPosts(
+    +collectionId
+  );
   const [user] = useUser();
-  const [openPostDetailModal] = useRecoilModal(bookmarkDetailModal);
+  const [openPostDetailModal] = useRecoilModal(questPostModal);
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get("name");
 
   return (
     <ModalLayout variants={modalLayoutAni} hasPadding={false}>
-      <CustomHelmet title={"컬렉션"} />
-      <Header headerType="BELL" hasBack title="컬렉션" />
+      <CustomHelmet title={query} />
+      <Header headerType="BELL" hasBack title={query} />
       <div className="grid flex-1 cursor-pointer grid-cols-3  gap-[1rem] px-[2rem] pt-[2rem] pb-[7rem]">
-        {data?.map((item) => (
-          <BookmarkDetailCard key={item} />
+        {posts?.map((post) => (
+          <BookmarkDetailCard key={post?.id} post={post} />
         ))}
       </div>
       <AnimatePresence>

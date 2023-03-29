@@ -19,9 +19,9 @@ const RestaurantHeader = ({ hasBack, onClick, restaurant }) => {
             {restaurant?.place_name}
           </h3>
           <div className="Cap2 flex space-x-[1rem] text-primary-500">
-            <span>음식점</span>
+            <span>{restaurant?.category_group_name}</span>
             <span className="font-light text-primary-400">|</span>
-            <span>육류, 고기</span>
+            <span>{restaurant?.category_name?.split(">")[1]}</span>
           </div>
         </div>
       </div>

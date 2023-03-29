@@ -1,20 +1,27 @@
-// import { bookmarkDetailModal } from "atoms/modalAtom";
-// import { postIdAtom } from "atoms/postAtom";
-// import React from "react";
-// import { useSetRecoilState } from "recoil";
+import { questPostModal } from "atoms/modalAtom";
+import { postIdAtom } from "atoms/postAtom";
+import React from "react";
+import { useSetRecoilState } from "recoil";
+import { defaultImage, handleImgError } from "utils/handleImgError";
 
-const BookmarkDetailCard = () => {
-  // const setPostId = useSetRecoilState(postIdAtom);
+const BookmarkDetailCard = ({ post }) => {
+  const setPostId = useSetRecoilState(postIdAtom);
 
-  // const setOpenBookmarkDetailModal = useSetRecoilState(bookmarkDetailModal);
+  const setOpenBookmarkDetailModal = useSetRecoilState(questPostModal);
 
-  // const handleClickCard = () => {
-  //   // setPostId()
-  //   // setOpenBookmarkDetailModal(true);
-  // };
+  const handleClickCard = () => {
+    setPostId(post?.id);
+    setOpenBookmarkDetailModal(true);
+  };
 
   return (
-    <div className="aspect-square bg-gray-200 transition-colors hover:bg-gradient-to-r hover:from-[rgba(0,0,0,0.3)] hover:to-[rgba(0,0,0,0.3)]" />
+    <img
+      src={post?.images || defaultImage}
+      alt="img"
+      onError={handleImgError}
+      className="aspect-square cursor-pointer bg-gray-200 object-cover"
+      onClick={handleClickCard}
+    />
   );
 };
 

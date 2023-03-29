@@ -17,10 +17,10 @@ const ReadBookmarkList = () => {
 };
 
 /** 북마크 컬렉션 상세보기 */
-const ReadBookmarkCollectionPosts = ({ collectionId }) => {
+const ReadBookmarkCollectionPosts = (collectionId) => {
   return useQuery(["bookmark", "collections", collectionId], async () => {
     const response = await instance.get(
-      `bookmarks/collections/${collectionId}`
+      `bookmarks/collections/detail/${collectionId}`
     );
     return response.data;
   });
@@ -97,7 +97,7 @@ const RemoveAllCollectionPost = (queryKey) => {
   const queryClient = useQueryClient();
   return useMutation(
     async (postId) => {
-      const response = await instance.post(
+      const response = await instance.delete(
         `bookmarks/collections/post/${postId}`
       );
       return response;
@@ -111,7 +111,43 @@ const RemoveAllCollectionPost = (queryKey) => {
   );
 };
 
-/**  */
+/** 북마크 해당 컬렉션에 추가  */
+const AddCollectionPost = ({ collectionId, queryKey }) => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    async (postId) => {
+      const response = await instance.post(
+        `bookmarks/collections/${collectionId}/post/${postId}`
+      );
+      return response;
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["bookmarkList"]);
+        queryKey && queryClient.invalidateQueries(queryKey);
+      },
+    }
+  );
+};
+
+/** 북마크 해당 컬렉션 삭제  */
+const RemoveCollectionPost = ({ collectionId, queryKey }) => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    async (postId) => {
+      const response = await instance.delete(
+        `bookmarks/collections/${collectionId}/post/${postId}`
+      );
+      return response;
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["bookmarkList"]);
+        queryKey && queryClient.invalidateQueries(queryKey);
+      },
+    }
+  );
+};
 
 const BookmarkService = {
   ReadBookmarkList,
@@ -121,6 +157,8 @@ const BookmarkService = {
   RemoveBookmark,
   AddAllCollectionPost,
   RemoveAllCollectionPost,
+  AddCollectionPost,
+  RemoveCollectionPost,
 };
 
 export default BookmarkService;

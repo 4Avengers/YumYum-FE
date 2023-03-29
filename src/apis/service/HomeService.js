@@ -31,6 +31,8 @@ const ReadAroundPlaceList = ({ x, y }) => {
             restaurant_road_address_name,
             restaurant_x,
             restaurant_y,
+            restaurant_category_group_name,
+            restaurant_category_name,
           } = item;
 
           const payload = {
@@ -41,6 +43,8 @@ const ReadAroundPlaceList = ({ x, y }) => {
             road_address_name: restaurant_road_address_name,
             x: +restaurant_x,
             y: +restaurant_y,
+            category_group_name: restaurant_category_group_name,
+            category_name: restaurant_category_name,
           };
 
           const newData = { ...item, ...payload };
@@ -51,6 +55,8 @@ const ReadAroundPlaceList = ({ x, y }) => {
           delete newData.restaurant_road_address_name;
           delete newData.restaurant_x;
           delete newData.restaurant_y;
+          delete newData.restaurant_category_group_name;
+          delete newData.restaurant_category_name;
           return newData;
         });
       },

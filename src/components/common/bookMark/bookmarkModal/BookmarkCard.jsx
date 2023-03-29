@@ -1,9 +1,21 @@
+import BookmarkService from "apis/service/BookmarkService";
 import React from "react";
 import cls from "utils/cls";
 
-const BookmarkCard = ({ collection }) => {
-  const handleAddCollection = () => {};
-  const handleDeleteCollection = () => {};
+const BookmarkCard = ({ collection, postId }) => {
+  const { mutate: addCollection } = BookmarkService.AddCollectionPost({
+    collectionId: collection?.id,
+  });
+  const { mutate: removeCollection } = BookmarkService.RemoveCollectionPost({
+    collectionId: collection?.id,
+  });
+
+  const handleAddCollection = () => {
+    addCollection(postId);
+  };
+  const handleDeleteCollection = () => {
+    removeCollection(postId);
+  };
 
   return (
     <li className="flex items-center justify-between border-b px-[2rem] py-[1rem]">

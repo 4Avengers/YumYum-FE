@@ -1,11 +1,30 @@
+import { questPostModal } from "atoms/modalAtom";
+import { postIdAtom } from "atoms/postAtom";
 import React from "react";
 import { FaStar } from "react-icons/fa";
+import { useSetRecoilState } from "recoil";
+import { defaultImage, handleImgError } from "utils/handleImgError";
 
 const RestaurantPostCard = ({ post }) => {
-  console.log(post);
+  const setPostId = useSetRecoilState(postIdAtom);
+  const setOpenPostDetailModal = useSetRecoilState(questPostModal);
+
+  const handleOpenModal = () => {
+    setPostId(post?.id);
+    setOpenPostDetailModal(true);
+  };
+
   return (
-    <li className="flex cursor-pointer space-x-[1rem] px-[2rem] py-[1rem] transition-colors hover:bg-[rgba(0,0,0,0.05)]">
-      <div className="h-[10rem] w-[10rem] rounded-[0.7rem] bg-gray-200 object-cover" />
+    <li
+      className="flex cursor-pointer space-x-[1rem] px-[2rem] py-[1rem] transition-colors hover:bg-[rgba(0,0,0,0.05)]"
+      onClick={handleOpenModal}
+    >
+      <img
+        src={post?.images[0]?.file_url || defaultImage}
+        alt="img"
+        className="h-[10rem] w-[10rem] rounded-[0.7rem] bg-gray-200 object-cover"
+        onError={handleImgError}
+      />
       <div className="flex flex-1 flex-col space-y-[1rem] py-[0.3rem]">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-[1rem] ">
