@@ -18,7 +18,7 @@ const Bookmark = () => {
       <div className=" grid flex-1 auto-rows-min grid-cols-2  gap-[2rem] px-[2rem] pt-[2rem] pb-[8rem]">
         {React.Children.toArray(
           collections?.map((collection) => (
-            <CollectionCard key={collection?.id} collection={collection} />
+            <CollectionCard collection={collection} />
           ))
         )}
       </div>
