@@ -50,7 +50,7 @@ const EditModal = ({ closeModal, user }) => {
       setValue("nickname", user?.nickname);
       setValue("name", user?.name);
       setValue("email", user?.email);
-      setValue("introduce", user?.introduce);
+      setValue("introduce", user?.introduce || "");
       setProfile_img(user?.profile_image);
       setPreviewImage(user?.profile_image);
     }

@@ -18,6 +18,7 @@ import OAuth2RedirectHandler from "pages/social/OAuth2RedirectHandler";
 import Home from "pages/Home/Index";
 import Bookmark from "pages/bookmark/Index";
 import BookmarkDetail from "pages/bookmark/BookmarkDetail";
+import Chats from "pages/chats/Index";
 
 const Router = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -121,6 +122,7 @@ const Router = () => {
       >
         <Route path=":collectionId" element={<BookmarkDetail />} />
       </Route>
+      <Route path="/chats/:receiverId" element={<Chats />} />
     </Routes>
   );
 };
