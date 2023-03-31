@@ -25,7 +25,7 @@ const BookmarkDetail = () => {
     <ModalLayout variants={modalLayoutAni} hasPadding={false}>
       <CustomHelmet title={query} />
       <Header headerType="BELL" hasBack title={query} />
-      <div className="grid flex-1 cursor-pointer grid-cols-3  gap-[1rem] px-[2rem] pt-[2rem] pb-[7rem]">
+      <div className="grid flex-1 cursor-pointer auto-rows-min grid-cols-3  gap-[1rem] px-[2rem] pt-[2rem] pb-[7rem]">
         {posts?.map((post) => (
           <BookmarkDetailCard key={post?.id} post={post} />
         ))}

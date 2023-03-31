@@ -51,7 +51,7 @@ const EditComment = (postId) => {
       return response;
     },
     {
-      onSuccess: () => queryClient.invalidateQueries(["comments", postId]),
+      onSuccess: () => queryClient.invalidateQueries(["comments", +postId]),
     }
   );
 };
@@ -68,7 +68,7 @@ const RemoveComment = ({ postId, queryKey }) => {
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(["comments", postId]);
+        queryClient.invalidateQueries(["comments", +postId]);
         queryKey && queryClient.invalidateQueries(queryKey);
       },
     }

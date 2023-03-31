@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import React from "react";
 import cls from "utils/cls";
-import { FaUserTag, FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import { IoMdGrid } from "react-icons/io";
 
 const ProfileStatus = ({ status, setStatus }) => {
   return (
-    <div className="Cap4 mt-[1rem] grid grid-cols-3">
+    <div className="Cap4 mt-[1rem] grid grid-cols-2">
       <button
         className={cls(
           "relative flex flex-col items-center border-b py-[0.8rem]",
@@ -33,21 +33,6 @@ const ProfileStatus = ({ status, setStatus }) => {
         {status === "MAP" && (
           <motion.div
             className="absolute  bottom-[-0.2rem]  w-full bg-primary-400 py-[0.1rem] "
-            layoutId="profileStatus"
-          />
-        )}
-      </button>
-      <button
-        className={cls(
-          "relative flex flex-col items-center border-b py-[0.8rem]",
-          status === "TAG" ? "text-primary-600" : "text-primary-400"
-        )}
-        onClick={() => setStatus("TAG")}
-      >
-        <FaUserTag size="2.3rem" />
-        {status === "TAG" && (
-          <motion.div
-            className="absolute  bottom-[-0.2rem] w-full bg-primary-400 py-[0.1rem]"
             layoutId="profileStatus"
           />
         )}

@@ -2,7 +2,6 @@ import Layout from "components/layout/Layout";
 import EditModal from "components/profile/edit/EditModal";
 import ProfileContainer from "components/profile/index/ProfileContainer";
 import ProfileStatus from "components/profile/index/ProfileStatus";
-import TaggedUserPosts from "components/profile/index/TaggedUserPosts";
 import UserPosts from "components/profile/index/UserPosts";
 import useModal from "hooks/useModal";
 import useUser from "hooks/useUser";
@@ -54,7 +53,6 @@ const Profile = () => {
 
       {status === "USER" && <UserPosts userId={user?.id} />}
       {status === "MAP" && <ProfileMap profileId={profileId} />}
-      {status === "TAG" && <TaggedUserPosts userId={user?.id} />}
 
       <AnimatePresence>
         {user && openEditModal && (
