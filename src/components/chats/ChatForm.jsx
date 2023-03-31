@@ -1,18 +1,32 @@
 import React, { useCallback, useRef } from "react";
 import { HiOutlinePaperAirplane } from "react-icons/hi";
+import { db } from "../../firebase/firebase";
+import { addDoc, collection } from "firebase/firestore";
 
-const ChatForm = ({ user }) => {
+const ChatForm = ({ user, chatId }) => {
   const inputRef = useRef(null);
 
   // 채팅
-  const onSumbit = useCallback((e) => {
-    e.preventDefault();
-    if (!inputRef.current) return;
-    const { value } = inputRef.current;
-    if (value.trim() === "") return;
-    // 채팅 추가 로직
-    inputRef.current.value = "";
-  }, []);
+  const onSumbit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      if (!inputRef.current) return;
+      const { value } = inputRef.current;
+      if (value.trim() === "") return;
+      // 채팅 추가 로직
+      const messagesCollection = collection(db, `chatRoom`);
+      await addDoc(messagesCollection, {
+        message: value,
+        chatId,
+        userId: user.id,
+        nickname: user.nickname,
+        avatarImg: user.profile_image,
+        createdAt: new Date(),
+      });
+      inputRef.current.value = "";
+    },
+    [chatId, user]
+  );
   return (
     <form
       className="absolute bottom-[6rem] h-[7.7rem] w-full  flex-1  bg-white px-[2rem] py-[2rem] shadow-[3px_3px_10px_1px_rgba(0,0,0,0.15)]"
