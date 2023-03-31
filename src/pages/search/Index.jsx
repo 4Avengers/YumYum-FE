@@ -41,7 +41,7 @@ const Search = () => {
         <SearchPlaceList keyword={keyword} status={status} />
       )}
       <AnimatePresence>
-        {openRestaurantModal && <RestaurantModal />}
+        {openRestaurantModal && <RestaurantModal isSearch={false} />}
         {openPostDetailModal && <PostDetailModal user={user} />}
         {openTagModal && <TagModal user={user} />}
       </AnimatePresence>

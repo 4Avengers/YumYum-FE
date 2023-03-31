@@ -1,18 +1,17 @@
-import { geoLocationAtom } from "atoms/geoLocationAtom";
-import useSearchPlaces from "hooks/useSearchPlaces";
-import { debounce } from "lodash";
 import { MdPlace } from "react-icons/md";
-import React, { useCallback, useEffect, useState } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import React, { useCallback, useState } from "react";
+import { useSetRecoilState } from "recoil";
 import { restaurantModal } from "atoms/modalAtom";
 import { restaurantAtom } from "atoms/restaurantAtom";
 import useSearch from "hooks/useSearch";
+import useObserver from "hooks/useObserver";
+import useGeolocation from "hooks/useGeoLocation";
+import getDistance from "utils/getDistance";
 
 const SearchPlaceList = ({ keyword, status }) => {
   const [page, setPage] = useState(1);
-  const { data: tagList } = useSearch({ keyword, status, page });
-  const location = useRecoilValue(geoLocationAtom);
-  const { places, onChangeQuery, resetPlaces } = useSearchPlaces({ location });
+  const { data: places } = useSearch({ keyword, status, page });
+  const { location } = useGeolocation();
   const setOpenRestaurantModal = useSetRecoilState(restaurantModal);
   const setRestaurant = useSetRecoilState(restaurantAtom);
 
@@ -21,25 +20,14 @@ const SearchPlaceList = ({ keyword, status }) => {
     setRestaurant(place);
   };
 
-  // keyword가 변경될 때마다 places를 다시 조회
-  const onChangeKeyword = useCallback(() => {
-    debounce(() => {
-      if (location.latitude && location.longitude) {
-        onChangeQuery(location, keyword);
-      }
-    }, 300)();
-  }, [location, keyword, onChangeQuery]);
-
-  useEffect(() => {
-    if (keyword?.trim()?.length) {
-      onChangeKeyword();
-    } else {
-      resetPlaces();
-    }
-  }, [keyword, onChangeKeyword, resetPlaces]);
+  const fetchNextPage = useCallback(() => {
+    if (places?.length > 14 && places?.length % 15 === 0)
+      setPage((prev) => prev + 1);
+  }, [places]);
+  const [observerRef] = useObserver(fetchNextPage);
 
   return (
-    <ul className="pt-[1rem]">
+    <ul className=".inner-height  flex flex-1 flex-col overflow-x-hidden overflow-y-scroll  pt-[1rem]   scrollbar-hide">
       {places?.map((place) => (
         <li
           key={place?.id}
@@ -58,11 +46,18 @@ const SearchPlaceList = ({ keyword, status }) => {
               {place?.category_name?.split(">")?.reverse()[0]?.trim()}
             </span>
             <span className="Cap5">
-              {(+place?.distance / 1000).toFixed(1)}km
+              {getDistance(
+                location?.latitude,
+                location?.longitude,
+                +place?.y,
+                +place?.x
+              ).toFixed(1)}
+              km
             </span>
           </div>
         </li>
       ))}
+      <li ref={observerRef} className="w-full justify-self-end" />
     </ul>
   );
 };
