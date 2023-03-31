@@ -5,8 +5,7 @@ import {
   myListConfigModal,
 } from "atoms/modalAtom";
 import { BiSearch, BiDotsVerticalRounded, BiPlus } from "react-icons/bi";
-import { BsList, BsBell, BsMap } from "react-icons/bs";
-import { CiPaperplane } from "react-icons/ci";
+import { BsList, BsMap } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import cls from "utils/cls";
@@ -21,9 +20,6 @@ const HeaderSearch = () => {
         className="cursor-pointer hover:text-primary-500"
       >
         <BiSearch size="2.5rem" className="#444444" strokeWidth="0.1" />
-      </li>
-      <li>
-        <BsBell size="2.5rem" className="#444444" strokeWidth="0.3" />
       </li>
       <li
         onClick={() => setGlobalModal(true)}
@@ -75,12 +71,6 @@ const HeaderDm = () => {
   const setGlobalModal = useSetRecoilState(globalConfigModal);
   return (
     <ul className="flex items-center space-x-[1.5rem]">
-      <li className="mt-[-0.3rem] rotate-[-45deg]">
-        <CiPaperplane size="2.5rem" className="#444444" strokeWidth="0.3" />
-      </li>
-      <li>
-        <BsBell size="2.5rem" className="#444444" strokeWidth="0.3" />
-      </li>
       <li
         onClick={() => setGlobalModal(true)}
         className="cursor-pointer hover:text-primary-500"

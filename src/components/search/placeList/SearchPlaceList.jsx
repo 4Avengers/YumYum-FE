@@ -2,12 +2,15 @@ import { geoLocationAtom } from "atoms/geoLocationAtom";
 import useSearchPlaces from "hooks/useSearchPlaces";
 import { debounce } from "lodash";
 import { MdPlace } from "react-icons/md";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { restaurantModal } from "atoms/modalAtom";
 import { restaurantAtom } from "atoms/restaurantAtom";
+import useSearch from "hooks/useSearch";
 
-const SearchPlaceList = ({ keyword }) => {
+const SearchPlaceList = ({ keyword, status }) => {
+  const [page, setPage] = useState(1);
+  const { data: tagList } = useSearch({ keyword, status, page });
   const location = useRecoilValue(geoLocationAtom);
   const { places, onChangeQuery, resetPlaces } = useSearchPlaces({ location });
   const setOpenRestaurantModal = useSetRecoilState(restaurantModal);

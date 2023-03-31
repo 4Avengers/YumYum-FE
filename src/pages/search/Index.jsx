@@ -9,10 +9,11 @@ import SearchUserList from "components/search/userList/SearchUserList";
 import CustomHelmet from "elements/CustomHelmet";
 import { AnimatePresence } from "framer-motion";
 import useRecoilModal from "hooks/useRecoilModal";
-import { questPostModal, restaurantModal } from "atoms/modalAtom";
+import { questPostModal, restaurantModal, tagModal } from "atoms/modalAtom";
 import RestaurantModal from "components/common/restaurant/RestaurantModal";
 import useUser from "hooks/useUser";
 import PostDetailModal from "components/common/post/detailModal/PostDetailModal";
+import TagModal from "components/search/tagList/TagModal";
 
 // type TSTATUS = "user" | "hashtag" | "restaurant"
 
@@ -23,6 +24,7 @@ const Search = () => {
   const [user] = useUser();
   const [openRestaurantModal] = useRecoilModal(restaurantModal);
   const [openPostDetailModal] = useRecoilModal(questPostModal);
+  const [openTagModal] = useRecoilModal(tagModal);
 
   return (
     <Layout hasHeader={false} hasPadding={false} isScroll={false}>
@@ -41,6 +43,7 @@ const Search = () => {
       <AnimatePresence>
         {openRestaurantModal && <RestaurantModal />}
         {openPostDetailModal && <PostDetailModal user={user} />}
+        {openTagModal && <TagModal user={user} />}
       </AnimatePresence>
     </Layout>
   );

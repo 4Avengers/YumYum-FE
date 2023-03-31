@@ -16,7 +16,7 @@ const PostDetailModal = ({ user }) => {
 
   const { data: post } = PostService.ReadPostDetail(postId);
 
-  useQueryKey(["post", postId]);
+  useQueryKey(["post", +postId]);
 
   const handleCloseModal = () => {
     setOpenPostDetailModal(false);

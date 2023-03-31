@@ -1,6 +1,7 @@
 import ListService from "apis/service/ListService";
 import ModalLayout from "components/common/modalLayout/ModalLayout";
 import PostCard from "components/common/post/postCard/PostCard";
+import useQueryKey from "hooks/useQueryKey";
 
 import React from "react";
 import { useParams } from "react-router-dom";
@@ -13,6 +14,7 @@ const CollectionModal = ({ onClick, restaurantId, userId }) => {
     collectionId,
     restaurantId,
   });
+  useQueryKey(["collections", collectionId, "restaurant", restaurantId]);
 
   // collectionId와 restaurantId로 데이터 조회
   return (

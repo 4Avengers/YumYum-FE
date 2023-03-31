@@ -65,3 +65,9 @@ export const bookmarkDetailModal = atom({
   key: "bookmarkDetailModal",
   default: false,
 });
+
+/** 태그 모달 */
+export const tagModal = atom({
+  key: "tagModal",
+  default: false,
+});

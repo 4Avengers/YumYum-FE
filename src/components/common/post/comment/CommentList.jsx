@@ -1,12 +1,14 @@
 import CommentService from "apis/service/CommentService";
 import { postQueryKeyAtom } from "atoms/queryKeyAtom";
 import useObserver from "hooks/useObserver";
+import useUser from "hooks/useUser";
 import React, { useCallback, useMemo } from "react";
 import { useRecoilValue } from "recoil";
 import CommentCard from "./CommentCard";
 
 const CommentList = ({ postId }) => {
   const queryKey = useRecoilValue(postQueryKeyAtom);
+  const [user] = useUser();
   const {
     data: comments,
     hasNextPage,
@@ -32,7 +34,7 @@ const CommentList = ({ postId }) => {
           comment={comment}
           postId={postId + ""}
           queryKey={queryKey}
-          isOwner={false}
+          isOwner={comment?.user?.id === user?.id}
         />
       ))}
       <div ref={observerRef} className="" />
