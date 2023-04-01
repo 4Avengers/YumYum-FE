@@ -61,6 +61,7 @@ const PostCard = ({ post, isOwner }) => {
           handleCommentModal={handleCommentModal}
           post={post}
           setOpenBookmarkBtn={setOpenBookmarkBtn}
+          isOwner={isOwner}
         />
         <p className="Cap3 px-[2rem]">좋아요 {post?.totalLikes}개</p>
         <Paragragh post={post} />

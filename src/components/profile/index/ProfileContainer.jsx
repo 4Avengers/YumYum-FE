@@ -97,7 +97,14 @@ const ProfileContainer = ({
           >
             팔로워
           </button>
-          {!isOwner && <button className="border ">메시지</button>}
+          {!isOwner && (
+            <button
+              className="rounded-[0.5rem] border"
+              onClick={() => navigate(`/chats/${profile?.id}`)}
+            >
+              메시지
+            </button>
+          )}
         </div>
         <button className="flex-center w-[3rem] rounded-[0.5rem] border">
           <MdOutlineKeyboardArrowDown

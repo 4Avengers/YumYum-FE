@@ -40,13 +40,14 @@ const ChatList = ({ chatId, user, receiver }) => {
   console.log(chats);
 
   return (
-    <ul className="mb-[12rem] h-[calc(100vh-18.7rem)]  space-y-[1rem] overflow-y-auto px-[2rem] pt-[2rem] scrollbar-hide">
+    <ul className="h-[calc(100vh-18.7rem)] space-y-[1rem]  overflow-y-auto px-[2rem] pb-[2rem] pt-[2rem] scrollbar-hide ">
       {chats?.map((chat) => (
         <ChatItem
           key={chat?.id}
           chat={chat}
           isMe={user?.id === chat?.userId}
           receiver={receiver}
+          user={user}
         />
       ))}
     </ul>

@@ -10,11 +10,18 @@ import { useEffect, useState } from "react";
 import { FaBookmark } from "react-icons/fa";
 import { postIdAndImageAtom } from "atoms/postAtom";
 import BookmarkService from "apis/service/BookmarkService";
+import { useNavigate } from "react-router-dom";
 
-const IconContainer = ({ handleCommentModal, post, setOpenBookmarkBtn }) => {
+const IconContainer = ({
+  handleCommentModal,
+  post,
+  setOpenBookmarkBtn,
+  isOwner,
+}) => {
   const [isLikeLoading, setIsLikeLoading] = useState(false);
   //const [isBookmarkLoading, setIsBookmarkLoading] = useState(false);
   const setPostIdAndImage = useSetRecoilState(postIdAndImageAtom);
+  const navigate = useNavigate();
   const queryKey = useRecoilValue(postQueryKeyAtom);
 
   const { mutate: addPostLike, isLoading: addLoading } =
@@ -83,10 +90,13 @@ const IconContainer = ({ handleCommentModal, post, setOpenBookmarkBtn }) => {
           size="2.7rem"
           onClick={handleCommentModal}
         />
-        <HiOutlinePaperAirplane
-          size="2.5rem"
-          className="mt-[-0.4rem] rotate-[45deg] cursor-pointer hover:text-primary-500"
-        />
+        {!isOwner && (
+          <HiOutlinePaperAirplane
+            onClick={() => navigate(`/chats/${post?.user?.id}`)}
+            size="2.5rem"
+            className="mt-[-0.4rem] rotate-[45deg] cursor-pointer hover:text-primary-500"
+          />
+        )}
       </div>
       {strToBool(post?.isBookmarked) ? (
         <FaBookmark
