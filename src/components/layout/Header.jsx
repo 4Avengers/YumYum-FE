@@ -46,7 +46,7 @@ const Header = ({
           size="3rem"
           strokeWidth={0.8}
           className="cursor-pointer text-primary-600 hover:text-primary-500"
-          onClick={() => window.location.replace("/start/login")}
+          onClick={() => navigate("/start/login")}
         />
       )}
     </motion.header>

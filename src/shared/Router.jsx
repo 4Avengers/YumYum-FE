@@ -21,13 +21,11 @@ import BookmarkDetail from "pages/bookmark/BookmarkDetail";
 import Chats from "pages/chats/Index";
 
 const Router = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
   useEffect(() => {
     const isExist = hasToken();
-    if (isExist) {
-      setIsLogin(true);
-    } else {
+    if (!isExist) {
       setIsLogin(false);
     }
   }, [setIsLogin]);
