@@ -197,3 +197,13 @@ a {
 .dots_custom li.slick-active button {
   background-color: rgba(255, 255, 255, 0.8);
 }
+
+/* 채팅 스크롤 */
+.chatScroll::-webkit-scrollbar {
+  background-color: transparent;
+  width: 5px;
+}
+.chatScroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+}

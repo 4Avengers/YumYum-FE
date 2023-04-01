@@ -2,6 +2,8 @@ import dayjs from "dayjs";
 import React from "react";
 import cls from "utils/cls";
 import { handleImgError } from "utils/handleImgError";
+import "dayjs/locale/ko";
+dayjs.locale("ko");
 
 const ChatItem = ({ chat, isMe, receiver, user }) => {
   return (
@@ -9,7 +11,7 @@ const ChatItem = ({ chat, isMe, receiver, user }) => {
       {isMe ? (
         <li className={cls("flex justify-end space-x-[1rem] last:mb-[2rem]")}>
           <span className="self-end whitespace-nowrap text-[1rem] text-primary-500">
-            {dayjs(new Date(chat.createdAt?.seconds)).format("A HH:mm")}
+            {dayjs(new Date(chat.createdAt?.seconds * 1000)).format("A HH:mm")}
           </span>
 
           <p className="Cap4  break-all  rounded-[0.8rem] bg-[#fcdb57] py-[0.6rem] px-[1rem]">
@@ -31,7 +33,9 @@ const ChatItem = ({ chat, isMe, receiver, user }) => {
                 {chat?.message}
               </p>
               <span className="self-end whitespace-nowrap text-[1rem] text-primary-500">
-                {dayjs(new Date(chat.createdAt?.seconds)).format("A HH:mm")}
+                {dayjs(new Date(chat.createdAt?.seconds * 1000)).format(
+                  "A HH:mm"
+                )}
               </span>
             </div>
           </div>

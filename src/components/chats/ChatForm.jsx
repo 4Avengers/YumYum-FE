@@ -3,7 +3,7 @@ import { HiOutlinePaperAirplane } from "react-icons/hi";
 import { db } from "../../firebase/firebase";
 import { addDoc, collection } from "firebase/firestore";
 
-const ChatForm = ({ user, chatId }) => {
+const ChatForm = ({ user, chatId, chatRef }) => {
   const inputRef = useRef(null);
 
   // 채팅
@@ -24,8 +24,10 @@ const ChatForm = ({ user, chatId }) => {
         createdAt: new Date(),
       });
       inputRef.current.value = "";
+      if (chatRef?.current)
+        chatRef.current.scrollTop = chatRef.current.scrollHeight;
     },
-    [chatId, user]
+    [chatId, user, chatRef]
   );
   return (
     <form
