@@ -18,6 +18,7 @@ const ReadComments = (postId) => {
         return nextPage;
       },
       enabled: !!postId,
+      suspense: true,
     }
   );
 };

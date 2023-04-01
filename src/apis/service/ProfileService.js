@@ -51,6 +51,7 @@ const ReadProfilePosts = ({ profileId }) => {
         const nextPage = lastPage?.length < 8 ? undefined : allPages.length + 1;
         return nextPage;
       },
+      suspense: true,
     }
   );
 };

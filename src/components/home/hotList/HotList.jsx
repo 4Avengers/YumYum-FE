@@ -23,7 +23,7 @@ const HotList = () => {
         {...settings}
         beforeChange={beforeFn}
         afterChange={afterFn}
-        className="bg-red-200 pl-[2rem]"
+        className=" pl-[2rem]"
       >
         {hotList?.map((collection) => (
           <HotCard

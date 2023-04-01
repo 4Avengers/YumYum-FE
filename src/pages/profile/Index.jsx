@@ -2,10 +2,10 @@ import Layout from "components/layout/Layout";
 import EditModal from "components/profile/edit/EditModal";
 import ProfileContainer from "components/profile/index/ProfileContainer";
 import ProfileStatus from "components/profile/index/ProfileStatus";
-import UserPosts from "components/profile/index/UserPosts";
+// import UserPosts from "components/profile/index/UserPosts";
 import useModal from "hooks/useModal";
 import useUser from "hooks/useUser";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Outlet, useLocation, useParams } from "react-router-dom";
 import FollowModal from "components/profile/follow/FollowModal";
 import useRecoilModal from "hooks/useRecoilModal";
@@ -20,6 +20,11 @@ import { AnimatePresence } from "framer-motion";
 import ProfileMap from "components/profile/index/profileMap/ProfileMap";
 import PostDetailModal from "components/common/post/detailModal/PostDetailModal";
 import CustomHelmet from "elements/CustomHelmet";
+import FakePostList from "components/skeleton/post/FakePostList";
+
+const UserPosts = React.lazy(() =>
+  import("components/profile/index/UserPosts")
+);
 
 // type TStatus = USER | MAP | TAG
 
@@ -51,7 +56,11 @@ const Profile = () => {
       />
       <ProfileStatus status={status} setStatus={setStatus} />
 
-      {status === "USER" && <UserPosts userId={user?.id} />}
+      {status === "USER" && (
+        <Suspense fallback={<FakePostList length={2} />}>
+          <UserPosts userId={user?.id} />
+        </Suspense>
+      )}
       {status === "MAP" && <ProfileMap profileId={profileId} />}
 
       <AnimatePresence>

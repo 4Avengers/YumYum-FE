@@ -2,13 +2,16 @@ import { postIdAtom } from "atoms/postAtom";
 import { commentModalAtom } from "atoms/modalAtom";
 import ModalHeader from "components/common/modalLayout/ModalHeader";
 import ModalLayout from "components/common/modalLayout/ModalLayout";
-import { useCallback } from "react";
+import React, { Suspense, useCallback } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { modalLayoutAni } from "shared/motionStyle";
 import CommentForm from "./CommentForm";
 import { postQueryKeyAtom } from "atoms/queryKeyAtom";
 import useUser from "hooks/useUser";
-import CommentList from "./CommentList";
+// import CommentList from "./CommentList";
+import FakeCommentList from "components/skeleton/comment/FakeCommentList";
+
+const CommentList = React.lazy(() => import("./CommentList"));
 
 const CommentModal = () => {
   const [postId, setPostId] = useRecoilState(postIdAtom);
@@ -30,7 +33,10 @@ const CommentModal = () => {
     >
       <ModalHeader title="댓글" hasBack onClick={handleCloseModal} />
       <div className="flex flex-1 flex-col  ">
-        <CommentList postId={postId} />
+        <Suspense fallback={<FakeCommentList />}>
+          <CommentList postId={postId} />
+        </Suspense>
+
         <CommentForm postId={postId} queryKey={queryKey} user={user} />
       </div>
     </ModalLayout>
