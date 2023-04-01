@@ -93,6 +93,7 @@ const ReadNewsFeeds = () => {
         const nextPage = lastPage?.length < 8 ? undefined : allPages.length + 1;
         return nextPage;
       },
+      suspense: true,
     }
   );
 };
@@ -111,6 +112,7 @@ const ReadNewsFeedsAround = ({ x, y }) => {
             return nextPage;
           },
           enabled: !!x,
+          suspense: true,
         }
       );
       return response.data;

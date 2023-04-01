@@ -4,7 +4,6 @@ import useQueryKey from "hooks/useQueryKey";
 import useUser from "hooks/useUser";
 import useObserver from "hooks/useObserver";
 import { useCallback, useMemo } from "react";
-import FakePostCard from "components/skeleton/post/FakePostCard";
 
 // newsfeed 최신글
 const NewsFeedRecent = () => {
@@ -31,7 +30,6 @@ const NewsFeedRecent = () => {
 
   return (
     <ul className=".inner-height flex flex-col overflow-x-hidden overflow-y-scroll scrollbar-hide">
-      <FakePostCard />
       {postList?.map((post) => (
         <PostCard
           key={post.id}

@@ -3,10 +3,16 @@ import { useQuery } from "react-query";
 
 /** 요즘 뜨는 맛집 리스트 */
 const ReadHotPlaceList = () => {
-  return useQuery(["hotPlaceList"], async () => {
-    const response = await instance.get("my-list/collections/main/hot");
-    return response.data;
-  });
+  return useQuery(
+    ["hotPlaceList"],
+    async () => {
+      const response = await instance.get("my-list/collections/main/hot");
+      return response.data;
+    },
+    {
+      suspense: true,
+    }
+  );
 };
 
 /** 내 주변 맛집리스트 */
@@ -21,6 +27,7 @@ const ReadAroundPlaceList = ({ x, y }) => {
     },
     {
       enabled: !!x,
+      suspense: true,
       select: (data) => {
         return data?.map((item) => {
           const {
@@ -77,6 +84,7 @@ const ReadRecommandPlaceList = (category) => {
     {
       enabled: !!category,
       staleTime: 60000,
+      suspense: true,
     }
   );
 };

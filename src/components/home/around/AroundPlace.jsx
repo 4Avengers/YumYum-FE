@@ -9,7 +9,7 @@ import NotLocation from "components/common/post/notPost/NotLocation";
 
 // 내 주변 맛집
 const AroundPlace = ({ x, y }) => {
-  const { data: places, isLoading } = HomeService.ReadAroundPlaceList({ x, y });
+  const { data: places } = HomeService.ReadAroundPlaceList({ x, y });
   const navigate = useNavigate();
 
   return (
@@ -20,19 +20,18 @@ const AroundPlace = ({ x, y }) => {
         onClick={() => navigate("/quest")}
       />
 
-      <Slider {...settings} className="pl-[2rem]">
-        {places
-          ?.sort((a, b) => a.distance - b.distance)
-          ?.map((place) => (
-            <ArroundCard place={place} key={place?.id} />
-          ))}
-        <div />
-      </Slider>
-      {!places && !isLoading && !x && (
-        <NotLocation text=" 등록된 위치 정보가 없습니다." />
-      )}
-      {places?.length === 0 && x && (
+      {!x && <NotLocation text=" 등록된 위치 정보가 없습니다." />}
+      {places?.length === 0 && x ? (
         <NotLocation text="가까운 위치에 등록된 맛집이 없습니다." />
+      ) : (
+        <Slider {...settings} className="pl-[2rem]">
+          {places
+            ?.sort((a, b) => a.distance - b.distance)
+            ?.map((place) => (
+              <ArroundCard place={place} key={place?.id} />
+            ))}
+          <div />
+        </Slider>
       )}
     </div>
   );
