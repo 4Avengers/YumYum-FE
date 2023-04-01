@@ -13,16 +13,17 @@ import useObserver from "hooks/useObserver";
 
 const ChatList = ({ chatId, user, receiver, chatRef }) => {
   const [chats, setChats] = useState([]);
+  const [chatLen, setChatLen] = useState(0);
   const [page, setPage] = useState(1);
   const [prevHeight, setPrevHeight] = useState(null);
 
   const fetchNextPage = useCallback(() => {
     const chatLen = chats?.length;
-    if (chatLen >= 20 && chatLen % 20 === 0) {
+    if (chatLen >= 20 && chatLen % 20 === 0 && !prevHeight) {
       setPage((prev) => prev + 1);
-      setPrevHeight(chatRef.current?.scrollHeight);
+      setPrevHeight(chatRef?.current?.scrollHeight);
     }
-  }, [chats, chatRef]);
+  }, [chats, chatRef, prevHeight]);
 
   const [observerRef] = useObserver(fetchNextPage);
 
@@ -32,7 +33,8 @@ const ChatList = ({ chatId, user, receiver, chatRef }) => {
     chatContainer.scrollTo({
       top: chatContainer.scrollHeight,
     });
-  }, [chatRef]);
+    setChatLen(chats.length);
+  }, [chatRef, chats]);
 
   // chatId에 해당하는 채팅방의 데이터를 불러온다.
   const getMessages = useCallback(() => {
@@ -55,7 +57,7 @@ const ChatList = ({ chatId, user, receiver, chatRef }) => {
       });
       setChats(updatedMessages.reverse());
     });
-  }, [getMessages, chatRef]);
+  }, [getMessages, chatRef, prevHeight, page]);
 
   // 채팅이 밑에서 300px이하일 경우에는 채팅 메시지가 도착했을 때 스크롤을 맨밑으로 보낸다. 아닐 경우는 현재 높이 - 이전 높이값을 scrollTop으로 지정
   useEffect(() => {
@@ -65,11 +67,13 @@ const ChatList = ({ chatId, user, receiver, chatRef }) => {
       chatContainer.scrollHeight - 300;
     if (shouldScrollToBottom) {
       chatContainer.scrollTop = chatContainer.scrollHeight;
-    } else {
+    } else if (chatLen !== chats?.length) {
+      console.log(chatContainer?.scrollHeight, prevHeight);
       chatContainer.scrollTop = chatContainer?.scrollHeight - prevHeight;
       setPrevHeight(null);
+      setChatLen(chats?.length);
     }
-  }, [chats, chatRef]);
+  }, [chats, chatRef, prevHeight, chatLen]);
 
   // 채팅페이지 첫 로드시에 스크롤을 맨밑으로 보낸다.
   useEffect(() => {
