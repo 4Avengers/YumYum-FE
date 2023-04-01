@@ -64,7 +64,7 @@ const EditModal = ({ closeModal, user }) => {
   }, [isSuccess, closeModal]);
 
   return (
-    <ModalLayout variants={modalLayoutAni}>
+    <ModalLayout variants={modalLayoutAni} maxZIndex>
       <ModalHeader title="내 프로필 수정" hasBack onClick={closeModal} />
       <form
         className="flex w-full flex-1 flex-col items-center  px-[5rem] pt-[10vh]"
