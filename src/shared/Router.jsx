@@ -16,6 +16,12 @@ import { useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import OAuth2RedirectHandler from "pages/social/OAuth2RedirectHandler";
 import Home from "pages/Home/Index";
+import LoginAdmin from "pages/admin/LoginAdmin";
+import Admin from "pages/admin/Admin"
+import ReportAccount from "pages/admin/ReportAccount";
+import ReportComment from "pages/admin/ReportComment";
+import ReportPost from "pages/admin/ReportPost";
+
 
 const Router = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -111,6 +117,28 @@ const Router = () => {
           !isLogin ? <Navigate to="/start/login" replace /> : <PostEdit />
         }
       />
+
+
+
+      <Route path="/admin/login" element={<LoginAdmin />} />
+      <Route path="/admin" element={<Admin />} />
+
+      <Route path="/admin/reportpost" element={<ReportPost />} />
+      <Route path="/admin/reportcomment" element={<ReportComment />} />
+      <Route path="/admin/reportaccount" element={<ReportAccount />} />
+      
+
+
+
+     {/* 
+      <Route
+        path="/admin/login"
+        element={
+          !isLogin ? <Navigate to="/start/login" replace /> : <PostEdit />
+        }
+      /> */}
+
+
 
       {/* <Route path="/api/users/google/callback" element={<Profile />}></Route> */}
     </Routes>
