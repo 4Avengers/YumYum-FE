@@ -126,8 +126,3 @@ const Router = () => {
 };
 
 export default Router;
-
-/**
- 채팅 알림은 modal 처리 
- 애니메이션은 가장 마지막
- */
