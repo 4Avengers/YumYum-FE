@@ -24,7 +24,8 @@
 
 
 ## ❄️ Stacks
-<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"> <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white"> <img src="https://img.shields.io/badge/recoil-5C2D91?style=for-the-badge&logo=atom&logoColor=white"> <img src="https://img.shields.io/badge/react--query-ff3838?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/aws--s3-569A31?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/cloudfront-FE9A00?style=for-the-badge&logo=amazonaws&logoColor=white">
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"> <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white"> <img src="https://img.shields.io/badge/recoil-5C2D91?style=for-the-badge&logo=atom&logoColor=white"> <img src="https://img.shields.io/badge/react--query-ff3838?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/aws--s3-569A31?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/cloudfront-FE9A00?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
+
 
 <br/>
 
