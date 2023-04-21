@@ -50,8 +50,8 @@
 - 가장 최근에 작성한 리뷰 목록 
 - 내 주변 피드 (내 주변에 등록된 맛집에 대한 리뷰 목록)
 
- <img src="https://user-images.githubusercontent.com/86880916/233598619-cbf90705-b5be-49b2-93cf-af2fbb86f01c.gif" width="700"/>
- <img src="https://user-images.githubusercontent.com/86880916/233598657-478069da-4611-4367-98e2-15ecd6a6c6ba.gif" width="700"/>
+  <img src="https://user-images.githubusercontent.com/86880916/233598619-cbf90705-b5be-49b2-93cf-af2fbb86f01c.gif" width="700"/>
+  <img src="https://user-images.githubusercontent.com/86880916/233598657-478069da-4611-4367-98e2-15ecd6a6c6ba.gif" width="700"/>
 <br/>
 
 ### 포스팅 
