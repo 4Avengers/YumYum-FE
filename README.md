@@ -82,7 +82,8 @@
 - 키워드를 통한 계정 검색 
 - 키워드를 통한 태그 검색 
 - 키워드를 통한 등록된 맛집 검색 
-<img src="" width="250"/>
+<img src="https://user-images.githubusercontent.com/86880916/233601054-1aab1a73-8591-4a5b-ada9-094ed704d9da.gif" width="250"/>
+
 
 ### DM 
 - 1:1 채팅 기능
