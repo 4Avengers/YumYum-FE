@@ -116,4 +116,14 @@
 2. Debounce를 이용한 장소검색 api 리소스 절약 
 3. 코드 분할 
 4. 구글 아날리틱스를 사용해 방문자 데이터 수집 
+
+<br/>
+
+### **git Flow**
+
+- branch : 기능별 작업
+- main(master) : 최종 배포
+<img src="https://user-images.githubusercontent.com/80516736/221170041-8b7d3762-1152-4407-a600-d9fe1e87e08d.png" width="500px">
+
+<br/>
   
