@@ -33,21 +33,9 @@
 
 ## ❄️ Stacks
 
-### Backend
-
-<img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=black"> <img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white"> <img src="https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=NestJS&logoColor=white"> <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> <img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=Jest&logoColor=white"> <img src="https://img.shields.io/badge/nginx-009639?style=for-the-badge&logo=nginx&logoColor=white">
-
-<img src="https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/amazonec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white"> <img src="https://img.shields.io/badge/amazonrds-527FFF?style=for-the-badge&logo=amazonrds&logoColor=white"> <img src="https://img.shields.io/badge/amazons3-569A31?style=for-the-badge&logo=amazons3&logoColor=white"> <img src="https://img.shields.io/badge/pm2-2B037A?style=for-the-badge&logo=pm2&logoColor=white">
- <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
-
-
-
 ### Frontend
 <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"> <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white"> <img src="https://img.shields.io/badge/recoil-5C2D91?style=for-the-badge&logo=atom&logoColor=white"> <img src="https://img.shields.io/badge/react--query-ff3838?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/aws--s3-569A31?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/cloudfront-FE9A00?style=for-the-badge&logo=amazonaws&logoColor=white">
 
-
-## 📋 ERD
-![title](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F959bc85a-6547-4fcc-b93f-7a11157b7afa%2FUntitled.png?table=block&id=b5405cb5-ae16-42fb-af83-c507fdc59760&spaceId=9b2d7abe-1440-407f-a4b1-9d97908075f6&width=2000&userId=c5049af8-d03e-42ff-b646-e5e6a17fc55d&cache=v2)   
 
 ## 🔎 API
 [API 명세서 바로가기](https://plucky-summer-2c4.notion.site/1d8ca1a3eaad4f19b66bef99ab38e342?v=0445a1b8df1a42709e78c9627653239b)   
