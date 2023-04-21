@@ -72,5 +72,11 @@
 
 
 ## 😎 Member
-
+<table>
+<tbody>
+<tr>
+<td align="center"><a href="[https://github.com/hansejun](https://github.com/hansejun)"><img src="https://avatars.githubusercontent.com/u/86880916?v=4" width="100px;" alt=""/><br /><sub><b>한세준(FE)</b></sub></a><br /></td>
+<tr/>
+</tbody>
+</table>
   
