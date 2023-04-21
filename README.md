@@ -37,7 +37,8 @@
 - 내 주변 맛집 
 - 요즘 뜨는 맛집 리스트
 - 인기 리뷰 (카테고리별로 가장 많은 좋아요를 받은 리뷰 목록)
-![메인페이지](https://user-images.githubusercontent.com/86880916/233598064-064814ed-f8e3-4496-97bf-a6d9e74eac25.gif)
+<img src="https://user-images.githubusercontent.com/86880916/233598064-064814ed-f8e3-4496-97bf-a6d9e74eac25.gif"/>
+
 
 ### 뉴스피드
 - 가장 최근에 작성한 리뷰 목록 
