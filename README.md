@@ -118,6 +118,7 @@
 <img src="https://user-images.githubusercontent.com/86880916/233614188-1118ed2b-9264-40b8-8e2e-212e37de76e0.gif" width="250"/>
 <img src="https://user-images.githubusercontent.com/86880916/233614198-bfefa0b3-0dc1-4767-8610-a0328c6199f8.gif" width="250"/>
 </div>
+
 <br/>
 
 2. Debounce를 이용한 장소검색 api 리소스 절약
