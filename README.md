@@ -124,7 +124,8 @@
 
 2. Debounce를 이용한 장소검색 api 리소스 절약
 - 카카오에서 제공하는 장소검색 api는 하루 3만건을 무료 제공하고 있다. 키를 입력할 때마다 검색을 실행시키면 하루 제한을 초과할 수 있기 때문에 Debounce 테크닉을 통해 여러번 발생하는 이벤트를 마지막 한번만 실행되도록 수정하였다. 또한 검색 건수 제한뿐만 아니라 데이터의 응답 속도에 따라 검색 결과가 달라지는 것을 방지할 목적으로 사용하였다.
-<img src="https://user-images.githubusercontent.com/86880916/233614384-85f1ec89-d25c-4e19-8da2-f9957112973d.gif" width="250"/>
+
+  <img src="https://user-images.githubusercontent.com/86880916/233614384-85f1ec89-d25c-4e19-8da2-f9957112973d.gif" width="250"/>
 
 <br/>
 
