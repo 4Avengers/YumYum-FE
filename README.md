@@ -37,14 +37,18 @@
 - 내 주변 맛집 
 - 요즘 뜨는 맛집 리스트
 - 인기 리뷰 (카테고리별로 가장 많은 좋아요를 받은 리뷰 목록)
- <img src="https://user-images.githubusercontent.com/86880916/233598064-064814ed-f8e3-4496-97bf-a6d9e74eac25.gif" width="250"/>
+<img src="https://user-images.githubusercontent.com/86880916/233598064-064814ed-f8e3-4496-97bf-a6d9e74eac25.gif" width="250"/>
 
 
 ### 뉴스피드
 - 가장 최근에 작성한 리뷰 목록 
 - 내 주변 피드 (내 주변에 등록된 맛집에 대한 리뷰 목록)
+<img src="https://user-images.githubusercontent.com/86880916/233598619-cbf90705-b5be-49b2-93cf-af2fbb86f01c.gif" width="700"/>
+<img src="https://user-images.githubusercontent.com/86880916/233598657-478069da-4611-4367-98e2-15ecd6a6c6ba.gif" width="700"/>
+
 
 ### 포스팅 
+
 - 근처 맛집 검색 
 - 맛집 리스트 추가 
 - 별점 및 해시태그 
