@@ -114,10 +114,10 @@
 ## 개선사항 
 1. Skeleton UI 적용
 - 로딩 중일 때 사용자에게 시각적인 피드백을 제공하기 위해 skeleton ui를 사용.
-<div display="flex">
-<img src="https://user-images.githubusercontent.com/86880916/233614188-1118ed2b-9264-40b8-8e2e-212e37de76e0.gif" width="250"/>
-<img src="https://user-images.githubusercontent.com/86880916/233614198-bfefa0b3-0dc1-4767-8610-a0328c6199f8.gif" width="250"/>
-</div>
+  <div display="flex">
+  <img src="https://user-images.githubusercontent.com/86880916/233614188-1118ed2b-9264-40b8-8e2e-212e37de76e0.gif" width="250"/>
+  <img src="https://user-images.githubusercontent.com/86880916/233614198-bfefa0b3-0dc1-4767-8610-a0328c6199f8.gif" width="250"/>
+  </div>
 
 <br/>
 
