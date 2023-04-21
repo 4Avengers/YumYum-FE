@@ -109,7 +109,7 @@
 ## 🔎 API
 [API 명세서 바로가기](https://plucky-summer-2c4.notion.site/1d8ca1a3eaad4f19b66bef99ab38e342?v=0445a1b8df1a42709e78c9627653239b)   
 
----
+<br/>
 
 ## 개선사항 
 1. Skeleton UI 적용
