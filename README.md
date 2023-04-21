@@ -21,15 +21,15 @@
 
 
 ## ❄️ Stacks
-
-### Frontend
 <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"> <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white"> <img src="https://img.shields.io/badge/recoil-5C2D91?style=for-the-badge&logo=atom&logoColor=white"> <img src="https://img.shields.io/badge/react--query-ff3838?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/aws--s3-569A31?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/cloudfront-FE9A00?style=for-the-badge&logo=amazonaws&logoColor=white">
 
+## 🚗 개발기간 
+- 개발기간 : 2023.03.01 ~ 2023.04.01
+- 유저 테스트 : 2023.03.24 ~ 2023.03.27
+- 피드백 수정 :  2023.03.27 ~ 2023.04.01
 
 ## 🔎 API
 [API 명세서 바로가기](https://plucky-summer-2c4.notion.site/1d8ca1a3eaad4f19b66bef99ab38e342?v=0445a1b8df1a42709e78c9627653239b)   
-
-
 
 ## ⭐️ 페이지별 기능 소개
 
