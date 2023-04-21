@@ -75,7 +75,7 @@
 
 ### 북마크 컬렉션 
 - 맛집 컬렉션 생성 및 수정 / 삭제 (미완)
-<div display="flex">
+<div display="flex" gap="10px">
   <img src="https://user-images.githubusercontent.com/86880916/233599479-e78263a6-3c74-460e-ae86-56c1e3eef73b.gif" width="250" />
   <img src="https://user-images.githubusercontent.com/86880916/233599492-0cb48589-f87f-48cf-b8bf-bd4b0631ec22.gif" width="250" />
 </div>
